@@ -1,4 +1,43 @@
-# Monero-P2P-honours-project
+# Welcome to Remix!
+
+- 📖 [Remix docs](https://remix.run/docs)
+
+## Development
+
+Run the dev server:
+
+```shellscript
+npm run dev
+```
+
+## Deployment
+
+First, build your app for production:
+
+```sh
+npm run build
+```
+
+Then run the app in production mode:
+
+```sh
+npm start
+```
+
+Now you'll need to pick a host to deploy it to.
+
+### DIY
+
+If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+
+Make sure to deploy the output of `npm run build`
+
+- `build/server`
+- `build/client`
+
+## Styling
+
+This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
 
 # Project Introduction
 
@@ -16,6 +55,7 @@ This project focuses on creating a peer-to-peer trading platform for Monero (XMR
 2. **PostgreSQL**: Manages structured data, including user profiles, transaction histories, and offer listings.
 3. **MongoDB**: Stores dynamic and unstructured data like chat logs for faster retrieval and scalability.
 4. **Remix.js**: Acts as the backend framework, leveraging React for server-side rendering, routing, and data loading. It also handles dynamic routing and interactions with the backend APIs to provide a seamless experience.
+5. **React**: Ensures a responsive and interactive user interface on the frontend.
 
 ## Security and Transparency
 
@@ -23,11 +63,16 @@ The platform prioritizes security through **multi-factor authentication (MFA)** 
 
 ## Project Milestones
 
+### Passable Project
+
 - User registration and login functionality.
 - Buy/sell offer creation and management.
 - Basic messaging system for user communication.
 - PostgreSQL for structured data storage.
 - MongoDB for chat logs and dynamic data storage.
+
+### First-Class Project
+
 - Multi-factor authentication (MFA) for enhanced security.
 - Rating and feedback system for trading partners.
 - Real-time chat system using WebSockets.
