@@ -30,7 +30,7 @@ export function Layout({ children }) {
         <Meta />
         <Links />
       </head>
-      <body className="">
+      <body className="bg-primary text-white">
         {children}
         <ScrollRestoration />
         <Scripts />

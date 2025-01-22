@@ -14,6 +14,10 @@ export default {
           "Noto Color Emoji",
         ],
       },
+      colors: {
+        primary: "#141919",
+        secondary: "#f88415",
+      },
     },
   },
   plugins: [],

@@ -1,7 +1,7 @@
 export default function Navbar() {
   return (
-    <header className="bg-[#141919] shadow-lg py-4 h-20">
-      <div className="container mx-auto flex items-center justify-between px-4">
+    <header className="bg-primary py-4 h-20">
+      <div className="container border-b-2 border-[#1d1e22] mx-auto flex items-center justify-between px-4 pb-3">
         {/* Logo */}
         <a
           href="#"
