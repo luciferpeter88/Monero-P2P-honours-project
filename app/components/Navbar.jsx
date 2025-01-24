@@ -1,27 +1,16 @@
+import logo from "../../public/logo.png";
+import { Link } from "@remix-run/react";
 export default function Navbar() {
   return (
-    <header className="bg-primary py-4 h-20">
+    <header className="bg-transparent py-4 h-20">
       <div className="container border-b-2 border-[#1d1e22] mx-auto flex items-center justify-between px-4 pb-3">
         {/* Logo */}
-        <a
-          href="#"
+        <Link
+          to="/"
           className="flex items-center text-primary hover:text-secondary"
         >
-          <svg
-            className="h-8 w-8 mr-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707.707m12.728 0l.707.707M6.343 17.657l.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-            />
-          </svg>
-          <span className="text-2xl font-bold">MyBrand</span>
-        </a>
+          <img src={logo} alt="logo" className="w-10 h-10" />
+        </Link>
         {/* Mobile Menu Button (Hidden on larger screens) */}
         <div className="md:hidden">
           <button
@@ -47,62 +36,37 @@ export default function Navbar() {
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
             <li>
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="hover:text-primary transition-colors duration-300"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/about"
                 className="hover:text-primary transition-colors duration-300"
               >
                 About
-              </a>
+              </Link>
             </li>
-            <li className="group relative">
-              <a
-                href="#"
-                className="hover:text-primary transition-colors duration-300"
-              >
-                Services
-              </a>
-              {/* Dropdown Menu */}
-              <ul className="absolute left-0 hidden group-hover:block bg-white shadow-md py-2 mt-1 rounded-md w-48 transition-all duration-300">
-                <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100">
-                    Service 1
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100">
-                    Service 2
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="block px-4 py-2 hover:bg-gray-100">
-                    Service 3
-                  </a>
-                </li>
-              </ul>
-            </li>
+
             <li>
-              <a
-                href="#"
+              <Link
+                to="contact"
                 className="hover:text-primary transition-colors duration-300"
               >
                 Contact
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="login"
                 className="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300"
               >
                 Get Started
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
