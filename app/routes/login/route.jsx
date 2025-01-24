@@ -151,16 +151,18 @@ export default function Index() {
         <Footer />
       </div> */}
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 grid-rows-[auto_1fr_auto_1fr] lg:grid-rows-[auto_1fr_1fr_auto] gap-4 min-h-screen">
-        <div className="col-span-1 lg:col-span-4 bg-red-500">1</div>
+      <div className="grid grid-cols-1 lg:grid-cols-4 grid-rows-[auto_1fr_auto_1fr] lg:grid-rows-[auto_1fr_1fr_auto] min-h-screen container mx-auto">
+        <div className="col-span-1 lg:col-span-4">
+          <Navbar />
+        </div>
         <div className="col-span-1 lg:col-span-2 row-span-2 row-start-2 bg-green-500">
           2
         </div>
         <div className="col-span-1 lg:col-span-2 row-span-2 lg:col-start-3 lg:row-start-2 bg-blue-500">
           3
         </div>
-        <div className="col-span-1 lg:col-span-4 lg:row-start-4 bg-white">
-          4
+        <div className="col-span-1 lg:col-span-4 lg:row-start-4">
+          <Footer />
         </div>
       </div>
     </React.Fragment>

@@ -65,7 +65,7 @@ export default function Navbar() {
                 to="login"
                 className="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300"
               >
-                Get Started
+                Login
               </Link>
             </li>
           </ul>

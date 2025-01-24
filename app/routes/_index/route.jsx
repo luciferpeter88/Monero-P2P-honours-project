@@ -45,7 +45,7 @@ export default function Index() {
         </div>
         <Footer />
       </div> */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 grid-rows-[auto_auto_auto_1fr] lg:grid-rows-[auto_1fr_1fr_auto] gap-4 min-h-screen container mx-auto px-5 md:px-0">
+      <div className="grid grid-cols-1 lg:grid-cols-4 grid-rows-[auto_auto_auto_1fr] lg:grid-rows-[auto_1fr_1fr_auto]  min-h-screen container mx-auto px-5 md:px-0">
         <div className="col-span-1 lg:col-span-4">
           <Navbar />
         </div>
