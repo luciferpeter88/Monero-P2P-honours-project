@@ -10,7 +10,7 @@ export default function Index() {
         <div className="col-span-1 lg:col-span-4">
           <Navbar />
         </div>
-        <div className="col-span-1 lg:col-span-4 row-span-2 row-start-2 flex justify-center items-center">
+        <div className="col-span-1 lg:col-span-4 row-span-2 row-start-2 flex justify-center items-center overflow-hidden">
           <section className="container-card">
             <div className="login-container">
               <div className="circle circle-one" />
@@ -20,10 +20,10 @@ export default function Index() {
                   alt="illustration"
                   className="illustration"
                 />
-                <h1 className="opacity">Sign In</h1>
-                <form>
-                  <input type="text" placeholder="USERNAME" />
-                  <input type="password" placeholder="PASSWORD" />
+                <h1 className="opacity mb-8">Sign In</h1>
+                <form className="flex flex-col gap-5">
+                  <input type="text" placeholder="Username" />
+                  <input type="password" placeholder="Password" />
                   <button className="opacity">Log in</button>
                 </form>
                 <div className="register-forget opacity">

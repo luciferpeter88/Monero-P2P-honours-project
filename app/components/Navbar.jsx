@@ -34,7 +34,7 @@ export default function Navbar() {
         </div>
         {/* Desktop Navigation (Hidden on smaller screens) */}
         <nav className="hidden md:block">
-          <ul className="flex space-x-8">
+          <ul className="flex space-x-8 z-50">
             <li>
               <Link
                 to="/"
