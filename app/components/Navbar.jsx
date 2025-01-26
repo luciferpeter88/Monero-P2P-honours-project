@@ -1,4 +1,4 @@
-import logo from "../../public/logo.png";
+import logo from "../../app/pictures/logo.png";
 import { Link } from "@remix-run/react";
 export default function Navbar() {
   return (
