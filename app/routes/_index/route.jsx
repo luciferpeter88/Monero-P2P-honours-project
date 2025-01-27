@@ -70,9 +70,9 @@ export default function Index() {
           title="Minimal Fees"
           description="Enjoy trading with minimal transaction costs."
         />
-      </div>
-      <div className="col-span-8 mt-5">
-        <Footer />
+        <div className="col-span-8 mt-5">
+          <Footer />
+        </div>
       </div>
     </React.Fragment>
   );
