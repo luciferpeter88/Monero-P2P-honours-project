@@ -2,6 +2,11 @@ import React from "react";
 import svg from "./components/picture/test.svg";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import protection from "./components/picture/protection.png";
+import currency from "./components/picture/Currency.png";
+import banking from "./components/picture/Banking.png";
+import cashflow from "./components/picture/Cashflow.png";
+import Card from "./components/Card";
 
 export const meta = () => {
   return [
@@ -13,12 +18,11 @@ export const meta = () => {
 export default function Index() {
   return (
     <React.Fragment>
-      <div className="h-full w-full absolute top-0 bg-black bg-opacity-0"></div>
-      <div className="grid grid-cols-1 lg:grid-cols-4 grid-rows-[auto_auto_auto_1fr] lg:grid-rows-[auto_1fr_1fr_auto]  min-h-screen container mx-auto px-5 md:px-0">
-        <div className="col-span-1 lg:col-span-4 z-10">
+      <div className="grid grid-cols-8 container mx-auto gap-y-5 gap-x-5 px-10 sm:px-0">
+        <div className="col-span-8">
           <Navbar />
         </div>
-        <div className="col-span-1 lg:col-span-2 row-span-2 row-start-2 flex flex-col lg:justify-center justify-start z-10">
+        <div className="col-span-4 flex flex-col justify-center  z-10">
           <h1 className="text-5xl font-medium bg-gradient-to-r from-orange-50 to-secondary bg-clip-text text-transparent leading-tight uppercase">
             Trade Monero
           </h1>
@@ -33,16 +37,38 @@ export default function Index() {
             Sign up for free
           </button>
         </div>
-        <div className="col-span-1 lg:col-span-2 row-span-2 lg:col-start-3 lg:row-start-2 flex justify-center lg:justify-end mt-10 lg:mt-0">
-          <img
-            className="w-full h-full max-w-lg lg:max-w-xl"
-            src={svg}
-            alt="Catalogue-pana"
-          />
+        <div className="col-span-4">
+          <div className="col-span-1 lg:col-span-2 row-span-2 lg:col-start-3 lg:row-start-2 flex justify-center lg:justify-end mt-10 lg:mt-0">
+            <img
+              className="w-full h-full max-w-lg lg:max-w-lg object-contain"
+              src={svg}
+              alt="Catalogue-pana"
+            />
+          </div>
         </div>
-        <div className="col-span-1 lg:col-span-4 lg:row-start-4 z-10">
-          <Footer />
-        </div>
+        <Card
+          src={protection}
+          title="Protected"
+          description="Ensuring privacy and security in every trade."
+        />
+        <Card
+          src={currency}
+          title="Protected"
+          description="Ensuring privacy and security in every trade."
+        />
+        <Card
+          src={banking}
+          title="Protected"
+          description="Ensuring privacy and security in every trade."
+        />
+        <Card
+          src={cashflow}
+          title="Protected"
+          description="Ensuring privacy and security in every trade."
+        />
+      </div>
+      <div className="col-span-8 h-full">
+        <Footer />
       </div>
     </React.Fragment>
   );

@@ -3,7 +3,8 @@ import { Link } from "@remix-run/react";
 export default function Navbar() {
   return (
     <header className="bg-transparent py-4 h-20">
-      <div className="container border-b-2 border-[#1d1e22] mx-auto flex items-center justify-between px-4 pb-3">
+      <div className=" border-b-2 border-[#1d1e22] mx-auto flex items-center justify-between pb-3">
+        {/* <div className="container border-b-2 border-[#1d1e22] mx-auto flex items-center justify-between px-4 pb-3"> */}
         {/* Logo */}
         <Link
           to="/"
@@ -54,7 +55,7 @@ export default function Navbar() {
 
             <li>
               <Link
-                to="contact"
+                to="/contact"
                 className="hover:text-primary transition-colors duration-300"
               >
                 Contact

@@ -30,7 +30,8 @@ export function Layout({ children }) {
         <Meta />
         <Links />
       </head>
-      <body className="bg-gradient-to-l from-black via-[#181818] to-bg text-white">
+      {/* <body className="bg-gradient-to-l from-black via-[#181818] to-bg text-white"> */}
+      <body className="bg-primary text-white">
         {children}
         <ScrollRestoration />
         <Scripts />
