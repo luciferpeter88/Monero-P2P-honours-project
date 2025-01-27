@@ -83,7 +83,7 @@ export default function Index() {
           <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium bg-gradient-to-r from-orange-50 to-secondary bg-clip-text text-transparent leading-tight uppercase">
             Trade Monero
           </h1>
-          {/* <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium uppercase leading-tight text-gray-100 mt-2">
+          {/* <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium uppercase leading-tight text-gray-100 mt-2">
             Securely and Privately
           </span> */}
           <p className="text-sm md:text-base lg:text-lg xl:text-xl leading-tight mt-5 text-gray-50">
