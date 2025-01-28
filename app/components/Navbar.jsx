@@ -1,10 +1,13 @@
 import logo from "../../app/pictures/logo.png";
-import { Link } from "@remix-run/react";
+import { Link, useLocation } from "@remix-run/react";
 export default function Navbar() {
+  const { pathname } = useLocation();
+  const isHome = pathname === "/" ? "bg-secondary" : "bg-primary";
+  const isContact = pathname === "/contact" ? "bg-secondary" : "bg-primary";
+  const isLogin = pathname === "/login" ? "bg-secondary" : "bg-primary";
   return (
     <header className="bg-transparent py-4 h-20">
       <div className=" border-b-2 border-[#1d1e22] mx-auto flex items-center justify-between pb-3">
-        {/* <div className="container border-b-2 border-[#1d1e22] mx-auto flex items-center justify-between px-4 pb-3"> */}
         {/* Logo */}
         <Link
           to="/"
@@ -39,24 +42,15 @@ export default function Navbar() {
             <li>
               <Link
                 to="/"
-                className="hover:text-primary transition-colors duration-300"
+                className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isHome}`}
               >
                 Home
               </Link>
             </li>
             <li>
               <Link
-                to="/about"
-                className="hover:text-primary transition-colors duration-300"
-              >
-                About
-              </Link>
-            </li>
-
-            <li>
-              <Link
                 to="/contact"
-                className="hover:text-primary transition-colors duration-300"
+                className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isContact}`}
               >
                 Contact
               </Link>
@@ -64,7 +58,7 @@ export default function Navbar() {
             <li>
               <Link
                 to="/login"
-                className="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300"
+                className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isLogin}`}
               >
                 Login
               </Link>

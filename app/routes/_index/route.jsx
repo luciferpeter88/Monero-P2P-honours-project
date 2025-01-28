@@ -7,6 +7,7 @@ import currency from "./components/picture/Currency.png";
 import banking from "./components/picture/Banking.png";
 import cashflow from "./components/picture/Cashflow.png";
 import Card from "./components/Card";
+import { Link } from "@remix-run/react";
 import "./styles.css";
 
 export const meta = () => {
@@ -35,9 +36,11 @@ export default function Index() {
           <p className="text-sm md:text-base lg:text-lg xl:text-xl leading-tight mt-5 bg-gradient-to-r from-orange-50 to-secondary bg-clip-text text-transparent">
             Start trading Monero today and experience true financial freedom.
           </p>
-          <button className="mt-8 inline-flex items-center justify-center rounded-xl bg-secondary hover:bg-opacity-80 py-3 px-6 w-full md:w-52 font-dm text-base font-medium text-white shadow-xl shadow-orange-400/15 transition-transform duration-200 ease-in-out hover:scale-[0.98]">
-            Get Started
-          </button>
+          <Link to="/registration">
+            <button className="mt-8 inline-flex items-center justify-center rounded-xl bg-secondary hover:bg-opacity-80 py-3 px-6 w-full md:w-52 font-dm text-base font-medium text-white shadow-xl shadow-orange-400/15 transition-transform duration-200 ease-in-out hover:scale-[0.98]">
+              Get Started
+            </button>
+          </Link>
         </div>
         <div className="sm flex justify-center lg:justify-end mt-10 lg:mt-0">
           <img

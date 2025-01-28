@@ -6,7 +6,7 @@ import { Link } from "@remix-run/react";
 export default function Index() {
   return (
     <React.Fragment>
-      <div className="grid grid-cols-1 lg:grid-cols-4 grid-rows-[auto_1fr_auto] lg:grid-rows-[auto_1fr_1fr] min-h-screen container mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-4 grid-rows-[auto_1fr_auto] lg:grid-rows-[auto_1fr_1fr] min-h-screen container mx-auto px-5">
         <div className="col-span-1 lg:col-span-4">
           <Navbar />
         </div>
