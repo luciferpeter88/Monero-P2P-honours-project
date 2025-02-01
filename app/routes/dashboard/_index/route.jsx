@@ -38,7 +38,7 @@ export default function Index() {
           <div className="mt-5 flex flex-col">
             <Account AccountType="Primary" />
             <Account AccountType="Buisness" />
-            <Account AccountType="Tor" />
+            <Account AccountType="Hidden Services" />
             {/* <Account AccountType="Market" /> */}
           </div>
         </div>
