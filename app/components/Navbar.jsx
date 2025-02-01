@@ -5,6 +5,8 @@ export default function Navbar() {
   const isHome = pathname === "/" ? "bg-secondary" : "bg-primary";
   const isContact = pathname === "/contact" ? "bg-secondary" : "bg-primary";
   const isLogin = pathname === "/login" ? "bg-secondary" : "bg-primary";
+  const isSignUp = pathname === "/registration" ? "bg-secondary" : "bg-primary";
+
   return (
     <header className="bg-transparent py-4 h-20">
       <div className=" border-b-2 border-[#1d1e22] mx-auto flex items-center justify-between pb-3">
@@ -38,7 +40,7 @@ export default function Navbar() {
         </div>
         {/* Desktop Navigation (Hidden on smaller screens) */}
         <nav className="hidden md:block">
-          <ul className="flex space-x-8 z-50">
+          <ul className="flex space-x-5 z-50">
             <li>
               <Link
                 to="/"
@@ -60,7 +62,15 @@ export default function Navbar() {
                 to="/login"
                 className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isLogin}`}
               >
-                Login
+                Log In
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/registration"
+                className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isSignUp}`}
+              >
+                Sign Up
               </Link>
             </li>
           </ul>
