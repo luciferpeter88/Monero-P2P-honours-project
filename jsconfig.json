@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".", // Or whatever your base URL should be
+    "paths": {
+      // If you know any specific paths that are causing issues, add them here
+      // Example:
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "src/**/*" // Include your JavaScript files
+  ]
+}

@@ -2,13 +2,12 @@ import "../style/style.css";
 import UserDetails from "../components/UserDetails";
 import Card from "../components/Card";
 import Account from "../components/Accounts";
+import Chart from "../components/Chart";
+import Chart2 from "../components/Chart2";
 
 export default function Index() {
   return (
     <div className="mt-5 ml-5">
-      {/* <h1 className="text-3xl text border-b-2 border-third pb-2">
-        Balance All
-      </h1> */}
       <div className="bg-third p-5 rounded-lg">
         <h3 className="font-medium">Peter Kaszap-Nagy</h3>
         <div className="mt-3 flex gap-x-16 w-full ">
@@ -16,7 +15,6 @@ export default function Index() {
           <UserDetails firstText="Phone" lastText="+234 345 678 987" />
           <UserDetails firstText="Accounts" lastText="3" />
           <UserDetails firstText="Current Account" lastText="Primary" />
-
           <div className="ml-auto mt-auto">
             <button className="items-center justify-center rounded-xl bg-secondary hover:bg-opacity-80 py-2 px-5 text-sm font-medium text-white shadow-xl shadow-orange-400/15 transition-transform duration-200 ease-in-out hover:scale-[0.98] ml-3">
               Trade
@@ -39,8 +37,15 @@ export default function Index() {
             <Account AccountType="Primary" />
             <Account AccountType="Buisness" />
             <Account AccountType="Hidden Services" />
-            {/* <Account AccountType="Market" /> */}
           </div>
+        </div>
+      </div>
+      <div className=" mt-5 rounded-lg flex h-[55vh] gap-5">
+        <div className="w-[75%] h-full bg-third p-5 rounded-lg">
+          <Chart />
+        </div>
+        <div className="w-[25%] bg-third rounded-lg">
+          <Chart2 />
         </div>
       </div>
     </div>
