@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import Account from "../components/Accounts";
 import Chart from "../components/Chart";
 import Chart2 from "../components/Chart2";
+import TransactionHistory from "../components/Transaction";
 
 export default function Index() {
   return (
@@ -48,6 +49,7 @@ export default function Index() {
           <Chart2 />
         </div>
       </div>
+      <TransactionHistory />
     </div>
   );
 }
