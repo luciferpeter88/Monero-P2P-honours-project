@@ -14,7 +14,7 @@ export default function MoneroTraderProfile() {
             Verified Monero Trader
           </p>
         </div>
-        <div className="flex w-full gap-2 mt-auto">
+        <div className="flex w-full gap-2 mb-auto mt-3">
           <button className="w-full rounded-lg bg-green-600 hover:bg-green-700 text-white text-xs font-semibold py-2">
             Buy XMR
           </button>
