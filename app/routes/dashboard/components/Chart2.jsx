@@ -1,79 +1,182 @@
-import { TrendingUp } from "lucide-react";
-import { RadialBar, RadialBarChart } from "recharts";
+import * as React from "react";
+import { Label, Pie, PieChart, Sector } from "recharts";
+
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "../../../../src/components/components/ui/card";
 import {
   ChartContainer,
+  ChartStyle,
   ChartTooltip,
   ChartTooltipContent,
 } from "../../../../src/components/components/ui/chart";
-const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../../../src/components/components/ui/select";
+const desktopData = [
+  { month: "january", desktop: 186, fill: "var(--color-january)" },
+  { month: "february", desktop: 305, fill: "var(--color-february)" },
+  { month: "march", desktop: 237, fill: "var(--color-march)" },
+  // { month: "april", desktop: 173, fill: "var(--color-april)" },
+  // { month: "may", desktop: 209, fill: "var(--color-may)" },
 ];
+
 const chartConfig = {
   visitors: {
     label: "Visitors",
   },
-  chrome: {
-    label: "Chrome",
+  desktop: {
+    label: "Desktop",
+  },
+  mobile: {
+    label: "Mobile",
+  },
+  january: {
+    label: "Primary",
     color: "hsl(var(--chart-1))",
   },
-  safari: {
-    label: "Safari",
+  february: {
+    label: "Buisness",
     color: "hsl(var(--chart-2))",
   },
-  firefox: {
-    label: "Firefox",
+  march: {
+    label: "Hidden Services",
     color: "hsl(var(--chart-3))",
   },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
-  },
+  // april: {
+  //   label: "April",
+  //   color: "hsl(var(--chart-4))",
+  // },
+  // may: {
+  //   label: "May",
+  //   color: "hsl(var(--chart-5))",
+  // },
 };
-export default function Chart2() {
+
+export default function Component() {
+  const id = "pie-interactive";
+  const [activeMonth, setActiveMonth] = React.useState(desktopData[0].month);
+
+  const activeIndex = React.useMemo(
+    () => desktopData.findIndex((item) => item.month === activeMonth),
+    [activeMonth]
+  );
+  const months = React.useMemo(() => desktopData.map((item) => item.month), []);
+
   return (
-    <Card className="flex flex-col p-10">
-      <CardHeader className="items-center pb-0 mr-auto">
-        <CardTitle>Total Assets</CardTitle>
-        <CardDescription className="mr-auto mt-3">9.7666 XMR</CardDescription>
+    <Card data-chart={id} className="flex flex-col p-5 pt-8">
+      <ChartStyle id={id} config={chartConfig} />
+      <CardHeader className="flex-row items-start space-y-0 pb-0">
+        <div className="grid gap-1">
+          <CardTitle>Assets Overview</CardTitle>
+          <CardDescription className="mt-3">Total 9.3777 XMR</CardDescription>
+        </div>
+        <Select value={activeMonth} onValueChange={setActiveMonth}>
+          <SelectTrigger
+            className="ml-auto h-7 w-[130px] rounded-lg pl-2.5"
+            aria-label="Select a value"
+          >
+            <SelectValue placeholder="Select month" />
+          </SelectTrigger>
+          <SelectContent align="end" className="rounded-xl">
+            {months.map((key) => {
+              const config = chartConfig[key];
+
+              if (!config) {
+                return null;
+              }
+
+              return (
+                <SelectItem
+                  key={key}
+                  value={key}
+                  className="rounded-lg [&_span]:flex"
+                >
+                  <div className="flex items-center gap-2 text-xs">
+                    <span
+                      className="flex h-3 w-3 shrink-0 rounded-sm"
+                      style={{
+                        backgroundColor: `var(--color-${key})`,
+                      }}
+                    />
+                    {config?.label}
+                  </div>
+                </SelectItem>
+              );
+            })}
+          </SelectContent>
+        </Select>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
+      <CardContent className="flex flex-1 justify-center pb-0">
         <ChartContainer
+          id={id}
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[300px] rounded-xl"
+          className="mx-auto aspect-square w-full max-w-[300px]"
         >
-          <RadialBarChart data={chartData} innerRadius={30} outerRadius={110}>
+          <PieChart>
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel nameKey="browser" />}
+              content={<ChartTooltipContent hideLabel />}
             />
-            <RadialBar dataKey="visitors" background />
-          </RadialBarChart>
+            <Pie
+              data={desktopData}
+              dataKey="desktop"
+              nameKey="month"
+              innerRadius={60}
+              strokeWidth={5}
+              activeIndex={activeIndex}
+              activeShape={({ outerRadius = 0, ...props }) => (
+                <g>
+                  <Sector {...props} outerRadius={outerRadius + 10} />
+                  <Sector
+                    {...props}
+                    outerRadius={outerRadius + 25}
+                    innerRadius={outerRadius + 12}
+                  />
+                </g>
+              )}
+            >
+              <Label
+                content={({ viewBox }) => {
+                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                    return (
+                      <text
+                        x={viewBox.cx}
+                        y={viewBox.cy}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                      >
+                        <tspan
+                          x={viewBox.cx}
+                          y={viewBox.cy}
+                          className=" fill-white text-3xl font-bold "
+                        >
+                          {desktopData[activeIndex].desktop.toLocaleString()}
+                        </tspan>
+                        <tspan
+                          x={viewBox.cx}
+                          y={(viewBox.cy || 0) + 24}
+                          className="fill-muted-foreground"
+                        >
+                          Total Assets
+                        </tspan>
+                      </text>
+                    );
+                  }
+                }}
+              />
+            </Pie>
+          </PieChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm mr-auto">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
-        </div>
-      </CardFooter>
     </Card>
   );
 }

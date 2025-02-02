@@ -152,7 +152,7 @@ export default function Chart() {
       <CardHeader className="flex items-center gap-2 space-y-0  py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
           <CardTitle>Monero Chart</CardTitle>
-          <CardDescription>
+          <CardDescription className="mt-3">
             Showing the price of Monero in the last 3 months
           </CardDescription>
         </div>
