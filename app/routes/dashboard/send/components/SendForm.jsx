@@ -87,14 +87,14 @@ export default function SendForm() {
       </div>
 
       {/* Right Side - Tips & FAQs */}
-      <div className="w-full md:w-64 bg-third p-6 rounded-lg shadow-lg h-64">
+      <div className="w-full md:w-64 bg-third p-6 rounded-lg shadow-lg min-h-64">
         {/* Tips */}
         <h3 className="text-lg font-semibold">💡 Tips</h3>
         <p className="text-sm text-muted-foreground 400 mt-2">
           For the safety of your funds, our customer support team may contact
           you by phone to confirm your withdrawal.
         </p>
-        <p className="text-sm text-muted-foreground mt-2">
+        <p className="text-sm text-muted-foreground mt-2 mb-4">
           Ensure that your withdrawal address is correct before proceeding.
         </p>
       </div>
