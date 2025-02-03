@@ -1,3 +1,4 @@
+import { Button } from "../../../../src/components/components/ui/button";
 export default function MoneroTraderProfile() {
   return (
     <div className="max-w-md  bg-primary dark:bg-gray-900 rounded-lg overflow-hidden shadow-md p-4 flex gap-x-3">
@@ -15,12 +16,9 @@ export default function MoneroTraderProfile() {
           </p>
         </div>
         <div className="flex w-full gap-2 mb-auto mt-3">
-          <button className="w-full rounded-lg bg-green-600 hover:bg-green-700 text-white text-xs font-semibold py-2">
-            Buy XMR
-          </button>
-          <button className="w-full rounded-lg bg-third text-white text-xs font-semibold py-2">
+          <Button className="bg-secondary text-xs h-8 hover:bg-third mx-auto">
             Message
-          </button>
+          </Button>
         </div>
       </div>
 

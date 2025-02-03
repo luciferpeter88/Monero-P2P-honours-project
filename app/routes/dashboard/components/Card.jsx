@@ -1,6 +1,7 @@
+import card from "./picture/card.svg";
 export default function Card() {
   return (
-    <div className="card">
+    <div className="card" style={{ backgroundImage: `url(${card})` }}>
       <div className="visa_logo">
         <img
           src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/visa.png"

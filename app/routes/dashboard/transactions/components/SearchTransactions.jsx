@@ -80,11 +80,16 @@ export default function TransactionSearch() {
       </Select>
 
       {/* Account Number */}
-      <Input
-        type="text"
-        placeholder="Account Number"
-        className="bg-primary w-[160px] border-none text-white cursor-pointer focus:ring-offset-0 focus:ring-0 focus:outline-none outline-none focus:border-none  focus:ring-primary focus:ring-offset-primary"
-      />
+      <Select>
+        <SelectTrigger className="bg-primary w-[150px] border-none text-white cursor-pointer focus:ring-offset-0 focus:ring-0 focus:outline-none outline-none focus:border-none  focus:ring-primary focus:ring-offset-primary">
+          <SelectValue placeholder="Select Account" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="primary">Primary</SelectItem>
+          <SelectItem value="buisness">Buisness</SelectItem>
+          <SelectItem value="hidden services">Hidden Services</SelectItem>
+        </SelectContent>
+      </Select>
 
       {/* Amount */}
       <Input

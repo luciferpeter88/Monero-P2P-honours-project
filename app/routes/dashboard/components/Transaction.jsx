@@ -1,3 +1,4 @@
+import { Button } from "../../../../src/components/components/ui/button";
 export default function WithdrawalRecords() {
   const transactions = [
     {
@@ -92,9 +93,7 @@ export default function WithdrawalRecords() {
           </tbody>
         </table>
       </div>
-      <button className="bg-secondary text-white font-medium px-4 py-2 rounded-md mt-8">
-        History
-      </button>
+      <Button className="bg-secondary mt-8">History</Button>
     </div>
   );
 }

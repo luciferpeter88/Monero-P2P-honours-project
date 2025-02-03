@@ -6,6 +6,7 @@ import Chart from "../components/Chart";
 import Chart2 from "../components/Chart2";
 import TransactionHistory from "../components/Transaction";
 import ProfileCard from "../components/ProfileCard";
+import { Button } from "../../../../src/components/components/ui/button";
 export default function Index() {
   return (
     <div className="mt-5 ml-5">
@@ -17,25 +18,24 @@ export default function Index() {
           <UserDetails firstText="Accounts" lastText="3" />
           <UserDetails firstText="Current Account" lastText="Primary" />
           <div className="ml-auto mt-auto">
-            <button className="items-center justify-center rounded-xl bg-secondary hover:bg-opacity-80 py-2 px-5 text-sm font-medium text-white shadow-xl shadow-orange-400/15 transition-transform duration-200 ease-in-out hover:scale-[0.98] ml-3">
-              Trade
-            </button>
+            <Button className="bg-secondary ml-auto">Trade</Button>
           </div>
         </div>
       </div>
       <div className="flex mt-5 gap-5">
         <div className=" w-max p-5 rounded-lg flex flex-col bg-third">
           <Card />
-          <div className="mt-5">
-            <button className="inline-flex items-center justify-center rounded-xl bg-secondary hover:bg-opacity-80 h-10 p-5 font-dm text-sm font-medium text-white shadow-xl shadow-orange-400/15 transition-transform duration-200 ease-in-out hover:scale-[0.98]">
-              Create new Account
-            </button>
+          <div className="mt-5 flex">
+            <Button className="bg-secondary ml-auto">Create Account</Button>
           </div>
         </div>
         <div className="w-full bg-third p-5 rounded-lg">
           <h2 className="text-lg font-semibold">Accounts</h2>
           <div className="mt-5 flex flex-col">
-            <Account AccountType="Primary" />
+            <Account
+              AccountType="Primary"
+              additionalClasses="bg-primary border-l-4 border-l-secondary text-secondary"
+            />
             <Account AccountType="Buisness" />
             <Account AccountType="Hidden Services" />
           </div>
@@ -57,9 +57,7 @@ export default function Index() {
           <ProfileCard />
           <ProfileCard />
         </div>
-        <button className="items-center justify-center rounded-xl bg-secondary hover:bg-opacity-80 py-2 px-5 text-sm font-medium text-white shadow-xl shadow-orange-400/15 transition-transform duration-200 ease-in-out hover:scale-[0.98] mt-5 ml-auto">
-          Explore
-        </button>
+        <Button className="ml-auto mt-5 bg-secondary">Explore</Button>
       </div>
       <TransactionHistory />
     </div>

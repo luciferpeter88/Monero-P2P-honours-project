@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../../../../../src/components/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -84,9 +85,7 @@ export default function SendForm() {
         </div>
 
         {/* Confirm Button */}
-        <button className="items-center justify-center rounded-xl bg-secondary hover:bg-opacity-80 py-2 px-5 text-sm font-medium text-white shadow-xl shadow-orange-400/15 transition-transform duration-200 ease-in-out hover:scale-[0.98] mt-3 ml-auto">
-          Transfer
-        </button>
+        <Button className="bg-secondary">Transfer</Button>
       </div>
 
       {/* Right Side - Tips & FAQs */}
