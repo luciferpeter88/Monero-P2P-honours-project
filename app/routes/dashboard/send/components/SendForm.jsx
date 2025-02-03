@@ -18,27 +18,30 @@ export default function SendForm() {
         </h3>
         <Select value={timeRange} onValueChange={setTimeRange}>
           <SelectTrigger
-            className="w-full rounded-lg sm:ml-auto px-3 border-muted-foreground py-6 bg-primary"
+            className="w-full h-12 rounded-lg sm:ml-auto px-3 border-none outline-none bg-primary text-white focus:outline-none focus:border-none focus:ring-0 focus:ring-offset-0 focus:ring-primary focus:ring-offset-primary"
             aria-label="Select a value"
           >
-            <SelectValue placeholder="Last 5 months" className="outline-none" />
+            <SelectValue
+              placeholder="Last 5 months"
+              className="outline-none border-none bg-primary text-white"
+            />
           </SelectTrigger>
-          <SelectContent className="rounded-b-lg rounded-t-none border-muted-foreground w-full bg-primary">
+          <SelectContent className="rounded-b-lg rounded-t-none border-muted-foreground w-full bg-primary border-none">
             <SelectItem
               value="90d"
-              className="rounded-lg p-3 hover:bg-secondary hover:outline-none cursor-pointer w-full"
+              className="rounded-lg w-full p-3 hover:bg-primary hover:outline-none cursor-pointer text-white focus:bg-third focus:text-white"
             >
               Primary account
             </SelectItem>
             <SelectItem
               value="30d"
-              className="rounded-lg p-3 hover:bg-primary hover:outline-none cursor-pointer"
+              className="rounded-lg w-full p-3 hover:bg-primary hover:outline-none cursor-pointer text-white focus:bg-third focus:text-white"
             >
               Buisness
             </SelectItem>
             <SelectItem
               value="7d"
-              className="rounded-lg p-3 hover:bg-primary hover:outline-none cursor-pointer"
+              className="rounded-lg w-full p-3 hover:bg-primary hover:outline-none cursor-pointer text-white focus:bg-third focus:text-white"
             >
               {" "}
               Hidden Services

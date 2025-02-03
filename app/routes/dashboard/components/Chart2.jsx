@@ -72,11 +72,11 @@ export default function Component() {
   const months = React.useMemo(() => desktopData.map((item) => item.month), []);
 
   return (
-    <Card data-chart={id} className="flex flex-col p-5 pt-8">
+    <Card data-chart={id} className="flex flex-col p-5 pt-8 bg-transparent">
       <ChartStyle id={id} config={chartConfig} />
       <CardHeader className="flex-row items-start space-y-0 pb-0">
         <div className="grid gap-1">
-          <CardTitle>Assets Overview</CardTitle>
+          <CardTitle className="text-white">Assets Overview</CardTitle>
           <CardDescription className="mt-3">Total 9.3777 XMR</CardDescription>
         </div>
         <Select value={activeMonth} onValueChange={setActiveMonth}>

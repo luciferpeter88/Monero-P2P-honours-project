@@ -148,37 +148,40 @@ export default function Chart() {
   });
 
   return (
-    <Card className="h-full">
+    <Card className="h-full bg-transparent">
       <CardHeader className="flex items-center gap-2 space-y-0  py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
-          <CardTitle>Monero Chart</CardTitle>
+          <CardTitle className="text-white">Monero Chart</CardTitle>
           <CardDescription className="mt-3">
             Showing the price of Monero in the last 3 months
           </CardDescription>
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>
           <SelectTrigger
-            className="w-[12.5rem] rounded-lg sm:ml-auto px-3 border-muted-foreground"
+            className="w-[12.5rem] rounded-lg sm:ml-auto px-3 border-none outline-none bg-primary text-white focus:outline-none focus:border-none focus:ring-0 focus:ring-offset-0 focus:ring-primary focus:ring-offset-primary"
             aria-label="Select a value"
           >
-            <SelectValue placeholder="Last 3 months" className="outline-none" />
+            <SelectValue
+              placeholder="Last 3 months"
+              className="outline-none border-none bg-primary text-white"
+            />
           </SelectTrigger>
-          <SelectContent className="rounded-b-lg rounded-t-none border-muted-foreground w-[12.5rem] ">
+          <SelectContent className="border-none w-[12.5rem] bg-primary ">
             <SelectItem
               value="90d"
-              className="rounded-lg p-3 hover:bg-primary hover:outline-none cursor-pointer"
+              className="rounded-lg w-full p-3 hover:bg-primary hover:outline-none cursor-pointer text-white focus:bg-third focus:text-white"
             >
               Last 3 months
             </SelectItem>
             <SelectItem
               value="30d"
-              className="rounded-lg p-3 hover:bg-primary hover:outline-none cursor-pointer"
+              className="rounded-lg w-full p-3 hover:bg-primary hover:outline-none cursor-pointer text-white focus:bg-third focus:text-white"
             >
               Last 30 days
             </SelectItem>
             <SelectItem
               value="7d"
-              className="rounded-lg p-3 hover:bg-primary hover:outline-none cursor-pointer"
+              className="rounded-lg w-full p-3 hover:bg-primary hover:outline-none cursor-pointer text-white focus:bg-third focus:text-white"
             >
               {" "}
               Last 7 days

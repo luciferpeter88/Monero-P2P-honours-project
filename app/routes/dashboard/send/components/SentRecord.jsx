@@ -38,7 +38,7 @@ export default function WithdrawalRecords() {
     <div className="bg-third text-white p-6 rounded-xl shadow-lg mt-5">
       {/* Header Section */}
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">Latest Transaction History</h2>
+        <h2 className="text-md font-medium">Last 5 Sent Records</h2>
       </div>
 
       {/* Table */}

@@ -1,5 +1,6 @@
 import Card from "../components/Card";
 import SendForm from "../components/SendForm";
+import SentRecords from "../components/SentRecord";
 export default function Index() {
   return (
     <div className="mt-5 ml-5">
@@ -30,6 +31,7 @@ export default function Index() {
         </div>
       </div>
       <SendForm />
+      <SentRecords />
     </div>
   );
 }
