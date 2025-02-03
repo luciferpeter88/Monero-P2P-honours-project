@@ -185,7 +185,6 @@ export default function Chart() {
             </SelectItem>
           </SelectContent>
         </Select>
-        {/* <Dropdown /> */}
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6 h-full">
         <ChartContainer
