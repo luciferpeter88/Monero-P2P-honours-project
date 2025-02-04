@@ -36,8 +36,8 @@ export const action = async ({ request }) => {
   }
 
   if (intent === "edit") {
-    console.log("Editing contact:", Object.fromEntries(formData));
-    return redirect("/address-book");
+    console.log("Editing contact:", formData.get("id"));
+    // return redirect("/address-book");
   }
 
   if (intent === "add") {
