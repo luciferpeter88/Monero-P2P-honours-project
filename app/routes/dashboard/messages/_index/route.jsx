@@ -57,21 +57,21 @@ export default function Index() {
               />
             </div>
           </div>
-          <footer className="p-4 border-t border-gray-800">
-            <div className="flex items-center gap-2 bg-primary rounded-xl p-2">
+          <footer className="p-4 border-t border-gray-800 flex gap-x-3 items-center">
+            <div className="flex items-center gap-2 bg-primary rounded-xl w-full">
               <input
                 type="text"
                 placeholder="Your message"
-                className="flex-1 bg-transparent focus:outline-none text-white placeholder-muted-foreground p-3"
+                className="flex-1 bg-transparent focus:outline-none text-white placeholder-muted-foreground p-3 bg-primary"
               />
-              <Button
-                className="bg-primary hover:bg-opacity-80 text-white"
-                size="icon"
-                type="submit"
-              >
-                <Send size={18} />
-              </Button>
             </div>
+            <Button
+              className="bg-primary hover:bg-opacity-80 text-white h-full w-12"
+              size="icon"
+              type="submit"
+            >
+              <Send size={18} />
+            </Button>
           </footer>
         </main>
       </div>

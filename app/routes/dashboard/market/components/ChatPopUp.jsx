@@ -23,7 +23,7 @@ export default function ChatPopup({ traderName }) {
       {/* Chat Popup Content */}
       <SheetContent
         side="bottom"
-        className="w-[50vw] ml-auto h-[60vh] border-none bg-third text-white rounded-lg flex flex-col"
+        className=" max-w-[30rem] ml-auto h-[35rem] border-none bg-third text-white rounded-lg flex flex-col"
       >
         {/* Header */}
         <div className="p-3 flex justify-between items-center border-b border-muted-foreground">
