@@ -3,11 +3,10 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
-  SheetClose,
 } from "../../../../../src/components/components/ui/sheet";
 import { Input } from "../../../../../src/components/components/ui/input";
 import { Button } from "../../../../../src/components/components/ui/button";
-import { X, Send } from "lucide-react";
+import { Send } from "lucide-react";
 
 export default function ChatPopup({ traderName }) {
   const { messages } = useLoaderData(); // Get messages from the server
@@ -57,7 +56,7 @@ export default function ChatPopup({ traderName }) {
             type="text"
             name="message"
             placeholder="Type a message..."
-            className="flex-1 bg-primary text-white border-none focus:ring-0"
+            className="flex-1 bg-primary text-white border-none focus:ring-0 focus:outline-none ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:ring-0"
             autoComplete="off"
           />
           <Button
