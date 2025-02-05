@@ -1,0 +1,45 @@
+import { Camera } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "../../../../../src/components/components/ui/dialog";
+import { Button } from "../../../../../src/components/components/ui/button";
+import ProfileModal from "./ProfileModal";
+export default function ProfilePhoto() {
+  return (
+    <div className="flex justify-between items-center p-4 rounded-lg">
+      <div className="flex items-center gap-3">
+        <Camera size={24} className="text-muted-foreground" />
+        <div>
+          <h3 className="text-sm font-medium">Photo</h3>
+          <p className="text-xs text-muted-foreground">
+            Upload a profile picture to personalize your account and make it
+            recognizable
+          </p>
+        </div>
+      </div>
+      <div className="flex items-center gap-3">
+        <img
+          src="https://randomuser.me/api/portraits/women/21.jpg"
+          alt="profile"
+          className="w-12 h-12 rounded-full"
+        />
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className="bg-primary border-none"
+            >
+              Change
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <ProfileModal field="photo" />
+          </DialogContent>
+        </Dialog>
+      </div>
+    </div>
+  );
+}
