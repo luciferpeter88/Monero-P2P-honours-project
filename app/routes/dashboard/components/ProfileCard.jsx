@@ -38,5 +38,3 @@ export default function MoneroTraderProfile() {
     </div>
   );
 }
-
-// https://www.uiverse.io/Rohankumar620/hot-husky-77
