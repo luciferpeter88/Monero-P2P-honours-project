@@ -26,12 +26,17 @@ export default function MoneroTraderProfile() {
             </div>
           </div>
         </div>
-        <div className="flex w-full gap-2 mb-auto mt-3">
-          <Button className="bg-secondary text-xs h-8 hover:bg-third mx-auto">
+        <div className="flex w-full gap-2 justify-center mt-3">
+          <Button className="bg-secondary text-xs h-8 hover:bg-third">
             Message
+          </Button>
+          <Button className="bg-third text-xs h-8 hover:bg-opacity-80">
+            View Profile
           </Button>
         </div>
       </div>
     </div>
   );
 }
+
+// https://www.uiverse.io/Rohankumar620/hot-husky-77
