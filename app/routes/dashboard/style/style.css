@@ -80,6 +80,13 @@
   padding: 0 10px;
   color: #ffffff;
 }
+span.absolute.h-full.bg-primary {
+  background-color: #f88415; /* Blue Thumb */
+}
+span.relative.flex.w-full.touch-none.select-none.items-center
+  > span.relative.h-2.w-full.grow.overflow-hidden.rounded-full.bg-secondary {
+  background-color: #141919; /* Blue Thumb */
+}
 
 /* .f {
     grid-area: f;
