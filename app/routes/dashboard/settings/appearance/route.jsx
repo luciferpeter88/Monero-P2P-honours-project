@@ -200,7 +200,7 @@ const Index = () => {
 
           <div>
             <h2 className="text-lg font-medium text-white">Saved Profiles</h2>
-            <div className="space-y-2">
+            <div className="space-y-2 mt-3">
               {profiles.map((profile, index) => (
                 <Button key={index} onClick={() => loadProfile(profile)}>
                   Load Profile {index + 1}
