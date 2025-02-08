@@ -89,9 +89,12 @@ export default function Index() {
         </p>
 
         <Card>
-          <CardContent className="space-y-4 mt-5 bg-third">
+          <CardContent className="space-y-4 mt-5 bg-third ">
             {notificationSettings.map(({ key, label, description }) => (
-              <div key={key} className="flex justify-between items-center pb-4">
+              <div
+                key={key}
+                className="flex justify-between items-center p-4  hover:bg-primary rounded-lg "
+              >
                 <div>
                   <h2 className="font-medium text-sm text-white">{label}</h2>
                   <p className="text-xs text-muted-foreground">{description}</p>
@@ -114,7 +117,10 @@ export default function Index() {
         <Card>
           <CardContent className="space-y-4 bg-third">
             {notificationPreferences.map(({ key, label, description }) => (
-              <div key={key} className="flex justify-between items-center">
+              <div
+                key={key}
+                className="flex justify-between items-center p-4  hover:bg-primary rounded-lg "
+              >
                 <div>
                   <h2 className="font-medium text-sm text-white">{label}</h2>
                   <p className="text-xs text-muted-foreground">{description}</p>

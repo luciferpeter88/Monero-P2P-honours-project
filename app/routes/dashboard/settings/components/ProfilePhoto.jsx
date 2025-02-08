@@ -8,7 +8,7 @@ import { Button } from "../../../../../src/components/components/ui/button";
 import ProfileModal from "./ProfileModal";
 export default function ProfilePhoto() {
   return (
-    <div className="flex justify-between items-center p-4 rounded-lg">
+    <div className="flex justify-between items-center hover:bg-primary p-4 rounded-lg">
       <div className="flex items-center gap-3">
         <Camera size={24} className="text-muted-foreground" />
         <div>
