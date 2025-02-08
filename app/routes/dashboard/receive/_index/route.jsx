@@ -1,5 +1,5 @@
 import Card from "../components/Card";
-
+import ReceiveForm from "../components/ReceiveForm";
 export default function Index() {
   return (
     <div className="mt-5 ml-5">
@@ -29,6 +29,7 @@ export default function Index() {
           />
         </div>
       </div>
+      <ReceiveForm />
     </div>
   );
 }
