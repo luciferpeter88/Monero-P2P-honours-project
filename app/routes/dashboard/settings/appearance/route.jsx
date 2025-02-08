@@ -79,9 +79,9 @@ const Index = () => {
   };
 
   return (
-    <div className="p-6 space-y-3 bg-third mt-5 rounded-lg">
-      <h1 className="text-2xl font-bold">Appearance</h1>
-      <p>
+    <div className="p-6 space-y-1 bg-third mt-5 rounded-lg">
+      <h1 className="text-xl font-medium">Appearance</h1>
+      <p className="text-muted-foreground text-sm">
         Customize the appearance of the app. Automatically switch between day
         and night themes.
       </p>
@@ -89,7 +89,9 @@ const Index = () => {
       <Card className="bg-third">
         <CardContent className="space-y-4">
           <div className=" flex flex-col">
-            <label className="block text-sm font-medium text-white">Font</label>
+            <label className="block text-sm font-medium text-white mt-5">
+              Font
+            </label>
             <Select value={font} onValueChange={setFont}>
               <SelectTrigger
                 aria-label="Select a value"
@@ -168,7 +170,9 @@ const Index = () => {
             <div className="flex space-x-4">
               <Button
                 className={`p-4 border ${
-                  theme === "light" ? "border-blue-500" : "border-gray-300"
+                  theme === "light"
+                    ? "border-secondary"
+                    : "border-muted-foreground"
                 }`}
                 onClick={() => setTheme("light")}
               >
@@ -176,15 +180,19 @@ const Index = () => {
               </Button>
               <Button
                 className={`p-4 border ${
-                  theme === "dark" ? "border-blue-500" : "border-gray-300"
+                  theme === "dark"
+                    ? "border-secondary"
+                    : "border-muted-foreground"
                 }`}
                 onClick={() => setTheme("dark")}
               >
                 Dark
               </Button>
               <Button
-                className={`p-4 border ${
-                  theme === "custom" ? "border-blue-500" : "border-gray-300"
+                className={`p-4 border  ${
+                  theme === "custom"
+                    ? "border-secondary"
+                    : "border-muted-foreground"
                 }`}
                 onClick={() => setTheme("custom")}
               >
