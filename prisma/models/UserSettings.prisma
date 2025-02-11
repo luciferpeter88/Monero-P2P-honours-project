@@ -1,0 +1,28 @@
+model UserSetting {
+  userId             Int      @id @map("user_id")  
+  nickname           String?
+  profilePicture     String?  @map("profile_picture")
+  fontSize           String?  @map("font_size")
+  lineHeight         String?  @map("line_height")
+  letterSpacing      String?  @map("letter_spacing")
+  primaryColor       String?  @map("primary_color")
+  secondaryColor     String?  @map("secondary_color")
+  tertiaryColor      String?  @map("tertiary_color")
+  fourthColor        String?  @map("fourth_color")
+  fifthColor         String?  @map("fifth_color")
+  gridGap            String?  @map("grid_gap")
+  theme              Theme    @default(light)
+  customThemeConfig  Json?    @map("custom_theme_config")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  // One-to-One Relationship with User
+  user               User     @relation(fields: [userId], references: [id])
+
+  @@map("User_Settings")
+}
+
+enum Theme {
+  light
+  dark
+  custom
+}

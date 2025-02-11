@@ -1,0 +1,12 @@
+model UserAuthorizedIp {
+  id        Int      @id @default(autoincrement()) @map("ip_id")
+  userId    Int      @map("user_id")
+  ipAddress String   @map("ip_address")
+  isTrusted Boolean  @default(false) @map("is_trusted")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relationship with User
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("User_Authorized_IPs")
+}

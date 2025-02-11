@@ -1,0 +1,10 @@
+model Subaddress {
+  id        Int           @id @default(autoincrement()) @map("subaddress_id")
+  accountId Int           @map("account_id")
+  address   String
+  label     String?
+  createdAt DateTime      @default(now()) @map("created_at")
+
+  // Each Subaddress belongs to one MoneroAccount
+  account   MoneroAccount @relation(fields: [accountId], references: [id])  
+}

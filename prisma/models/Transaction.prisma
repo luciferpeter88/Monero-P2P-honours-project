@@ -1,0 +1,25 @@
+model Transaction {
+  id               Int             @id @default(autoincrement()) @map("transaction_id")
+  transactionType  TransactionType @map("transaction_type")
+  accountId        Int?            @map("account_id")  // Nullable: Used for 'sent' transactions
+  subaddressId     Int?            @map("subaddress_id")  // Nullable: Used for 'received' transactions
+  amount           Decimal         @db.Decimal(20, 8)
+  transactionHash  String?         @map("transaction_hash")
+  status           TransactionStatus @default(pending)
+  timestamp        DateTime        @default(now()) @map("timestamp")
+
+  // Relations
+  account          MoneroAccount?  @relation(fields: [accountId], references: [id])
+  subaddress       Subaddress?     @relation(fields: [subaddressId], references: [id])
+
+}
+
+enum TransactionType {
+  sent
+  received
+}
+
+enum TransactionStatus {
+  pending
+  confirmed
+}

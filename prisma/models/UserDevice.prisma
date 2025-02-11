@@ -1,0 +1,15 @@
+model UserDevice {
+  id          Int      @id @default(autoincrement()) @map("device_id")
+  userId      Int      @map("user_id")
+  deviceName  String?  @map("device_name")
+  deviceInfo  String?  @map("device_info")
+  ipAddress   String?  @map("ip_address")
+  isTrusted   Boolean  @default(false) @map("is_trusted")
+  lastActive  DateTime @default(now()) @map("last_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  // Relationship with User
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@map("User_Devices")
+}

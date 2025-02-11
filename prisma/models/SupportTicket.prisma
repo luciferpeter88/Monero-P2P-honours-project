@@ -1,0 +1,30 @@
+model SupportTicket {
+  id          Int          @id @default(autoincrement()) @map("ticket_id")
+  userId      Int          @map("user_id")
+  subject     String
+  description String
+  status      TicketStatus @default(open)
+  priority    TicketPriority @default(medium)
+  assignedTo  Int?         @map("assigned_to")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  // Relationships
+  user        User          @relation("TicketSubmitter", fields: [userId], references: [id])      // The user who submitted the ticket
+  assigned    User?         @relation("TicketAssignee", fields: [assignedTo], references: [id])  // Optional: Support staff assigned to the ticket
+
+  @@map("Support_Tickets")
+}
+
+enum TicketStatus {
+  open
+  in_progress
+  resolved
+  closed
+}
+
+enum TicketPriority {
+  low
+  medium
+  high
+}

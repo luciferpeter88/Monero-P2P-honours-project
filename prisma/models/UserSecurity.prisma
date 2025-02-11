@@ -1,0 +1,16 @@
+model UserSecurity {
+  userId            Int      @id @map("user_id") 
+  passkeyEnabled    Boolean  @default(false) @map("passkey_enabled")
+  phoneAuthEnabled  Boolean  @default(false) @map("phone_auth_enabled")
+  smsAuthEnabled    Boolean  @default(false) @map("sms_auth_enabled")
+  antiPhishingCode  String?  @map("anti_phishing_code")
+  googleAuthEnabled Boolean  @default(false) @map("google_auth_enabled")
+  mobileAuthEnabled Boolean  @default(false) @map("mobile_auth_enabled")
+  emailAuthEnabled  Boolean  @default(false) @map("email_auth_enabled")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  // One-to-One Relationship with User
+  user              User     @relation(fields: [userId], references: [id])
+
+  @@map("User_Security")
+}

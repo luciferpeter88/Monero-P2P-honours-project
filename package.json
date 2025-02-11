@@ -10,6 +10,7 @@
     "start": "remix-serve ./build/server/index.js"
   },
   "dependencies": {
+    "@prisma/client": "^6.3.1",
     "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-popover": "^1.1.5",
     "@radix-ui/react-select": "^2.1.5",
@@ -24,6 +25,8 @@
     "date-fns": "^3.6.0",
     "isbot": "^4.1.0",
     "lucide-react": "^0.474.0",
+    "mysql2": "^3.12.0",
+    "prisma": "^6.3.1",
     "react": "^18.2.0",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.2.0",
@@ -42,6 +45,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "^8.4.38",
+    "prisma-merge": "^0.2.0",
     "tailwindcss": "^3.4.4",
     "vite": "^5.1.0"
   },

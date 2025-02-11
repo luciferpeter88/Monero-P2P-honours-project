@@ -1,0 +1,12 @@
+model Feedback {
+  id         Int      @id @default(autoincrement()) @map("feedback_id")
+  fromUserId Int      @map("from_user_id")
+  toUserId   Int      @map("to_user_id")
+  rating     Int
+  comment    String?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  // Relationships
+  fromUser   User     @relation("FeedbackFromUser", fields: [fromUserId], references: [id])  // Feedback giver
+  toUser     User     @relation("FeedbackToUser", fields: [toUserId], references: [id])      // Feedback receiver
+}

@@ -1,0 +1,12 @@
+model AddressBook {
+  id                   Int      @id @default(autoincrement()) @map("addressbook_id")
+  userId               Int      @map("user_id")  // Owner of this address book entry
+  contactUserId        Int?     @map("contact_user_id")  // Optional: if the contact is a registered user
+  contactMoneroAddress String   @map("contact_monero_address")
+  contactNickname      String?  @map("contact_nickname")
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+
+  // Relationships
+  owner                User     @relation(fields: [userId], references: [id])  // The owner of the address book entry
+}

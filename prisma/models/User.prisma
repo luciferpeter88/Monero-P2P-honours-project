@@ -1,0 +1,32 @@
+model User {
+  id             Int      @id @default(autoincrement()) @map("user_id")
+  firstName      String   @map("first_name")
+  lastName       String   @map("last_name")
+  username       String   @unique
+  email          String   @unique
+  passwordHash   String   @map("password_hash")
+  accountStatus  AccountStatus @default(active) @map("account_status")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+  moneroAccounts MoneroAccount[]
+}
+
+enum AccountStatus {
+  active
+  frozen
+  closed
+}
+
+/*
+user_id is mapped to id with @map("user_id") for Prisma but will still refer to user_id in the database.
+Field Mapping:
+
+Fields like first_name, last_name, and password_hash are mapped to firstName, lastName, and passwordHash respectively for better readability in code.
+ENUM for account_status:
+
+The ENUM('active', 'frozen', 'closed') is represented as a Prisma enum called AccountStatus.
+Timestamps:
+
+created_at uses @default(now()) for automatic timestamping.
+updated_at uses @updatedAt to automatically update the timestamp on changes.
+*/

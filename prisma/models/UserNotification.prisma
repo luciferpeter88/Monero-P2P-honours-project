@@ -1,0 +1,16 @@
+model UserNotification {
+  userId                 Int      @id @map("user_id")  
+  notifyNewMessage       Boolean  @default(true)  @map("notify_new_message")
+  notifyFeedbackReceived Boolean  @default(true)  @map("notify_feedback_received")
+  notifySystemAlerts     Boolean  @default(true)  @map("notify_system_alerts")
+  notifySecurityAlerts   Boolean  @default(true)  @map("notify_security_alerts")
+  notifyEmail            Boolean  @default(true)  @map("notify_email")
+  notifyPush             Boolean  @default(true)  @map("notify_push")
+  notifySms              Boolean  @default(false) @map("notify_sms")
+  updatedAt              DateTime @updatedAt      @map("updated_at")
+
+  // One-to-One Relationship with User
+  user                   User     @relation(fields: [userId], references: [id])
+
+  @@map("User_Notifications")
+}

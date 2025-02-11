@@ -1,0 +1,20 @@
+model MoneroAccount {
+  id           Int      @id @default(autoincrement()) @map("account_id")
+  userId       Int      @map("user_table_id")
+  accountLabel String   @map("account_label")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  user         User     @relation(fields: [userId], references: [id])
+
+  // One MoneroAccount has many Subaddresses
+  subaddresses Subaddress[] 
+  @@map("Monero_Account")
+}
+
+/*
+The userID field is referencing to the id field in the User table.
+(Foreign Key)
+
+user User @relation(fields: [userId], references: [id])
+
+*/
