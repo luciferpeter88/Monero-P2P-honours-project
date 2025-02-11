@@ -1,4 +1,4 @@
-import { json, redirect } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { Trash2, Plus, Pencil } from "lucide-react";
 import ContactDialog from "../components/ContactDialog";
@@ -32,7 +32,7 @@ export const action = async ({ request }) => {
   if (intent === "delete") {
     const id = formData.get("id");
     console.log(`Deleting contact with ID: ${id}`);
-    return redirect("/address-book");
+    return json({ success: true });
   }
 
   if (intent === "edit") {
@@ -42,7 +42,7 @@ export const action = async ({ request }) => {
 
   if (intent === "add") {
     console.log("Adding new contact:", Object.fromEntries(formData));
-    return redirect("/address-book");
+    // return redirect("/address-book");
   }
 
   return null;
@@ -58,9 +58,9 @@ export default function AddressBook() {
 
         {/* Table */}
         <div className="overflow-x-auto mt-5 w-full">
-          <table className="w-full border-collapse rounded-t-lg">
+          <table className="w-full border-collapse text-left text-sm text-muted-foreground">
             {/* Table Head */}
-            <thead className="bg-primary text-muted-foreground w-full rounded-t-lg">
+            <thead className="bg-primary text-white">
               <tr className="w-full">
                 <th className="p-3 text-left w-1/3 font-medium text-white">
                   Name
@@ -80,7 +80,10 @@ export default function AddressBook() {
             {/* Table Body */}
             <tbody className="w-full">
               {contacts.map((contact) => (
-                <tr key={contact.id} className=" even:bg-primary w-full">
+                <tr
+                  key={contact.id}
+                  className=" bg-third border-t border-primary hover:bg-primary hover:bg-opacity-90"
+                >
                   <td className="p-3 w-1/4">{contact.name}</td>
                   <td className="p-3 w-1/4">{contact.address}</td>
                   <td className="p-3 w-1/4">{contact.notes || "-"}</td>
