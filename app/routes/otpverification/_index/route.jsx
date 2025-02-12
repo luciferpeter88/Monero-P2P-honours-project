@@ -27,9 +27,17 @@ export default function Index() {
                     className="text-center tracking-widest text-lg"
                     maxLength={6}
                   />
-                  <button className="text-sm">Verify OTP</button>
+                  <button
+                    className="text-sm"
+                    style={{ width: "7.5rem", fontSize: "1rem" }}
+                  >
+                    Verify
+                  </button>
                 </form>
-                <div className="register-forget opacity justify-between">
+                <div
+                  className="register-forget opacity justify-between"
+                  style={{ marginTop: "0rem" }}
+                >
                   <p className="text-white text-sm">Didn't receive an OTP?</p>
                   <button className="text-secondary underline text-sm">
                     Resend OTP
