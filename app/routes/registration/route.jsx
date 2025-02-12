@@ -4,6 +4,7 @@ import Footer from "../../components/Footer";
 import "./style/registration.css";
 import userpicture from "./components/picture/user.png";
 import { Link, Form, useActionData } from "@remix-run/react";
+import { redirect } from "@remix-run/node";
 import prisma from "../../../prisma/prisma";
 import bcrypt from "bcryptjs";
 
@@ -29,7 +30,7 @@ export async function action({ request }) {
     where: { username: userName },
   });
   if (existingUser) {
-    return { error: "User already exists." };
+    return { error: "Email is already taken." };
   }
 
   if (existingUsername) {
@@ -49,10 +50,8 @@ export async function action({ request }) {
       passwordHash: hashedPassword,
     },
   });
-
-  return {
-    message: "Registration successful!",
-  };
+  console.log("Redirecting to otpverification");
+  return redirect("/otpverification");
 }
 
 export default function Index() {
@@ -75,9 +74,6 @@ export default function Index() {
                 />
                 {actionData?.error && (
                   <p className="text-red-500 mt-4">{actionData.error}</p>
-                )}
-                {actionData?.message && (
-                  <p className="text-green-500 mt-4">{actionData.message}</p>
                 )}
                 <h1 className="opacity mb-8">Sign Up</h1>
                 <Form method="post" className="flex flex-col gap-5">

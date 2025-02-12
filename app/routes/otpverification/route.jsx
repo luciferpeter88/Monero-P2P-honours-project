@@ -1,8 +1,16 @@
 import React from "react";
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
-import "../../login/style/style.css";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import "../login/style/style.css";
 import { Link } from "@remix-run/react";
+import sendOTPEmail from "../../utils/sendOTPEmail";
+
+// await sendOTPEmail("kaszapnagyp@gmail.com", "12345");
+
+// export async function loader() {
+//   console.log(process.env.EMAIL_HOST);
+//   return { message: "Registration successful!" };
+// }
 
 export default function Index() {
   return (
