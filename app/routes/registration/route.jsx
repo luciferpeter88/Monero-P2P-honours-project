@@ -51,7 +51,7 @@ export async function action({ request }) {
     },
   });
   console.log("Redirecting to otpverification");
-  return redirect("/otpverification");
+  return redirect("/verify");
 }
 
 export default function Index() {
