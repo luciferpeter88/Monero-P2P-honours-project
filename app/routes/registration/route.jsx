@@ -5,7 +5,7 @@ import "./style/registration.css";
 import userpicture from "./components/picture/user.png";
 import { Link, Form, useActionData } from "@remix-run/react";
 import prisma from "../../../prisma/prisma";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 export async function action({ request }) {
   // get form data
@@ -24,14 +24,20 @@ export async function action({ request }) {
   const existingUser = await prisma.user.findUnique({
     where: { email },
   });
+
+  const existingUsername = await prisma.user.findUnique({
+    where: { username: userName },
+  });
   if (existingUser) {
-    console.log("User already exists");
     return { error: "User already exists." };
   }
 
+  if (existingUsername) {
+    return { error: "Username already exists." };
+  }
+
   // Step 3: Hash the password
-  const saltRounds = 10; // The higher the number, the more secure (but slower)
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   // Step 4: Save user in the database
   await prisma.user.create({
