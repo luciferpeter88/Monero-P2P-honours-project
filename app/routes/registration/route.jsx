@@ -7,7 +7,7 @@ import { Link, Form, useActionData } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
 import prisma from "../../../prisma/prisma";
 import bcrypt from "bcryptjs";
-
+import generateOTP from "../../utils/generateOTP";
 export async function action({ request }) {
   // get form data
   const formdata = await request.formData();
@@ -39,8 +39,9 @@ export async function action({ request }) {
 
   // Step 3: Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
-
-  // Step 4: Save user in the database
+  // generate an otp number
+  const otp = generateOTP();
+  // Step 5: Save user in the database
   await prisma.user.create({
     data: {
       firstName: firstName,
@@ -48,9 +49,11 @@ export async function action({ request }) {
       username: userName,
       email: email,
       passwordHash: hashedPassword,
+      otpSecret: otp,
     },
   });
   console.log("Redirecting to otpverification");
+  console.log(generateOTP());
   return redirect("/verify");
 }
 
