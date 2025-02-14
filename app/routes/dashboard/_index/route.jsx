@@ -7,16 +7,88 @@ import Chart2 from "../components/Chart2";
 import TransactionHistory from "../components/Transaction";
 import ProfileCard from "../components/ProfileCard";
 import { Button } from "../../../../src/components/components/ui/button";
+import { getSession } from "../../../utils/session.server";
+import { redirect } from "@remix-run/node";
+import prisma from "../../../../prisma/prisma";
+import { useLoaderData } from "@remix-run/react";
+
+export async function loader({ request }) {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  if (!userIdD) {
+    return redirect("/");
+  }
+  const user = await prisma.user.findUnique({
+    where: { id: userIdD },
+  });
+  // console.log(user);
+  return {
+    email: user.email,
+    name: user.firstName + " " + user.lastName,
+    phone: user.phone,
+
+    accounts: [
+      {
+        id: 1,
+        accountName: "Primary",
+        accountAddress: "86vWpt....jjnj40",
+        balance: 9.377160181,
+      },
+      {
+        id: 2,
+        accountName: "Business",
+        accountAddress: "2323ut....jjnj40",
+        balance: 2.377160181,
+      },
+      {
+        id: 3,
+        accountName: "Hidden Services",
+        accountAddress: "86876....xjnj40",
+        balance: 7.377160181,
+      },
+    ], // will be fetched from MoneroAccount table
+    market: [
+      {
+        userId: 1,
+        userName: "Judit Eisendreich",
+        imageSrc: "https://randomuser.me/api/portraits/women/21.jpg",
+        successRate: 98,
+        totalTrades: 120,
+      }, // will be fetched from Feedback and User tables
+    ],
+    moneroApiChart: [], // will be fetched from external API
+    transaction: [
+      {
+        id: 1,
+        time: "2021-10-10 12:00:00",
+        transactionId: "0x412313...hbdu12rex",
+        amount: 2.3,
+        addressFrom: "0x1234...1234",
+        addressTo: "0x1234...1234",
+        remarks: "Payment for services",
+      },
+    ], // will be fetched from Transaction table
+  };
+}
+
 export default function Index() {
+  const data = useLoaderData();
+  console.log("Coming from the compoent", data);
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg">
-        <h3 className="font-medium">Peter Kaszap-Nagy</h3>
+        <h3 className="font-medium">{data.name}</h3>
         <div className="mt-3 flex gap-x-16 w-full ">
-          <UserDetails firstText="Account" lastText="kaszapnagyp@gmail.com" />
-          <UserDetails firstText="Phone" lastText="+234 345 678 987" />
-          <UserDetails firstText="Accounts" lastText="3" />
-          <UserDetails firstText="Current Account" lastText="Primary" />
+          <UserDetails firstText="Account" lastText={data.email} />
+          <UserDetails
+            firstText="Phone"
+            lastText={data.phone || "not provided"}
+          />
+          <UserDetails firstText="Accounts" lastText={data.accounts.length} />
+          <UserDetails
+            firstText="Current Account"
+            lastText={data.accounts[0].accountName}
+          />
           <div className="ml-auto mt-auto">
             <Button className="bg-secondary ml-auto">Trade</Button>
           </div>
@@ -32,12 +104,15 @@ export default function Index() {
         <div className="w-full bg-third p-5 rounded-lg">
           <h2 className="text-lg font-semibold">Accounts</h2>
           <div className="mt-5 flex flex-col">
-            <Account
-              AccountType="Primary"
-              additionalClasses="bg-primary border-l-4 border-l-secondary text-secondary"
-            />
-            <Account AccountType="Buisness" />
-            <Account AccountType="Hidden Services" />
+            {data.accounts.map((account) => (
+              <Account
+                key={account.id}
+                id={account.id}
+                AccountType={account.accountName}
+                accountAddress={account.accountAddress}
+                balance={account.balance}
+              />
+            ))}
           </div>
         </div>
       </div>

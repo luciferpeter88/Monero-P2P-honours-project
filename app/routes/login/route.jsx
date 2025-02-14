@@ -32,7 +32,8 @@ export async function action({ request }) {
   }
 
   const session = await getSession(request.headers.get("Cookie"));
-  session.set("user_data", User);
+  // Set the user_id in the session to keep track of the user
+  session.set("user_id", User.id);
   return redirect("/dashboard", {
     headers: {
       "Set-Cookie": await commitSession(session),
