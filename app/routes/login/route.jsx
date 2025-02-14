@@ -2,8 +2,46 @@ import React from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import "./style/style.css";
-import { Link } from "@remix-run/react";
+import bcrypt from "bcryptjs";
+import prisma from "../../../prisma/prisma";
+import { Link, Form, useActionData } from "@remix-run/react";
+import { redirect } from "@remix-run/node";
+import { getSession, commitSession } from "../../utils/session.server";
+
+export async function action({ request }) {
+  const formdata = await request.formData();
+  const email = formdata.get("email");
+  const inputPassword = formdata.get("password");
+  const User = await prisma.user.findUnique({
+    where: { email },
+  });
+  if (!User) {
+    return { error: "Invalid Credential" };
+  }
+  const verifyUser = await bcrypt.compare(inputPassword, User.passwordHash);
+  if (!verifyUser) {
+    return { error: "Invalid Credential" };
+  }
+  if (!User.emailVerified) {
+    return { error: "Email is not verified" };
+  }
+  if (User.accountStatus !== "active") {
+    return {
+      error: "Your account is frozen or closed, please contact with us",
+    };
+  }
+
+  const session = await getSession(request.headers.get("Cookie"));
+  session.set("user_data", User);
+  return redirect("/dashboard", {
+    headers: {
+      "Set-Cookie": await commitSession(session),
+    },
+  });
+}
+
 export default function Index() {
+  const data = useActionData();
   return (
     <React.Fragment>
       <div className="grid grid-cols-1 lg:grid-cols-4 grid-rows-[auto_1fr_auto] lg:grid-rows-[auto_1fr_1fr] min-h-screen container mx-auto px-5">
@@ -15,17 +53,27 @@ export default function Index() {
             <div className="login-container">
               <div className="circle circle-one" />
               <div className="form-container">
+                {data?.error && (
+                  <p className="text-red-500 mt-4 max-w-40">{data.error}</p>
+                )}
                 <img
                   src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png"
                   alt="illustration"
                   className="illustration"
                 />
                 <h1 className="opacity mb-8">Sign In</h1>
-                <form className="flex flex-col gap-5">
-                  <input type="text" placeholder="Username" />
-                  <input type="password" placeholder="Password" />
-                  <button className="opacity">Log in</button>
-                </form>
+
+                <Form method="post" className="flex flex-col gap-5">
+                  <input type="text" placeholder="Email" name="email" />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                  />
+                  <button className="opacity" type="submit">
+                    Log in
+                  </button>
+                </Form>
                 <div className="register-forget opacity">
                   <p className="text-white">Don't have an account?</p>
                   <Link to="/registration">Sign Up</Link>
