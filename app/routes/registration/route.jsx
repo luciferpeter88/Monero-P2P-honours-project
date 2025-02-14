@@ -8,6 +8,8 @@ import { redirect } from "@remix-run/node";
 import prisma from "../../../prisma/prisma";
 import bcrypt from "bcryptjs";
 import generateOTP from "../../utils/generateOTP";
+import { getSession, commitSession } from "../../utils/session.server";
+import sendOTPEmail from "../../utils/sendOTPEmail";
 export async function action({ request }) {
   // get form data
   const formdata = await request.formData();
@@ -52,9 +54,15 @@ export async function action({ request }) {
       otpSecret: otp,
     },
   });
-  console.log("Redirecting to otpverification");
-  console.log(generateOTP());
-  return redirect("/verify");
+  // Step 6: Set the email in the session and redirect to the verify page
+  const session = await getSession(request.headers.get("Cookie"));
+  session.set("otp_email", email);
+  await sendOTPEmail("kaszapnagyp@gmail.com", otp);
+  return redirect("/verify", {
+    headers: {
+      "Set-Cookie": await commitSession(session),
+    },
+  });
 }
 
 export default function Index() {
