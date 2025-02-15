@@ -1,7 +1,42 @@
 import Card from "../components/Card";
 import SendForm from "../components/SendForm";
 import Transaction from "../../components/Transaction";
+
 export default function Index() {
+  const transactions = [
+    {
+      time: "13/03/24 - 20:54:29",
+      transactionId: "0x412313...hbdu12rex",
+      amount: "2.3",
+      addressFrom: "0x412313...hbdu12rex",
+      addressTo: "16asfzv6...hbdu12rex",
+      remarks: "-",
+    },
+    {
+      time: "13/03/24 - 20:54:29",
+      transactionId: "0x412313...hbdu12rex",
+      amount: "2.3",
+      addressFrom: "0x412313...hbdu12rex",
+      addressTo: "16asfzv6...hbdu12rex",
+      remarks: "-",
+    },
+    {
+      time: "13/03/24 - 20:54:29",
+      transactionId: "0x412313...hbdu12rex",
+      amount: "2.3",
+      addressFrom: "0x412313...hbdu12rex",
+      addressTo: "16asfzv6...hbdu12rex",
+      remarks: "-",
+    },
+    {
+      time: "13/03/24 - 20:54:29",
+      transactionId: "0x412313...hbdu12rex",
+      amount: "2.3",
+      addressFrom: "0x412313...hbdu12rex",
+      addressTo: "16asfzv6...hbdu12rex",
+      remarks: "-",
+    },
+  ];
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg">
@@ -31,7 +66,7 @@ export default function Index() {
         </div>
       </div>
       <SendForm />
-      <Transaction />
+      <Transaction data={transactions} />
     </div>
   );
 }
