@@ -1,45 +1,47 @@
 import { Button } from "../../../../src/components/components/ui/button";
-export default function WithdrawalRecords() {
-  const transactions = [
-    {
-      date: "13/03/24 - 20:54:29",
-      coin: "0x412313...hbdu12rex",
-      amount: "2.3",
-      withdrawTo: "0x412313...hbdu12rex",
-      blockchainRecord: "16asfzv6...hbdu12rex",
-      remarks: "-",
-    },
-    {
-      date: "13/03/24 - 20:54:29",
-      coin: "0x412313...hbdu12rex",
-      amount: "2.3",
-      withdrawTo: "0x412313...hbdu12rex",
-      blockchainRecord: "16asfzv6...hbdu12rex",
-      remarks: "-",
-    },
-    {
-      date: "13/03/24 - 20:54:29",
-      coin: "0x412313...hbdu12rex",
-      amount: "2.3",
-      withdrawTo: "0x412313...hbdu12rex",
-      blockchainRecord: "16asfzv6...hbdu12rex",
-      remarks: "-",
-    },
-    {
-      date: "13/03/24 - 20:54:29",
-      coin: "0x412313...hbdu12rex",
-      amount: "2.3",
-      withdrawTo: "0x412313...hbdu12rex",
-      blockchainRecord: "16asfzv6...hbdu12rex",
-      remarks: "-",
-    },
-  ];
+export default function WithdrawalRecords({ header, data }) {
+  // const transactions = [
+  //   {
+  //     date: "13/03/24 - 20:54:29",
+  //     coin: "0x412313...hbdu12rex",
+  //     amount: "2.3",
+  //     withdrawTo: "0x412313...hbdu12rex",
+  //     blockchainRecord: "16asfzv6...hbdu12rex",
+  //     remarks: "-",
+  //   },
+  //   {
+  //     date: "13/03/24 - 20:54:29",
+  //     coin: "0x412313...hbdu12rex",
+  //     amount: "2.3",
+  //     withdrawTo: "0x412313...hbdu12rex",
+  //     blockchainRecord: "16asfzv6...hbdu12rex",
+  //     remarks: "-",
+  //   },
+  //   {
+  //     date: "13/03/24 - 20:54:29",
+  //     coin: "0x412313...hbdu12rex",
+  //     amount: "2.3",
+  //     withdrawTo: "0x412313...hbdu12rex",
+  //     blockchainRecord: "16asfzv6...hbdu12rex",
+  //     remarks: "-",
+  //   },
+  //   {
+  //     date: "13/03/24 - 20:54:29",
+  //     coin: "0x412313...hbdu12rex",
+  //     amount: "2.3",
+  //     withdrawTo: "0x412313...hbdu12rex",
+  //     blockchainRecord: "16asfzv6...hbdu12rex",
+  //     remarks: "-",
+  //   },
+  // ];
 
   return (
     <div className="bg-third text-white p-6 rounded-xl shadow-lg mt-5">
       {/* Header Section */}
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-medim">Latest Transaction History</h2>
+        <h2 className="text-xl font-medim">
+          {header || "Trasnaction History"}
+        </h2>
       </div>
 
       {/* Table */}
@@ -60,30 +62,30 @@ export default function WithdrawalRecords() {
 
           {/* Table Body */}
           <tbody>
-            {transactions.map((txn, index) => (
+            {data.map((txn, index) => (
               <tr
                 key={index}
                 className=" bg-third border-t border-primary hover:bg-primary hover:bg-opacity-90"
               >
-                <td className="p-3">{txn.date}</td>
-                <td className="p-3 text-white">{txn.coin}</td>
+                <td className="p-3">{txn.time}</td>
+                <td className="p-3 text-white">{txn.transactionId}</td>
                 <td className="p-3">{txn.amount}</td>
 
                 {/* Withdraw To (Ensuring Proper Column Structure) */}
                 <td className="p-3 text-white">
                   <div className="flex items-center gap-2">
-                    <span>{txn.withdrawTo}</span>
+                    <span>{txn.addressFrom}</span>
                   </div>
                 </td>
 
                 {/* Blockchain Record (Ensuring Proper Column Structure) */}
                 <td className="p-3">
                   <div className="flex items-center gap-2">
-                    <span>{txn.blockchainRecord}</span>
+                    <span>{txn.addressTo}</span>
                   </div>
                 </td>
 
-                <td className="p-3">{txn.remarks}</td>
+                <td className="p-3">{txn.remarks || "-"}</td>
 
                 {/* Action Button */}
                 <td className="p-3">

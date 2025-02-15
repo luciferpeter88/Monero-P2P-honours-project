@@ -11,7 +11,7 @@ import { getSession } from "../../../utils/session.server";
 import { redirect } from "@remix-run/node";
 import prisma from "../../../../prisma/prisma";
 import { useLoaderData } from "@remix-run/react";
-
+// read the data from the backend when the page is loaded and pass it to the component
 export async function loader({ request }) {
   const session = await getSession(request.headers.get("Cookie"));
   const userIdD = session.get("user_id");
@@ -54,8 +54,29 @@ export async function loader({ request }) {
         imageSrc: "https://randomuser.me/api/portraits/women/21.jpg",
         successRate: 98,
         totalTrades: 120,
-      }, // will be fetched from Feedback and User tables
-    ],
+      },
+      {
+        userId: 2,
+        userName: "Judit Eisendreich",
+        imageSrc: "https://randomuser.me/api/portraits/women/21.jpg",
+        successRate: 58,
+        totalTrades: 12,
+      },
+      {
+        userId: 3,
+        userName: "Judit Eisendreich",
+        imageSrc: "https://randomuser.me/api/portraits/women/21.jpg",
+        successRate: 100,
+        totalTrades: 10,
+      },
+      {
+        userId: 4,
+        userName: "Judit Eisendreich",
+        imageSrc: "https://randomuser.me/api/portraits/women/21.jpg",
+        successRate: 95,
+        totalTrades: 182,
+      },
+    ], // will be fetched from Feedback and User tables
     moneroApiChart: [], // will be fetched from external API
     transaction: [
       {
@@ -67,13 +88,22 @@ export async function loader({ request }) {
         addressTo: "0x1234...1234",
         remarks: "Payment for services",
       },
+      {
+        id: 2,
+        time: "2021-12-10 12:00:00",
+        transactionId: "0x412355...hbdu12pqy",
+        amount: 5.3,
+        addressFrom: "0x1234...9456",
+        addressTo: "0x1234...0176",
+        remarks: "Payment for goods",
+      },
     ], // will be fetched from Transaction table
   };
 }
 
 export default function Index() {
+  // get the data from the backend when the page is loaded
   const data = useLoaderData();
-  console.log("Coming from the compoent", data);
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg">
@@ -127,14 +157,22 @@ export default function Index() {
       <div className="bg-third p-5 rounded-lg mt-5 flex flex-col">
         <h2 className="text-2xl font-semibold mb-4">Market</h2>
         <div className="flex gap-5">
-          <ProfileCard />
-          <ProfileCard />
-          <ProfileCard />
-          <ProfileCard />
+          {data.market.map((market) => (
+            <ProfileCard
+              key={market.userId}
+              name={market.userName}
+              imageSrc={market.imageSrc}
+              successRate={market.successRate}
+              totalTrades={market.totalTrades}
+            />
+          ))}
         </div>
         <Button className="ml-auto mt-5 bg-secondary">Explore</Button>
       </div>
-      <TransactionHistory />
+      <TransactionHistory
+        header="Latest Transaction History"
+        data={data.transaction}
+      />
     </div>
   );
 }
