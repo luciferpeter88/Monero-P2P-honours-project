@@ -1,0 +1,7 @@
+
+// rund the monero deamon in the background 
+monero-wallet-rpc --wallet-dir ./monero_service/wallets --rpc-bind-port 18082 --rpc-login peter:peter --detach
+
+// stop using it
+monero-wallet-rpc stop_wallet
+monerod exit
