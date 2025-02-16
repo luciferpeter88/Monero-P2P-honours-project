@@ -9,6 +9,7 @@ import ProfileCard from "../components/ProfileCard";
 import { Button } from "../../../../src/components/components/ui/button";
 import { getSession } from "../../../utils/session.server";
 import { redirect } from "@remix-run/node";
+import { Link } from "@remix-run/react";
 import prisma from "../../../../prisma/prisma";
 import { useLoaderData } from "@remix-run/react";
 import { getHistoricalMoneroPriceWithCache } from "../../../utils/moneroPrice";
@@ -24,7 +25,6 @@ export async function loader({ request }) {
   });
   // const currentPrice = await getCurrentMoneroPrice();
   const historicalPrice = await getHistoricalMoneroPriceWithCache();
-  // console.log(historicalPrice);
   return {
     email: user.email,
     name: user.firstName + " " + user.lastName,
@@ -123,9 +123,9 @@ export default function Index() {
             firstText="Current Account"
             lastText={data.accounts[0].accountName}
           />
-          <div className="ml-auto mt-auto">
+          <Link to="/dashboard/market" className="ml-auto mt-auto">
             <Button className="bg-secondary ml-auto">Trade</Button>
-          </div>
+          </Link>
         </div>
       </div>
       <div className="flex mt-5 gap-5">
