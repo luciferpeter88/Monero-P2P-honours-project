@@ -11,6 +11,7 @@ import { getSession } from "../../../utils/session.server";
 import { redirect } from "@remix-run/node";
 import prisma from "../../../../prisma/prisma";
 import { useLoaderData } from "@remix-run/react";
+import { getHistoricalMoneroPriceWithCache } from "../../../utils/moneroPrice";
 // read the data from the backend when the page is loaded and pass it to the component
 export async function loader({ request }) {
   const session = await getSession(request.headers.get("Cookie"));
@@ -21,7 +22,9 @@ export async function loader({ request }) {
   const user = await prisma.user.findUnique({
     where: { id: userIdD },
   });
-  // console.log(user);
+  // const currentPrice = await getCurrentMoneroPrice();
+  const historicalPrice = await getHistoricalMoneroPriceWithCache();
+  // console.log(historicalPrice);
   return {
     email: user.email,
     name: user.firstName + " " + user.lastName,
@@ -77,7 +80,7 @@ export async function loader({ request }) {
         totalTrades: 182,
       },
     ], // will be fetched from Feedback and User tables
-    moneroApiChart: [], // will be fetched from external API
+    moneroApiChart: historicalPrice,
     transaction: [
       {
         id: 1,
@@ -104,6 +107,7 @@ export async function loader({ request }) {
 export default function Index() {
   // get the data from the backend when the page is loaded
   const data = useLoaderData();
+
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg">
@@ -148,7 +152,7 @@ export default function Index() {
       </div>
       <div className=" mt-5 rounded-lg flex h-[55vh] gap-5">
         <div className="w-[75%] h-full bg-third p-5 rounded-lg">
-          <Chart />
+          <Chart chartData={data.moneroApiChart} />
         </div>
         <div className="w-[35%] bg-third rounded-lg">
           <Chart2 />
