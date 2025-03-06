@@ -11,6 +11,7 @@
     "merge-prisma": "cat prisma/models/*.prisma >> prisma/schema.prisma"
   },
   "dependencies": {
+    "@mhoc/axios-digest-auth": "^0.8.0",
     "@prisma/client": "^6.3.1",
     "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-popover": "^1.1.5",
@@ -27,9 +28,12 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
+    "digest-fetch": "^3.1.1",
+    "http-digest-auth": "^0.1.3",
     "isbot": "^4.1.0",
     "lucide-react": "^0.474.0",
     "mysql2": "^3.12.0",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^6.10.0",
     "prisma": "^6.3.1",
     "react": "^18.2.0",

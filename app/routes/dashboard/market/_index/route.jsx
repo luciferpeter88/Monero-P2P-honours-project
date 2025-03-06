@@ -7,7 +7,7 @@ import ChatPopup from "../components/ChatPopUp";
 const sellers = [
   {
     id: 1,
-    name: "Alice Crypto",
+    name: "Alice",
     rating: 98,
     price: 120,
     totalTrades: 120,
@@ -16,7 +16,7 @@ const sellers = [
   },
   {
     id: 2,
-    name: "Bob Monero",
+    name: "Bob",
     rating: 90,
     price: 110,
     totalTrades: 12,

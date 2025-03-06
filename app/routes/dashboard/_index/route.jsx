@@ -9,10 +9,11 @@ import ProfileCard from "../components/ProfileCard";
 import { Button } from "../../../../src/components/components/ui/button";
 import { getSession } from "../../../utils/session.server";
 import { redirect } from "@remix-run/node";
-import { Link } from "@remix-run/react";
+import { Form, Link } from "@remix-run/react";
 import prisma from "../../../../prisma/prisma";
 import { useLoaderData } from "@remix-run/react";
 import { getHistoricalMoneroPriceWithCache } from "../../../utils/moneroPrice";
+import Monero from "../../../utils/Monero.server";
 // read the data from the backend when the page is loaded and pass it to the component
 export async function loader({ request }) {
   const session = await getSession(request.headers.get("Cookie"));
@@ -104,6 +105,20 @@ export async function loader({ request }) {
   };
 }
 
+export async function action({ request }) {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  if (!userIdD) {
+    return redirect("/");
+  }
+  console.log("Creating account for user:", userIdD);
+  const monero = new Monero(userIdD);
+  await monero.createAccount("Primary");
+  return {
+    monero: "Account created",
+  };
+}
+
 export default function Index() {
   // get the data from the backend when the page is loaded
   const data = useLoaderData();
@@ -132,7 +147,11 @@ export default function Index() {
         <div className=" w-max p-5 rounded-lg flex flex-col bg-third">
           <Card />
           <div className="mt-5 flex">
-            <Button className="bg-secondary ml-auto">Create Account</Button>
+            <Form method="post">
+              <Button className="bg-secondary ml-auto" type="submit">
+                Create Account
+              </Button>
+            </Form>
           </div>
         </div>
         <div className="w-full bg-third p-5 rounded-lg">

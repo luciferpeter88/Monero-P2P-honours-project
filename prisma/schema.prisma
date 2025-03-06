@@ -100,6 +100,8 @@ model Message {
 model MoneroAccount {
   id           Int      @id @default(autoincrement()) @map("account_id")
   userId       Int      @map("user_table_id")
+  accountIndex Int      @map("account_index")
+  accountAddress String  @map("account_address")
   accountLabel String   @map("account_label")
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")

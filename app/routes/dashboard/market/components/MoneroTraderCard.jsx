@@ -3,9 +3,17 @@ import { Button } from "../../../../../src/components/components/ui/button";
 import ChatPopup from "./ChatPopUp";
 
 export default function MoneroTraderCard({ seller }) {
+  let ratingColor = "text-red-400";
+  if (seller.rating >= 90) {
+    ratingColor = "text-green-400";
+  } else if (seller.rating >= 80) {
+    ratingColor = "text-yellow-400";
+  }
+
   return (
     <div
-      className="flex bg-third text-white rounded-lg p-5 shadow-lg w-full items-center flex-wrap"
+      className="flex bg-third text-white rounded-lg p-5 shadow-lg w-full items-center flex-wrap
+                 hover:scale-105 transition-transform duration-200"
       key={seller.id}
     >
       {/* Trader Image */}
@@ -18,7 +26,7 @@ export default function MoneroTraderCard({ seller }) {
       </div>
 
       {/* Trader Details */}
-      <div className=" sm:px-6 bg-transparent">
+      <div className="sm:px-6 bg-transparent flex-1">
         {/* Name & Verified Badge */}
         <div className="flex items-center gap-2 flex-wrap">
           <h2 className="text-lg font-semibold">{seller.name}</h2>
@@ -26,11 +34,21 @@ export default function MoneroTraderCard({ seller }) {
           <span className="text-gray-400 text-sm">Verified Monero Trader</span>
         </div>
 
+        {/* (Optional) Last Active */}
+        {seller.lastActive && (
+          <p className="text-xs text-gray-500 mt-1">
+            Last active: {seller.lastActive}
+          </p>
+        )}
+
         {/* Trading Stats */}
         <div className="mt-2 flex items-center gap-4 text-gray-300 flex-wrap">
           <div className="flex items-center gap-2">
             <BarChart size={16} className="text-green-400" />
-            <span className="text-sm">{seller.rating}% Success Rate</span>
+            {/* 2. Color-coded rating */}
+            <span className={`text-sm font-semibold ${ratingColor}`}>
+              {seller.rating}% Success Rate
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <Wallet size={16} className="text-yellow-400" />
@@ -41,18 +59,16 @@ export default function MoneroTraderCard({ seller }) {
         {/* Trade Limits */}
         <div className="mt-2 text-gray-300 flex flex-wrap gap-x-2">
           <span className="text-sm font-semibold">Trade Limits:</span>
-          <span className=" text-white text-sm">
+          <span className="text-white text-sm">
             Min: <strong>{seller.tradeMin} XMR</strong> | Max:{" "}
-            <strong>{seller.totalTrades} XMR</strong>
+            <strong>{seller.tradeMax} XMR</strong>
           </span>
         </div>
       </div>
 
       {/* Action Buttons */}
       <div className="flex flex-col items-end ml-auto">
-        {/* Buttons */}
         <div className="flex gap-2 mt-4">
-          {/* <Button className="bg-secondary text-white px-5">Message Me</Button> */}
           <ChatPopup traderName={seller.name} />
           <Button
             variant="outline"

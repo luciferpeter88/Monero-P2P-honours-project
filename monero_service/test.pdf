@@ -1,7 +1,174 @@
+1. Install Monero Software
 
-// rund the monero deamon in the background 
-monero-wallet-rpc --wallet-dir ./monero_service/wallets --rpc-bind-port 18082 --rpc-login peter:peter --detach
+Download Monero CLI from the official website.
 
-// stop using it
+Extract the files to your project directory.
+
+Make the binaries globally accessible (optional):
+
+Copy the extracted files (e.g., monerod, monero-wallet-cli, monero-wallet-rpc) to /usr/local/bin to run them globally without specifying the full path.
+
+Without this step, you'll need to run commands from the extracted folder or provide the full path each time.
+
+🌐 2. Start Downloading the Blockchain
+
+Run this command to download the Monero blockchain to your local machine:
+
+monerod --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18081 \
+--prune-blockchain \
+--detach
+
+Explanation:
+
+--prune-blockchain → Downloads a smaller version of the blockchain.
+
+--detach → Runs the process in the background.
+
+⏱️ Wait for the sync to complete. It may take several hours or a full day depending on your connection.
+
+🔍 Check Sync Status:
+
+curl --http1.1 -X POST http://127.0.0.1:18081/json_rpc \
+-H "Content-Type: application/json" \
+--data '{
+    "jsonrpc": "2.0",
+    "id": "0",
+    "method": "get_info"
+}'
+// live update
+tail -f ~/.bitmonero/bitmonero.log
+
+
+Look for:
+
+height → Current block height.
+
+target_height → The total height to reach.
+
+synchronized → Will change to true when complete.
+
+💡 Note: You cannot monitor the progress until the RPC server is running.
+
+🔑 3. Create a New Wallet
+
+Run this command to generate a wallet file:
+
+monero-wallet-cli --generate-new-wallet ./monero_service/wallets/monero_main_wallet \
+--password "peter" \
+--daemon-address 127.0.0.1:18081
+
+This command:
+
+Creates a wallet file at ./monero_service/wallets/monero_main_wallet.
+
+Sets the wallet password to peter.
+
+🔒 The wallet password is stored permanently.
+
+⚠️ Important: The RPC login credentials (e.g., peter:peter) are temporary and can be changed anytime. However, the wallet password remains the same and is required whenever you access the wallet.
+
+⚙️ 4. Start the Wallet RPC Server
+
+Method 1: With Authentication (Recommended)
+
+monero-wallet-rpc --wallet-file ./monero_service/wallets/monero_main_wallet \
+--password "peter" \
+--rpc-bind-port 18083 \
+--rpc-login peter:peter \
+--daemon-address 127.0.0.1:18081 \
+--log-file ./monero_service/wallets/monero-wallet-rpc.log \
+--detach
+
+Explanation:
+
+--rpc-login peter:peter → Sets temporary RPC credentials (can be any string, but must match the Python script).
+
+--daemon-address 127.0.0.1:18081 → Connects to the local daemon.
+
+--detach → Runs the process in the background.
+
+Method 2: Without Authentication (Local Testing Only)
+
+monero-wallet-rpc --wallet-file ./monero_service/wallets/monero_main_wallet \
+--password "peter" \
+--rpc-bind-port 18082 \
+--disable-rpc-login \
+--daemon-address 127.0.0.1:18081 \
+--log-file ./monero_service/wallets/monero-wallet-rpc.log \
+--detach
+
+Note:
+
+Avoid using this method on a public network for security reasons.
+
+💰 5. Interact with the Wallet
+
+Check Balance:
+
+curl --digest -u peter:peter --http1.1 -X POST http://127.0.0.1:18083/json_rpc \
+-H "Content-Type: application/json" \
+--data '{
+    "jsonrpc": "2.0",
+    "id": "0",
+    "method": "get_balance"
+}'
+
+Get Primary Address:
+
+curl --digest -u peter:peter --http1.1 -X POST http://127.0.0.1:18083/json_rpc \
+-H "Content-Type: application/json" \
+--data '{
+    "jsonrpc": "2.0",
+    "id": "0",
+    "method": "get_address",
+    "params": {
+        "account_index": 0
+    }
+}'
+
+🔍 Verify Blockchain Sync Again:
+
+curl --digest -u peter:peter --http1.1 -X POST http://127.0.0.1:18081/json_rpc \
+-H "Content-Type: application/json" \
+--data '{
+    "jsonrpc": "2.0",
+    "id": "0",
+    "method": "get_info"
+}'
+
+Wait until:
+
+height = target_height
+
+synchronized → true
+
+🔴 6. Stop the Services
+
+Stop the Wallet RPC Server:
+
 monero-wallet-rpc stop_wallet
+
+Stop the Monero Daemon:
+
 monerod exit
+
+🚀 Next Startup Steps (No Full Download Required)
+
+Once the blockchain has been fully downloaded, starting it again is simple:
+
+monerod --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18081 --detach
+
+And for the wallet:
+
+monero-wallet-rpc --wallet-file ./monero_service/wallets/monero_main_wallet \
+--password "peter" \
+--rpc-bind-port 18082 \
+--rpc-login peter:peter \
+--daemon-address 127.0.0.1:18081 \
+--log-file ./monero_service/wallets/monero-wallet-rpc.log \
+--detach
+
+
+
+
+

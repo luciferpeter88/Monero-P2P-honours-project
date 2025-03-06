@@ -24,3 +24,272 @@
 2025-02-16 17:27:53.774	  0x7ff85acc5b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18082
 2025-02-16 17:27:55.024	  0x7ff85acc5b00	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1274	Error starting server: Failed to bind IPv4 (set to required)
 2025-02-16 17:27:55.024	  0x7ff85acc5b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4686	Failed to initialize wallet RPC server
+2025-02-17 10:14:41.039	  0x7ff85acc5b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-02-17 10:14:41.041	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-02-17 10:14:41.041	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-02-17 10:14:41.041	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-02-17 10:14:41.041	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-02-17 10:14:41.041	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Forking to background...
+2025-02-17 10:14:41.044	  0x7ff85acc5b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18082
+2025-02-17 10:14:41.805	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-02-17 10:45:23.802	  0x7ff85acc5b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-02-17 10:45:23.802	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-02-17 10:45:23.802	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-02-17 10:45:23.802	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-02-17 10:45:23.802	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-02-17 10:45:23.802	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Forking to background...
+2025-02-17 10:45:23.806	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-02-17 10:45:26.239	  0x7ff85acc5b00	ERROR	util	src/common/util.cpp:109	Error locking fd 18: 35 (Resource temporarily unavailable)
+2025-02-17 10:45:26.239	  0x7ff85acc5b00	ERROR	util	src/common/util.cpp:309	Failed to lock ./monero_service/wallets/monero_main_wallet.keys: Resource temporarily unavailable
+2025-02-17 10:45:26.240	  0x7ff85acc5b00	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:6111	!is_keys_file_locked(). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 10:45:26.240	  0x7ff85acc5b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4680	Wallet initialization failed: internal error: "./monero_service/wallets/monero_main_wallet.keys" is opened by another wallet program
+2025-02-17 10:52:34.169	  0x7ff85acc5b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-02-17 10:52:34.169	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-02-17 10:52:34.169	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-02-17 10:52:34.169	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-02-17 10:52:34.169	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-02-17 10:52:34.169	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Forking to background...
+2025-02-17 10:52:34.173	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-02-17 10:52:34.173	  0x7ff85acc5b00	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:530	!password_prompter. THROW EXCEPTION: tools::error::wallet_internal_error
+2025-02-17 10:52:34.173	  0x7ff85acc5b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4680	Wallet initialization failed: no password specified; use --prompt-for-password to prompt for a password
+2025-02-17 11:07:39.926	  0x7ff85acc5b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-02-17 11:07:39.926	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-02-17 11:07:39.926	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-02-17 11:07:39.926	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-02-17 11:07:39.926	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-02-17 11:07:39.926	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Forking to background...
+2025-02-17 11:07:39.930	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-02-17 11:07:41.674	  0x7ff85acc5b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-02-17 11:07:43.306	  0x7ff85acc5b00	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:07:43.366	  0x7ff85acc5b00	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:07:43.590	  0x7ff85acc5b00	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:07:43.695	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-02-17 11:07:43.695	  0x7ff85acc5b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18082
+2025-02-17 11:07:44.165	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-02-17 11:07:45.226	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:07:45.343	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:07:45.489	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:08:05.667	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:08:05.823	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:08:05.990	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:08:26.177	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:08:26.327	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:08:26.484	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:08:46.737	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:08:46.898	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:08:47.160	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:09:07.321	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:09:07.474	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:09:07.659	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:09:27.770	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:09:27.993	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:09:28.247	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:09:48.388	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:09:48.577	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:09:48.835	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:10:09.015	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:10:09.195	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:10:09.464	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:10:29.636	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:10:29.767	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:10:30.016	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:10:40.517	  0x7ff85acc5b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-02-17 11:10:40.517	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-02-17 11:10:40.517	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-02-17 11:10:40.517	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-02-17 11:10:40.518	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-02-17 11:10:40.518	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Forking to background...
+2025-02-17 11:10:40.525	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-02-17 11:10:42.868	  0x7ff85acc5b00	ERROR	util	src/common/util.cpp:109	Error locking fd 18: 35 (Resource temporarily unavailable)
+2025-02-17 11:10:42.868	  0x7ff85acc5b00	ERROR	util	src/common/util.cpp:309	Failed to lock ./monero_service/wallets/monero_main_wallet.keys: Resource temporarily unavailable
+2025-02-17 11:10:42.868	  0x7ff85acc5b00	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:6111	!is_keys_file_locked(). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:10:42.869	  0x7ff85acc5b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4680	Wallet initialization failed: internal error: "./monero_service/wallets/monero_main_wallet.keys" is opened by another wallet program
+2025-02-17 11:10:50.110	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:10:50.264	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:10:50.507	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:11:15.815	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:11:16.024	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:11:16.284	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:11:36.433	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:11:36.532	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:11:36.752	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:12:03.230	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:12:03.467	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:12:03.760	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:12:23.877	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:12:24.010	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:12:24.410	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:12:46.537	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:12:46.743	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:12:47.046	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:13:07.293	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:13:07.501	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:13:07.819	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:13:27.928	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:13:28.042	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:13:28.471	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:13:48.607	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:13:48.815	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:13:49.143	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:14:09.318	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:14:09.422	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:14:09.798	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:14:29.957	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:14:30.122	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:14:30.391	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:14:50.449	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:14:50.521	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:14:50.853	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:15:18.468	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:15:18.798	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:15:19.334	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:15:39.543	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:15:39.643	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:15:39.976	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:16:00.114	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:16:00.188	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:16:00.568	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:16:20.747	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:16:20.920	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:16:21.302	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:16:48.796	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:16:49.020	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:16:49.654	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:17:09.809	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:17:09.982	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:17:19.809	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:17:39.927	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:17:40.052	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:17:40.545	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:18:09.631	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:18:09.899	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:18:19.723	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:18:39.857	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:18:40.013	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:18:50.236	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:19:19.975	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:19:20.277	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:19:21.145	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:19:51.545	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:19:51.755	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:19:52.277	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:20:25.260	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:20:25.445	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:20:26.292	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:20:49.027	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:20:49.464	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:20:51.652	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:21:23.728	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:21:24.026	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:21:24.535	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:21:52.401	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:21:52.607	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:21:53.102	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:22:20.120	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:22:20.242	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:22:20.849	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:22:52.361	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:22:52.525	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:22:53.136	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:23:22.206	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:23:22.564	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:23:23.278	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:23:51.106	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:23:51.303	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:23:51.817	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:24:23.527	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:24:23.701	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:24:24.206	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:24:51.202	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:24:51.517	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:24:52.335	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:25:21.523	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3830	Blocks start before blockchain offset: 0 3198000
+2025-02-17 11:25:21.677	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:3130	!m_blockchain.is_in_bounds(current_index). THROW EXCEPTION: error::out_of_hashchain_bounds_error
+2025-02-17 11:25:22.283	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4061	(m_blockchain.size() == stop_height || (m_blockchain.size() == 1 && stop_height == 0) ? false : true). THROW EXCEPTION: error::wallet_internal_error
+2025-02-17 11:25:22.839	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4700	Stopped wallet RPC server
+2025-02-17 11:25:22.839	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4703	Saving wallet...
+2025-02-17 11:25:23.070	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4705	Successfully saved
+2025-02-17 17:22:24.791	  0x7ff85acc5b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-02-17 17:22:24.792	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-02-17 17:22:24.792	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-02-17 17:22:24.792	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-02-17 17:22:24.792	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-02-17 17:22:24.792	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Forking to background...
+2025-02-17 17:22:24.801	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-02-17 17:22:27.336	  0x7ff85acc5b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-02-17 17:22:27.804	  0x7ff85acc5b00	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-02-17 17:22:27.805	  0x7ff85acc5b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4666	Initial refresh failed: no connection to daemon
+2025-02-17 17:22:27.806	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-02-17 17:22:27.806	  0x7ff85acc5b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18082
+2025-02-17 17:22:30.436	  0x7ff85acc5b00	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1274	Error starting server: Failed to bind IPv4 (set to required)
+2025-02-17 17:22:30.436	  0x7ff85acc5b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4686	Failed to initialize wallet RPC server
+2025-02-17 17:24:33.420	  0x7ff85acc5b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-02-17 17:24:33.420	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-02-17 17:24:33.420	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-02-17 17:24:33.420	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-02-17 17:24:33.420	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-02-17 17:24:33.420	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Forking to background...
+2025-02-17 17:24:33.424	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-02-17 17:24:36.370	  0x7ff85acc5b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-02-17 17:24:36.580	  0x7ff85acc5b00	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-02-17 17:24:36.580	  0x7ff85acc5b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4666	Initial refresh failed: no connection to daemon
+2025-02-17 17:24:36.580	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-02-17 17:24:36.580	  0x7ff85acc5b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18082
+2025-02-17 17:24:38.089	  0x7ff85acc5b00	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1274	Error starting server: Failed to bind IPv4 (set to required)
+2025-02-17 17:24:38.089	  0x7ff85acc5b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4686	Failed to initialize wallet RPC server
+2025-02-17 17:27:36.670	  0x7ff85acc5b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-02-17 17:27:36.671	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-02-17 17:27:36.671	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-02-17 17:27:36.671	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-02-17 17:27:36.671	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-02-17 17:27:36.671	  0x7ff85acc5b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Forking to background...
+2025-02-17 17:27:36.676	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-02-17 17:27:38.632	  0x7ff85acc5b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-02-17 17:27:38.859	  0x7ff85acc5b00	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-02-17 17:27:38.860	  0x7ff85acc5b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4666	Initial refresh failed: no connection to daemon
+2025-02-17 17:27:38.860	  0x7ff85acc5b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-02-17 17:27:38.860	  0x7ff85acc5b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18082
+2025-02-17 17:27:40.017	  0x7ff85acc5b00	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1274	Error starting server: Failed to bind IPv4 (set to required)
+2025-02-17 17:27:40.017	  0x7ff85acc5b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4686	Failed to initialize wallet RPC server
+2025-03-06 09:37:30.483	  0x7ff850963b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-06 09:37:30.484	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-06 09:37:30.484	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-06 09:37:30.484	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-06 09:37:30.484	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-03-06 09:37:30.486	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-06 09:37:34.944	  0x7ff850963b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-03-06 09:37:35.282	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-03-06 09:37:35.283	  0x7ff850963b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
+2025-03-06 09:37:36.139	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-06 14:48:39.259	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-06 14:48:39.261	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-06 14:48:39.262	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-06 14:48:39.262	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-06 14:48:39.264	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4149	pull_blocks failed, try_count=3
+2025-03-06 14:48:39.264	[RPC0]	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:159	Exception at while refreshing, what=no connection to daemon
+2025-03-06 14:48:50.885	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4700	Stopped wallet RPC server
+2025-03-06 14:48:50.885	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4703	Saving wallet...
+2025-03-06 14:48:50.955	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4705	Successfully saved
+2025-03-06 14:48:54.504	  0x7ff850963b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-06 14:48:54.504	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-06 14:48:54.504	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-06 14:48:54.504	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-06 14:48:54.504	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-03-06 14:48:54.506	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-06 14:48:58.990	  0x7ff850963b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-03-06 14:48:59.328	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-03-06 14:48:59.328	  0x7ff850963b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
+2025-03-06 14:48:59.947	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-06 15:25:34.786	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4700	Stopped wallet RPC server
+2025-03-06 15:25:34.787	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4703	Saving wallet...
+2025-03-06 15:25:34.852	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4705	Successfully saved
+2025-03-06 15:25:37.220	  0x7ff850963b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-06 15:25:37.220	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-06 15:25:37.220	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-06 15:25:37.220	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-06 15:25:37.220	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-03-06 15:25:37.223	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-06 15:25:39.552	  0x7ff850963b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-03-06 15:25:39.940	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-03-06 15:25:39.940	  0x7ff850963b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
+2025-03-06 15:25:40.350	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
