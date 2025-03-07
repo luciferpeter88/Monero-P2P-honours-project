@@ -1,4 +1,5 @@
 import "../style/style.css";
+import React from "react";
 import UserDetails from "../components/UserDetails";
 import Card from "../components/Card";
 import Account from "../components/Accounts";
@@ -107,14 +108,40 @@ export async function loader({ request }) {
 }
 
 export async function action({ request }) {
+  const formData = await request.formData();
+  const formType = formData.get("formType");
   const session = await getSession(request.headers.get("Cookie"));
   const userIdD = session.get("user_id");
+  console.log("Action form type:", formType);
   if (!userIdD) {
     return redirect("/");
   }
-  console.log("Creating account for user:", userIdD);
-  const monero = new Monero(userIdD);
-  await monero.createAccount("Pizza Fund");
+  if (formType === "editMoneroLabel") {
+    const accountID = formData.get("editaccount");
+    const editMoneroAccountName = formData.get("newAccountName");
+
+    try {
+      // Update the MoneroAccount table
+      await prisma.moneroAccount.update({
+        where: { id: Number(accountID) },
+        data: {
+          accountLabel: editMoneroAccountName,
+        },
+      });
+
+      return {
+        monero: "Account name was updated",
+      };
+    } catch (error) {
+      console.error("Error updating Monero account:", error);
+      return { error: "Failed to update account" }, { status: 500 };
+    }
+  } else if (formType === "createMoneroAccount") {
+    console.log("test");
+  }
+  // console.log("Creating account for user:", userIdD);
+  // const monero = new Monero(userIdD);
+  // await monero.createAccount("Pizza Fund");
   return {
     monero: "Account created",
   };
@@ -123,6 +150,8 @@ export async function action({ request }) {
 export default function Index() {
   // get the data from the backend when the page is loaded
   const data = useLoaderData();
+  const [usedaccount, setUsedAccount] = React.useState(0);
+  const [newName, setNewName] = React.useState({ id: "", newName: "" });
 
   return (
     <div className="mt-5 ml-5">
@@ -137,7 +166,7 @@ export default function Index() {
           <UserDetails firstText="Accounts" lastText={data.accounts.length} />
           <UserDetails
             firstText="Current Account"
-            lastText={data.accounts[0].accountName}
+            lastText={data.accounts[usedaccount].accountName}
           />
           <Link to="/dashboard/market" className="ml-auto mt-auto">
             <Button className="bg-secondary ml-auto">Trade</Button>
@@ -146,9 +175,19 @@ export default function Index() {
       </div>
       <div className="flex mt-5 gap-5">
         <div className=" w-max p-5 rounded-lg flex flex-col bg-third">
-          <Card />
+          <Card
+            name={data.name}
+            usedAccount={data.accounts[usedaccount].accountName}
+            lockedBalance={data.accounts[usedaccount].balance}
+            unlockedBalance={data.accounts[usedaccount].unlockedBalance}
+          />
           <div className="mt-5 flex">
             <Form method="post">
+              <input
+                type="hidden"
+                name="formType"
+                value="createMoneroAccount"
+              />
               <Button className="bg-secondary ml-auto" type="submit">
                 Create Account
               </Button>
@@ -158,15 +197,27 @@ export default function Index() {
         <div className="w-full bg-third p-5 rounded-lg">
           <h2 className="text-lg font-semibold">Accounts</h2>
           <div className="mt-5 flex flex-col">
-            {data.accounts.map((account) => (
+            {/* <Form method="post" id="editForm">
+              <input type="hidden" name="formType" value="editMoneroLabel" />
+              <input type="hidden" name="accountId" value={newName.id} />
+              <input type="hidden" name="accountNewName" value="test" /> */}
+
+            {data.accounts.map((account, index) => (
               <Account
+                index={index}
+                data={data.accounts}
+                account={usedaccount}
+                setAccount={setUsedAccount}
                 key={account.id}
                 id={account.id}
                 AccountType={account.accountName}
                 accountAddress={account.accountAddress}
                 balance={account.balance}
+                newName={newName}
+                setNewName={setNewName}
               />
             ))}
+            {/* </Form> */}
           </div>
         </div>
       </div>

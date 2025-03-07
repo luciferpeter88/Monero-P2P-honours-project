@@ -1,5 +1,10 @@
 import card from "./picture/card.svg";
-export default function Card() {
+export default function Card({
+  name,
+  usedAccount,
+  lockedBalance,
+  unlockedBalance,
+}) {
   return (
     <div className="card" style={{ backgroundImage: `url(${card})` }}>
       <div className="visa_logo">
@@ -14,11 +19,14 @@ export default function Card() {
           alt=""
         />
         <p>Your Balance</p>
-        <h2 className="absolute">9.377160181</h2>
+        <h2 className="absolute">
+          Locked {lockedBalance}{" "}
+          <span className="ml-36">Unlocked {unlockedBalance}</span>
+        </h2>
       </div>
       <div className="visa_crinfo">
-        <p>Primary</p>
-        <p>Peter Kaszap-Nagy</p>
+        <p>{usedAccount}</p>
+        <p>{name}</p>
       </div>
     </div>
   );
