@@ -21,63 +21,47 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../../src/components/components/ui/select";
-const desktopData = [
-  { month: "january", desktop: 186, fill: "var(--color-january)" },
-  { month: "february", desktop: 305, fill: "var(--color-february)" },
-  { month: "march", desktop: 237, fill: "var(--color-march)" },
-  // { month: "april", desktop: 173, fill: "var(--color-april)" },
-  // { month: "may", desktop: 209, fill: "var(--color-may)" },
-];
 
-const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  desktop: {
-    label: "Desktop",
-  },
-  mobile: {
-    label: "Mobile",
-  },
-  january: {
-    label: "Primary",
-    color: "hsl(var(--chart-1))",
-  },
-  february: {
-    label: "Buisness",
-    color: "hsl(var(--chart-2))",
-  },
-  march: {
-    label: "Hidden Services",
-    color: "hsl(var(--chart-3))",
-  },
-  // april: {
-  //   label: "April",
-  //   color: "hsl(var(--chart-4))",
-  // },
-  // may: {
-  //   label: "May",
-  //   color: "hsl(var(--chart-5))",
-  // },
-};
+export default function Component({ data }) {
+  // Create chartData with a minimum value for zero balances
+  const chartData = data.map((item, index) => {
+    return {
+      id: item.id,
+      desktop: item.balance === 0 ? 0.0001 : item.balance,
+      fill: `hsl(var(--chart-${index + 1}))`,
+    };
+  });
 
-export default function Component() {
+  // Create a config for chart styling
+  const configChart = data.reduce((acc, item, index) => {
+    acc[item.id] = {
+      label: item.accountName,
+      color: `hsl(var(--chart-${index + 1}))`,
+    };
+    return acc;
+  }, {});
+
+  // Calculate the total balance from the raw data.
+  const totalAssets = data.reduce((acc, item) => acc + item.balance, 0);
+
   const id = "pie-interactive";
-  const [activeMonth, setActiveMonth] = React.useState(desktopData[0].month);
+  const [activeMonth, setActiveMonth] = React.useState(chartData[0].id);
 
   const activeIndex = React.useMemo(
-    () => desktopData.findIndex((item) => item.month === activeMonth),
+    () => chartData.findIndex((item) => item.id === activeMonth),
     [activeMonth]
   );
-  const months = React.useMemo(() => desktopData.map((item) => item.month), []);
+  const accounts = React.useMemo(() => chartData.map((item) => item.id), []);
 
   return (
     <Card data-chart={id} className="flex flex-col p-5 pt-8 bg-transparent">
-      <ChartStyle id={id} config={chartConfig} />
+      <ChartStyle id={id} config={configChart} />
       <CardHeader className="flex-row items-start space-y-0 pb-0">
         <div className="grid gap-1">
           <CardTitle className="text-white">Assets Overview</CardTitle>
-          <CardDescription className="mt-3">Total 9.3777 XMR</CardDescription>
+          <CardDescription className="mt-3">
+            Total {totalAssets.toLocaleString()} XMR
+          </CardDescription>
         </div>
         <Select value={activeMonth} onValueChange={setActiveMonth}>
           <SelectTrigger
@@ -87,13 +71,11 @@ export default function Component() {
             <SelectValue placeholder="Select month" />
           </SelectTrigger>
           <SelectContent align="end" className="rounded-xl">
-            {months.map((key) => {
-              const config = chartConfig[key];
-
+            {accounts.map((key) => {
+              const config = configChart[key];
               if (!config) {
                 return null;
               }
-
               return (
                 <SelectItem
                   key={key}
@@ -118,7 +100,7 @@ export default function Component() {
       <CardContent className="flex flex-1 justify-center pb-0">
         <ChartContainer
           id={id}
-          config={chartConfig}
+          config={configChart}
           className="mx-auto aspect-square w-full max-w-[300px]"
         >
           <PieChart>
@@ -127,9 +109,9 @@ export default function Component() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Pie
-              data={desktopData}
+              data={chartData}
               dataKey="desktop"
-              nameKey="month"
+              nameKey="id"
               innerRadius={60}
               strokeWidth={5}
               activeIndex={activeIndex}
@@ -159,7 +141,7 @@ export default function Component() {
                           y={viewBox.cy}
                           className=" fill-white text-3xl font-bold "
                         >
-                          {desktopData[activeIndex].desktop.toLocaleString()}
+                          {totalAssets.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}

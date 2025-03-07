@@ -23,34 +23,35 @@ export async function loader({ request }) {
   }
   const user = await prisma.user.findUnique({
     where: { id: userIdD },
+    include: { moneroAccounts: true },
   });
-  // const currentPrice = await getCurrentMoneroPrice();
+  // get the historical price of Monero using the CoinGecko API with custom caching
   const historicalPrice = await getHistoricalMoneroPriceWithCache();
+  // initialize Monero class with the user id to determine the user's account
+  const monero = new Monero(userIdD);
+  // get the account details for each account
+  // I use Promise.all to run the async function for each account in parallel
+  const accounts = await Promise.all(
+    user.moneroAccounts.map(async (user) => {
+      // get the balance for each account
+      const balance = await monero.getBalance(user.accountIndex);
+      // return the account details
+      return {
+        id: user.id,
+        accountName: user.accountLabel,
+        accountAddress: user.accountAddress,
+        balance: balance.balance,
+        unlockedBalance: balance.unlocked_balance,
+      };
+    })
+  );
+  // return the user data and the account data
   return {
     email: user.email,
     name: user.firstName + " " + user.lastName,
     phone: user.phone,
 
-    accounts: [
-      {
-        id: 1,
-        accountName: "Primary",
-        accountAddress: "86vWpt....jjnj40",
-        balance: 9.377160181,
-      },
-      {
-        id: 2,
-        accountName: "Business",
-        accountAddress: "2323ut....jjnj40",
-        balance: 2.377160181,
-      },
-      {
-        id: 3,
-        accountName: "Hidden Services",
-        accountAddress: "86876....xjnj40",
-        balance: 7.377160181,
-      },
-    ], // will be fetched from MoneroAccount table
+    accounts: accounts,
     market: [
       {
         userId: 1,
@@ -113,7 +114,7 @@ export async function action({ request }) {
   }
   console.log("Creating account for user:", userIdD);
   const monero = new Monero(userIdD);
-  await monero.createAccount("Primary");
+  await monero.createAccount("Pizza Fund");
   return {
     monero: "Account created",
   };
@@ -174,7 +175,7 @@ export default function Index() {
           <Chart chartData={data.moneroApiChart} />
         </div>
         <div className="w-[35%] bg-third rounded-lg">
-          <Chart2 />
+          <Chart2 data={data.accounts} />
         </div>
       </div>
       <div className="bg-third p-5 rounded-lg mt-5 flex flex-col">

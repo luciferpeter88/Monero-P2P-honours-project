@@ -1,12 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-// npx prisma migrate dev --name name_of_migration
-
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -17,61 +8,44 @@ datasource db {
 }
 
 model User {
-  id             Int      @id @default(autoincrement()) @map("user_id")
-  firstName      String   @map("first_name")
-  lastName       String   @map("last_name")
-  username       String   @unique
-  email          String   @unique
-  passwordHash   String   @map("password_hash")
-  emailVerified  Boolean  @default(false) @map("email_verified")
-  otpSecret      String?  @map("otp_secret")
-  phone          String?  @unique
-  accountStatus  AccountStatus @default(active) @map("account_status")
-  createdAt      DateTime @default(now()) @map("created_at")
-  updatedAt      DateTime @updatedAt @map("updated_at")
-  moneroAccounts MoneroAccount[]
-
-  AddressBook AddressBook[]
-
-  FeedbackFromUser Feedback[] @relation("FeedbackFromUser")
-
-  FeedbackToUser Feedback[] @relation("FeedbackToUser")
-
-  MessageSende Message[] @relation("MessageSender")
-
-  MessageRecipient Message[] @relation("MessageRecipient")
-
-  SupportTicketAssignee SupportTicket[] @relation("TicketAssignee")
-
-  SupportTicketSubmitter SupportTicket[] @relation("TicketSubmitter")
-
-  UserAuthorizedIp UserAuthorizedIp[]
-
-  UserDevice UserDevice[]
-
-  UserNotification UserNotification[]
-
-  UserSecurity UserSecurity[]
-
-  UserSetting UserSetting[]
+  id                     Int                @id @default(autoincrement()) @map("user_id")
+  firstName              String             @map("first_name")
+  lastName               String             @map("last_name")
+  username               String             @unique
+  email                  String             @unique
+  passwordHash           String             @map("password_hash")
+  accountStatus          AccountStatus      @default(active) @map("account_status")
+  createdAt              DateTime           @default(now()) @map("created_at")
+  updatedAt              DateTime           @updatedAt @map("updated_at")
+  emailVerified          Boolean            @default(false) @map("email_verified")
+  otpSecret              String?            @map("otp_secret")
+  phone                  String?            @unique
+  AddressBook            AddressBook[]
+  FeedbackFromUser       Feedback[]         @relation("FeedbackFromUser")
+  FeedbackToUser         Feedback[]         @relation("FeedbackToUser")
+  MessageRecipient       Message[]          @relation("MessageRecipient")
+  MessageSende           Message[]          @relation("MessageSender")
+  moneroAccounts         MoneroAccount[]
+  SupportTicketAssignee  SupportTicket[]    @relation("TicketAssignee")
+  SupportTicketSubmitter SupportTicket[]    @relation("TicketSubmitter")
+  UserAuthorizedIp       UserAuthorizedIp[]
+  UserDevice             UserDevice[]
+  UserNotification       UserNotification?
+  UserSecurity           UserSecurity?
+  UserSetting            UserSetting?
 }
-
-enum AccountStatus {
-  active
-  frozen
-  closed
-}
-
 
 model AddressBook {
   id                   Int      @id @default(autoincrement()) @map("addressbook_id")
-  userId               Int      @map("user_id")  // Owner of this address book entry
-  contactUserId        Int?     @map("contact_user_id")  // Optional: if the contact is a registered user
+  userId               Int      @map("user_id")
+  contactUserId        Int?     @map("contact_user_id")
   contactMoneroAddress String   @map("contact_monero_address")
   contactNickname      String?  @map("contact_nickname")
   createdAt            DateTime @default(now()) @map("created_at")
   updatedAt            DateTime @updatedAt @map("updated_at")
-  owner                User     @relation(fields: [userId], references: [id])  // The owner of the address book entry
+  owner                User     @relation(fields: [userId], references: [id])
+
+  @@index([userId], map: "AddressBook_user_id_fkey")
 }
 
 model Feedback {
@@ -81,9 +55,13 @@ model Feedback {
   rating     Int
   comment    String?
   createdAt  DateTime @default(now()) @map("created_at")
-  fromUser   User     @relation("FeedbackFromUser", fields: [fromUserId], references: [id])  // Feedback giver
-  toUser     User     @relation("FeedbackToUser", fields: [toUserId], references: [id])      // Feedback receiver
+  fromUser   User     @relation("FeedbackFromUser", fields: [fromUserId], references: [id])
+  toUser     User     @relation("FeedbackToUser", fields: [toUserId], references: [id])
+
+  @@index([fromUserId], map: "Feedback_from_user_id_fkey")
+  @@index([toUserId], map: "Feedback_to_user_id_fkey")
 }
+
 model Message {
   id          Int      @id @default(autoincrement()) @map("message_id")
   senderId    Int      @map("sender_id")
@@ -93,48 +71,157 @@ model Message {
   isRead      Boolean  @default(false) @map("is_read")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
-  sender      User     @relation("MessageSender", fields: [senderId], references: [id])       // The user who sent the message
-  recipient   User     @relation("MessageRecipient", fields: [recipientId], references: [id]) // The user who received the message
+  recipient   User     @relation("MessageRecipient", fields: [recipientId], references: [id])
+  sender      User     @relation("MessageSender", fields: [senderId], references: [id])
+
+  @@index([recipientId], map: "Message_recipient_id_fkey")
+  @@index([senderId], map: "Message_sender_id_fkey")
 }
 
 model MoneroAccount {
-  id           Int      @id @default(autoincrement()) @map("account_id")
-  userId       Int      @map("user_table_id")
-  accountIndex Int      @map("account_index")
-  accountAddress String  @map("account_address")
-  accountLabel String   @map("account_label")
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
-  user         User     @relation(fields: [userId], references: [id])
-  subaddresses Subaddress[] 
+  id              Int           @id @default(autoincrement()) @map("account_id")
+  userId          Int           @map("user_table_id")
+  accountLabel    String        @map("account_label")
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  accountAddress  String        @map("account_address")
+  accountIndex    Int           @map("account_index")
+  user            User          @relation(fields: [userId], references: [id])
+  subaddresses    Subaddress[]
+  Transaction     Transaction[]
+
+  @@index([userId], map: "Monero_Account_user_table_id_fkey")
   @@map("Monero_Account")
-  Transaction Transaction[]
 }
 
 model Subaddress {
-  id        Int           @id @default(autoincrement()) @map("subaddress_id")
-  accountId Int           @map("account_id")
-  address   String
-  label     String?
-  createdAt DateTime      @default(now()) @map("created_at")
-  account   MoneroAccount @relation(fields: [accountId], references: [id])  
-
+  id          Int           @id @default(autoincrement()) @map("subaddress_id")
+  accountId   Int           @map("account_id")
+  address     String
+  label       String?
+  createdAt   DateTime      @default(now()) @map("created_at")
+  account     MoneroAccount @relation(fields: [accountId], references: [id])
   Transaction Transaction[]
+
+  @@index([accountId], map: "Subaddress_account_id_fkey")
 }
+
 model SupportTicket {
-  id          Int          @id @default(autoincrement()) @map("ticket_id")
-  userId      Int          @map("user_id")
+  id          Int            @id @default(autoincrement()) @map("ticket_id")
+  userId      Int            @map("user_id")
   subject     String
   description String
-  status      TicketStatus @default(open)
+  status      TicketStatus   @default(open)
   priority    TicketPriority @default(medium)
-  assignedTo  Int?         @map("assigned_to")
-  createdAt   DateTime     @default(now()) @map("created_at")
-  updatedAt   DateTime     @updatedAt @map("updated_at")
-  user        User          @relation("TicketSubmitter", fields: [userId], references: [id])      // The user who submitted the ticket
-  assigned    User?         @relation("TicketAssignee", fields: [assignedTo], references: [id])  // Optional: Support staff assigned to the ticket
+  assignedTo  Int?           @map("assigned_to")
+  createdAt   DateTime       @default(now()) @map("created_at")
+  updatedAt   DateTime       @updatedAt @map("updated_at")
+  assigned    User?          @relation("TicketAssignee", fields: [assignedTo], references: [id])
+  user        User           @relation("TicketSubmitter", fields: [userId], references: [id])
 
+  @@index([assignedTo], map: "Support_Tickets_assigned_to_fkey")
+  @@index([userId], map: "Support_Tickets_user_id_fkey")
   @@map("Support_Tickets")
+}
+
+model Transaction {
+  id              Int               @id @default(autoincrement()) @map("transaction_id")
+  transactionType TransactionType   @map("transaction_type")
+  accountId       Int?              @map("account_id")
+  subaddressId    Int?              @map("subaddress_id")
+  amount          Decimal           @db.Decimal(20, 8)
+  transactionHash String?           @map("transaction_hash")
+  status          TransactionStatus @default(pending)
+  timestamp       DateTime          @default(now()) @map("timestamp")
+  account         MoneroAccount?    @relation(fields: [accountId], references: [id])
+  subaddress      Subaddress?       @relation(fields: [subaddressId], references: [id])
+
+  @@index([accountId], map: "Transaction_account_id_fkey")
+  @@index([subaddressId], map: "Transaction_subaddress_id_fkey")
+}
+
+model UserAuthorizedIp {
+  id        Int      @id @default(autoincrement()) @map("ip_id")
+  userId    Int      @map("user_id")
+  ipAddress String   @map("ip_address")
+  isTrusted Boolean  @default(false) @map("is_trusted")
+  createdAt DateTime @default(now()) @map("created_at")
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId], map: "User_Authorized_IPs_user_id_fkey")
+  @@map("User_Authorized_IPs")
+}
+
+model UserDevice {
+  id         Int      @id @default(autoincrement()) @map("device_id")
+  userId     Int      @map("user_id")
+  deviceName String?  @map("device_name")
+  deviceInfo String?  @map("device_info")
+  ipAddress  String?  @map("ip_address")
+  isTrusted  Boolean  @default(false) @map("is_trusted")
+  lastActive DateTime @default(now()) @map("last_active")
+  createdAt  DateTime @default(now()) @map("created_at")
+  user       User     @relation(fields: [userId], references: [id])
+
+  @@index([userId], map: "User_Devices_user_id_fkey")
+  @@map("User_Devices")
+}
+
+model UserNotification {
+  userId                 Int      @id @map("user_id")
+  notifyNewMessage       Boolean  @default(true) @map("notify_new_message")
+  notifyFeedbackReceived Boolean  @default(true) @map("notify_feedback_received")
+  notifySystemAlerts     Boolean  @default(true) @map("notify_system_alerts")
+  notifySecurityAlerts   Boolean  @default(true) @map("notify_security_alerts")
+  notifyEmail            Boolean  @default(true) @map("notify_email")
+  notifyPush             Boolean  @default(true) @map("notify_push")
+  notifySms              Boolean  @default(false) @map("notify_sms")
+  updatedAt              DateTime @updatedAt @map("updated_at")
+  user                   User     @relation(fields: [userId], references: [id])
+
+  @@map("User_Notifications")
+}
+
+model UserSecurity {
+  userId            Int      @id @map("user_id")
+  passkeyEnabled    Boolean  @default(false) @map("passkey_enabled")
+  phoneAuthEnabled  Boolean  @default(false) @map("phone_auth_enabled")
+  smsAuthEnabled    Boolean  @default(false) @map("sms_auth_enabled")
+  antiPhishingCode  String?  @map("anti_phishing_code")
+  googleAuthEnabled Boolean  @default(false) @map("google_auth_enabled")
+  mobileAuthEnabled Boolean  @default(false) @map("mobile_auth_enabled")
+  emailAuthEnabled  Boolean  @default(false) @map("email_auth_enabled")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+  user              User     @relation(fields: [userId], references: [id])
+
+  @@map("User_Security")
+}
+
+model UserSetting {
+  userId            Int      @id @map("user_id")
+  nickname          String?
+  profilePicture    String?  @map("profile_picture")
+  fontSize          String?  @map("font_size")
+  lineHeight        String?  @map("line_height")
+  letterSpacing     String?  @map("letter_spacing")
+  primaryColor      String?  @map("primary_color")
+  secondaryColor    String?  @map("secondary_color")
+  tertiaryColor     String?  @map("tertiary_color")
+  fourthColor       String?  @map("fourth_color")
+  fifthColor        String?  @map("fifth_color")
+  gridGap           String?  @map("grid_gap")
+  theme             Theme    @default(light)
+  customThemeConfig Json?    @map("custom_theme_config")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+  user              User     @relation(fields: [userId], references: [id])
+
+  @@map("User_Settings")
+}
+
+enum AccountStatus {
+  active
+  frozen
+  closed
 }
 
 enum TicketStatus {
@@ -149,19 +236,6 @@ enum TicketPriority {
   medium
   high
 }
-model Transaction {
-  id               Int             @id @default(autoincrement()) @map("transaction_id")
-  transactionType  TransactionType @map("transaction_type")
-  accountId        Int?            @map("account_id")  // Nullable: Used for 'sent' transactions
-  subaddressId     Int?            @map("subaddress_id")  // Nullable: Used for 'received' transactions
-  amount           Decimal         @db.Decimal(20, 8)
-  transactionHash  String?         @map("transaction_hash")
-  status           TransactionStatus @default(pending)
-  timestamp        DateTime        @default(now()) @map("timestamp")
-  account          MoneroAccount?  @relation(fields: [accountId], references: [id])
-  subaddress       Subaddress?     @relation(fields: [subaddressId], references: [id])
-
-}
 
 enum TransactionType {
   sent
@@ -171,73 +245,6 @@ enum TransactionType {
 enum TransactionStatus {
   pending
   confirmed
-}
-
-model UserAuthorizedIp {
-  id        Int      @id @default(autoincrement()) @map("ip_id")
-  userId    Int      @map("user_id")
-  ipAddress String   @map("ip_address")
-  isTrusted Boolean  @default(false) @map("is_trusted")
-  createdAt DateTime @default(now()) @map("created_at")
-  user User @relation(fields: [userId], references: [id])
-  @@map("User_Authorized_IPs")
-}
-model UserDevice {
-  id          Int      @id @default(autoincrement()) @map("device_id")
-  userId      Int      @map("user_id")
-  deviceName  String?  @map("device_name")
-  deviceInfo  String?  @map("device_info")
-  ipAddress   String?  @map("ip_address")
-  isTrusted   Boolean  @default(false) @map("is_trusted")
-  lastActive  DateTime @default(now()) @map("last_active")
-  createdAt   DateTime @default(now()) @map("created_at")
-  user        User     @relation(fields: [userId], references: [id])
-  @@map("User_Devices")
-}
-model UserNotification {
-  userId                 Int      @id @map("user_id")  
-  notifyNewMessage       Boolean  @default(true)  @map("notify_new_message")
-  notifyFeedbackReceived Boolean  @default(true)  @map("notify_feedback_received")
-  notifySystemAlerts     Boolean  @default(true)  @map("notify_system_alerts")
-  notifySecurityAlerts   Boolean  @default(true)  @map("notify_security_alerts")
-  notifyEmail            Boolean  @default(true)  @map("notify_email")
-  notifyPush             Boolean  @default(true)  @map("notify_push")
-  notifySms              Boolean  @default(false) @map("notify_sms")
-  updatedAt              DateTime @updatedAt      @map("updated_at")
-  user                   User     @relation(fields: [userId], references: [id])
-  @@map("User_Notifications")
-}
-model UserSecurity {
-  userId            Int      @id @map("user_id") 
-  passkeyEnabled    Boolean  @default(false) @map("passkey_enabled")
-  phoneAuthEnabled  Boolean  @default(false) @map("phone_auth_enabled")
-  smsAuthEnabled    Boolean  @default(false) @map("sms_auth_enabled")
-  antiPhishingCode  String?  @map("anti_phishing_code")
-  googleAuthEnabled Boolean  @default(false) @map("google_auth_enabled")
-  mobileAuthEnabled Boolean  @default(false) @map("mobile_auth_enabled")
-  emailAuthEnabled  Boolean  @default(false) @map("email_auth_enabled")
-  updatedAt         DateTime @updatedAt @map("updated_at")
-  user              User     @relation(fields: [userId], references: [id])
-  @@map("User_Security")
-}
-model UserSetting {
-  userId             Int      @id @map("user_id")  
-  nickname           String?
-  profilePicture     String?  @map("profile_picture")
-  fontSize           String?  @map("font_size")
-  lineHeight         String?  @map("line_height")
-  letterSpacing      String?  @map("letter_spacing")
-  primaryColor       String?  @map("primary_color")
-  secondaryColor     String?  @map("secondary_color")
-  tertiaryColor      String?  @map("tertiary_color")
-  fourthColor        String?  @map("fourth_color")
-  fifthColor         String?  @map("fifth_color")
-  gridGap            String?  @map("grid_gap")
-  theme              Theme    @default(light)
-  customThemeConfig  Json?    @map("custom_theme_config")
-  updatedAt          DateTime @updatedAt @map("updated_at")
-  user               User     @relation(fields: [userId], references: [id])
-  @@map("User_Settings")
 }
 
 enum Theme {
