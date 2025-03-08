@@ -2,6 +2,7 @@ import { FaRegCopy } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import { useState, useEffect } from "react";
 import { Form } from "@remix-run/react";
+import Modal from "../components/Modal";
 
 export default function Accounts({
   AccountType,
@@ -62,48 +63,30 @@ export default function Accounts({
       {copied ? "Copied!" : <FaRegCopy onClick={copyToClipboard} />}
 
       {openModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-third p-6 rounded-lg w-full max-w-md">
-            <Form id="editForm" method="post">
-              <div className="mb-4">
-                <h2 className="text-xl font-bold">Editing</h2>
-                <p className="text-gray-500">Account Name</p>
-              </div>
-              <input
-                type="text"
-                name="editMoneroName"
-                value={newName.newName}
-                onChange={handleInputChange}
-                placeholder="Enter new account name"
-                className="w-full p-2 border border-gray-300 rounded bg-transparent mb-4"
-                required
-              />
-              <input type="hidden" name="formType" value="editMoneroLabel" />
-              <input type="hidden" name="editaccount" value={newName.id} />
-              <input
-                type="hidden"
-                name="newAccountName"
-                value={newName.newName}
-              />
-              <div className="flex justify-end gap-2">
-                <button
-                  type="button"
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                  onClick={() => setOpenModal(false)}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="bg-secondary text-white px-4 py-2 rounded"
-                  form="editForm"
-                >
-                  Save
-                </button>
-              </div>
-            </Form>
-          </div>
-        </div>
+        <Form id="editForm" method="post">
+          <Modal
+            title="Editing"
+            isOpen={openModal}
+            onClose={() => setOpenModal(false)}
+          >
+            <input
+              type="text"
+              name="editMoneroName"
+              value={newName.newName}
+              onChange={handleInputChange}
+              placeholder="Enter new account name"
+              className="w-full p-2 border border-gray-300 rounded bg-transparent mb-4"
+              required
+            />
+            <input type="hidden" name="formType" value="editMoneroLabel" />
+            <input type="hidden" name="editaccount" value={newName.id} />
+            <input
+              type="hidden"
+              name="newAccountName"
+              value={newName.newName}
+            />
+          </Modal>
+        </Form>
       )}
     </div>
   );

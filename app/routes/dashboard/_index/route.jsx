@@ -12,9 +12,10 @@ import { getSession } from "../../../utils/session.server";
 import { redirect } from "@remix-run/node";
 import { Form, Link } from "@remix-run/react";
 import prisma from "../../../../prisma/prisma";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useActionData } from "@remix-run/react";
 import { getHistoricalMoneroPriceWithCache } from "../../../utils/moneroPrice";
 import Monero from "../../../utils/Monero.server";
+import Modal from "../components/Modal";
 // read the data from the backend when the page is loaded and pass it to the component
 export async function loader({ request }) {
   const session = await getSession(request.headers.get("Cookie"));
@@ -112,7 +113,6 @@ export async function action({ request }) {
   const formType = formData.get("formType");
   const session = await getSession(request.headers.get("Cookie"));
   const userIdD = session.get("user_id");
-  console.log("Action form type:", formType);
   if (!userIdD) {
     return redirect("/");
   }
@@ -137,20 +137,29 @@ export async function action({ request }) {
       return { error: "Failed to update account" }, { status: 500 };
     }
   } else if (formType === "createMoneroAccount") {
-    console.log("test");
+    const newAccountName = formData.get("newAccountName");
+    // const monero = new Monero(userIdD);
+    // await monero.createAccount("Pizza Fund");
+    console.log(newAccountName);
+    return {
+      monero: "Account created",
+    };
   }
   // console.log("Creating account for user:", userIdD);
   // const monero = new Monero(userIdD);
   // await monero.createAccount("Pizza Fund");
-  return {
-    monero: "Account created",
-  };
 }
 
 export default function Index() {
   // get the data from the backend when the page is loaded
   const data = useLoaderData();
   const [usedaccount, setUsedAccount] = React.useState(0);
+  const [openModal, setOpenModal] = React.useState(false);
+
+  const response = useActionData();
+  if (response?.monero) {
+    console.log(response.monero);
+  }
 
   return (
     <div className="mt-5 ml-5">
@@ -182,15 +191,32 @@ export default function Index() {
           />
           <div className="mt-5 flex">
             <Form method="post">
-              <input
-                type="hidden"
-                name="formType"
-                value="createMoneroAccount"
-              />
-              <Button className="bg-secondary ml-auto" type="submit">
-                Create Account
-              </Button>
+              <Modal
+                isOpen={openModal}
+                onClose={() => setOpenModal(false)}
+                title={"Creating"}
+                response={response?.monero}
+              >
+                <input
+                  type="text"
+                  name="newAccountName"
+                  placeholder="Enter Account Name"
+                  className="w-full p-2 border border-gray-300 rounded bg-transparent mb-4"
+                  required
+                />
+                <input
+                  type="hidden"
+                  name="formType"
+                  value="createMoneroAccount"
+                />
+              </Modal>
             </Form>
+            <Button
+              className="bg-secondary ml-auto"
+              onClick={() => setOpenModal(true)}
+            >
+              Create Account
+            </Button>
           </div>
         </div>
         <div className="w-full bg-third p-5 rounded-lg">
