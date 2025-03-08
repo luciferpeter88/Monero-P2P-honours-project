@@ -1,8 +1,8 @@
 import prisma from "../../prisma/prisma";
 
-export default async function countTrades(userIdD) {
+export default async function countTrades(userIdD, user = "all") {
   const usersWithTrades = await prisma.user.findMany({
-    where: { id: { not: userIdD } }, // Exclude current user
+    where: user === "all" ? { id: { not: userIdD } } : { id: userIdD },
     select: {
       id: true,
       username: true,

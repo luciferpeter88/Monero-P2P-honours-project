@@ -34,7 +34,7 @@ export async function loader({ request }) {
   // get all accounts of the user
   const accounts = await getAllAccounts(userIdD, user.moneroAccounts);
   // get the market data, like the number of trades, success rate
-  const trades = await tradeCounting(userIdD);
+  const trades = await tradeCounting(userIdD, "all");
 
   // return the user data and the account data
   return {
@@ -110,7 +110,7 @@ export default function Index() {
   const data = useLoaderData();
   const [usedaccount, setUsedAccount] = React.useState(0);
   const [openModal, setOpenModal] = React.useState(false);
-  console.log(data);
+  console.log(data.market);
   const response = useActionData();
 
   return (
@@ -203,9 +203,9 @@ export default function Index() {
           {data.market.map((market) => (
             <ProfileCard
               key={market.id}
-              id={market.id}
+              userID={market.id}
               name={market.username}
-              imageSrc={market.imageSrc}
+              imageSrc={market.imgsrc}
               successRate={market.successRate}
               totalTrades={market.totalTrades}
             />

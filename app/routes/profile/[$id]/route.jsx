@@ -1,13 +1,16 @@
-import { Form, json, useLoaderData } from "@remix-run/react";
+import { Form, useLoaderData } from "@remix-run/react";
 import {
   Card,
   CardContent,
 } from "../../../../src/components/components/ui/card";
 import { Button } from "../../../../src/components/components/ui/button";
-import { BadgeCheck, BarChart, Wallet } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 import { Textarea } from "../../../../src/components/components/ui/textarea";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
+import tradeCounting from "../../../utils/tradesCounting.server";
+import { getSession } from "../../../utils/session.server";
+import { redirect } from "@remix-run/node";
 
 const reviews = [
   {
@@ -16,34 +19,45 @@ const reviews = [
     content: "Great trader! Fast and reliable.",
     rating: 5,
   },
-  {
-    id: 2,
-    user: "Jane Smith",
-    content: "Smooth transaction, highly recommend.",
-    rating: 4,
-  },
-  {
-    id: 3,
-    user: "Mike Johnson",
-    content: "Good communication and fast payment.",
-    rating: 5,
-  },
-  {
-    id: 4,
-    user: "Emily Davis",
-    content: "Had a slight delay but overall a good experience.",
-    rating: 3,
-  },
-  {
-    id: 5,
-    user: "Chris Brown",
-    content: "Excellent service, will trade again.",
-    rating: 5,
-  },
+  // {
+  //   id: 2,
+  //   user: "Jane Smith",
+  //   content: "Smooth transaction, highly recommend.",
+  //   rating: 4,
+  // },
+  // {
+  //   id: 3,
+  //   user: "Mike Johnson",
+  //   content: "Good communication and fast payment.",
+  //   rating: 5,
+  // },
+  // {
+  //   id: 4,
+  //   user: "Emily Davis",
+  //   content: "Had a slight delay but overall a good experience.",
+  //   rating: 3,
+  // },
+  // {
+  //   id: 5,
+  //   user: "Chris Brown",
+  //   content: "Excellent service, will trade again.",
+  //   rating: 5,
+  // },
 ];
-export const loader = async () => {
-  //   const reviews = await fetchReviewsFromDB();
-  return json(reviews);
+export const loader = async ({ params, request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  if (!userIdD) {
+    return redirect("/");
+  }
+  const { id } = params;
+
+  const userStats = await tradeCounting(Number(id), "one");
+  console.log(userStats);
+  console.log(userIdD);
+  return {
+    userData: userStats[0],
+  };
 };
 
 // export const action = async ({ request }) => {
@@ -58,8 +72,8 @@ export const loader = async () => {
 // };
 
 export default function Index() {
-  const reviews = useLoaderData();
-
+  const data = useLoaderData();
+  console.log(data);
   return (
     <div className=" container mx-auto px-5">
       <Navbar />
@@ -67,28 +81,28 @@ export default function Index() {
         <div className="md:min-w-[350px] md:w-1/3 w-full">
           <div className="rounded-lg bg-third px-4 pt-8 pb-10 shadow-lg">
             <div className="relative mx-auto w-36 rounded-full">
-              <span className="absolute right-0 m-3 h-3 w-3 rounded-full bg-green-500 ring-2 ring-green-300 ring-offset-2"></span>
               <img
                 className="mx-auto h-auto w-full rounded-full"
-                src="https://randomuser.me/api/portraits/women/21.jpg"
+                src={data.userData.imgsrc}
                 alt="Profile"
               />
             </div>
             <h1 className="my-1 text-center text-xl font-bold leading-8 text-white">
-              Alice
+              {data.userData.username}
             </h1>
             <h3 className="text-semibold text-center leading-6 text-gray-400 flex items-center justify-center gap-2">
               <BadgeCheck className="text-green-400" size={18} /> Verified
               Monero Trader
             </h3>
             <p className="text-center text-sm leading-6 text-gray-300 mt-2">
-              98% Success Rate | 120 Total Trades
+              {data.userData.successRate}% Success Rate |{" "}
+              {data.userData.totalTrades} Total Trades
             </p>
             <ul className="mt-3 divide-y bg-primary rounded-lg py-2 px-3 text-gray-300 shadow-sm">
               <li className="flex items-center py-3 text-sm">
                 <span>Trade Limits</span>
                 <span className="ml-auto text-white">
-                  Min: <strong>1 XMR</strong> | Max: <strong>5 XMR</strong>
+                  <strong>5 XMR</strong>
                 </span>
               </li>
             </ul>

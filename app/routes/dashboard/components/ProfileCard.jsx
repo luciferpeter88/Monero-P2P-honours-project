@@ -5,7 +5,7 @@ export default function MoneroTraderProfile({
   imageSrc,
   successRate,
   totalTrades,
-  id,
+  userID,
 }) {
   return (
     <div className=" w-80 bg-primary dark:bg-gray-900 rounded-lg overflow-hidden shadow-md p-4 flex gap-x-3">
@@ -13,7 +13,7 @@ export default function MoneroTraderProfile({
       <div className="w-full flex flex-col items-center">
         <img
           className="h-24 w-24 mt-auto rounded-full border-4 border-white dark:border-gray-800"
-          src={imageSrc || "https://i.pravatar.cc/300"}
+          src={imageSrc}
           alt="User"
         />
         <div className="text-center mt-2 w-full">
@@ -41,7 +41,7 @@ export default function MoneroTraderProfile({
           <Button className="bg-secondary text-xs h-8 hover:bg-third">
             Message
           </Button>
-          <Link to={`/profile/${id}`}>
+          <Link to={`/profile/${userID}`}>
             <Button className="bg-third text-xs h-8 hover:bg-opacity-80">
               View Profile
             </Button>

@@ -6,7 +6,7 @@ export default function Navbar() {
   const isContact = pathname === "/contact" ? "bg-secondary" : "bg-primary";
   const isLogin = pathname === "/login" ? "bg-secondary" : "bg-primary";
   const isSignUp = pathname === "/registration" ? "bg-secondary" : "bg-primary";
-
+  const isProfile = pathname.includes("/profile/");
   return (
     <header className="bg-transparent py-4 h-20">
       <div className=" border-b-2 border-[#1d1e22] mx-auto flex items-center justify-between pb-3">
@@ -39,42 +39,51 @@ export default function Navbar() {
           </button>
         </div>
         {/* Desktop Navigation (Hidden on smaller screens) */}
-        <nav className="hidden md:block">
-          <ul className="flex space-x-5 z-50">
-            <li>
-              <Link
-                to="/"
-                className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isHome}`}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/contact"
-                className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isContact}`}
-              >
-                Contact
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/login"
-                className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isLogin}`}
-              >
-                Log In
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/registration"
-                className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isSignUp}`}
-              >
-                Sign Up
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        {isProfile ? (
+          <Link
+            to="/dashboard"
+            className={`bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300`}
+          >
+            Back to Dashboard
+          </Link>
+        ) : (
+          <nav className="hidden md:block">
+            <ul className="flex space-x-5 z-50">
+              <li>
+                <Link
+                  to="/"
+                  className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isHome}`}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isContact}`}
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/login"
+                  className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isLogin}`}
+                >
+                  Log In
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/registration"
+                  className={` hover:bg-secondary text-white px-4 py-2 rounded-md transition-colors duration-300 ${isSignUp}`}
+                >
+                  Sign Up
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        )}
       </div>
       {/* Mobile Menu (Hidden by default) */}
       <nav
