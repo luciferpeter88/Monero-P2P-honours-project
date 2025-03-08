@@ -151,7 +151,6 @@ export default function Index() {
   // get the data from the backend when the page is loaded
   const data = useLoaderData();
   const [usedaccount, setUsedAccount] = React.useState(0);
-  const [newName, setNewName] = React.useState({ id: "", newName: "" });
 
   return (
     <div className="mt-5 ml-5">
@@ -197,11 +196,6 @@ export default function Index() {
         <div className="w-full bg-third p-5 rounded-lg">
           <h2 className="text-lg font-semibold">Accounts</h2>
           <div className="mt-5 flex flex-col">
-            {/* <Form method="post" id="editForm">
-              <input type="hidden" name="formType" value="editMoneroLabel" />
-              <input type="hidden" name="accountId" value={newName.id} />
-              <input type="hidden" name="accountNewName" value="test" /> */}
-
             {data.accounts.map((account, index) => (
               <Account
                 index={index}
@@ -213,11 +207,8 @@ export default function Index() {
                 AccountType={account.accountName}
                 accountAddress={account.accountAddress}
                 balance={account.balance}
-                newName={newName}
-                setNewName={setNewName}
               />
             ))}
-            {/* </Form> */}
           </div>
         </div>
       </div>

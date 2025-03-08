@@ -12,11 +12,10 @@ export default function Accounts({
   account,
   data,
   index,
-  newName,
-  setNewName,
 }) {
   const [copied, setCopied] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [newName, setNewName] = useState({ id: "", newName: "" });
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(accountAddress);
@@ -28,7 +27,6 @@ export default function Accounts({
       setNewName({ id: data[account].id, newName: data[account].accountName });
     }
   }, [openModal, data, account, setNewName]);
-
   const handleInputChange = (e) => {
     setNewName((prev) => ({
       ...prev,
