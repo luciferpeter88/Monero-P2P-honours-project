@@ -373,3 +373,13 @@
 2025-03-08 09:40:00.137	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
 2025-03-08 09:40:00.138	  0x7ff850963b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
 2025-03-08 09:40:01.893	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-08 18:43:49.132	  0x7ff850963b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-08 18:43:49.132	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-08 18:43:49.132	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-08 18:43:49.132	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-08 18:43:49.132	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-03-08 18:43:49.135	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-08 18:43:52.371	  0x7ff850963b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-03-08 18:43:52.711	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-03-08 18:43:52.711	  0x7ff850963b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
+2025-03-08 18:43:54.121	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server

@@ -3,8 +3,8 @@ import { useEffect } from "react";
 
 export default function EditAccountModal({ title, isOpen, onClose, children }) {
   const transition = useNavigation();
+  // close the modal when the form is submitted
   const isSubmitting = transition.state === "submitting";
-  console.log(transition.state);
   useEffect(() => {
     if (transition.state !== "idle") {
       onClose();

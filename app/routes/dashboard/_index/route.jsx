@@ -31,8 +31,9 @@ export async function loader({ request }) {
   });
   // get the historical price of Monero using the CoinGecko API with custom caching
   const historicalPrice = await getHistoricalMoneroPriceWithCache();
-  // get the account details for each account
+  // get all accounts of the user
   const accounts = await getAllAccounts(userIdD, user.moneroAccounts);
+  // get the market data, like the number of trades, success rate
   const trades = await tradeCounting(userIdD);
   console.log(trades);
 
