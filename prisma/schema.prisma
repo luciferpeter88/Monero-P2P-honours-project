@@ -245,6 +245,7 @@ enum TransactionType {
 enum TransactionStatus {
   pending
   confirmed
+  rejected
 }
 
 enum Theme {

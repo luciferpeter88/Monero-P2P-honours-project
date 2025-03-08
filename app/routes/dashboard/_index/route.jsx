@@ -16,6 +16,7 @@ import { useLoaderData, useActionData } from "@remix-run/react";
 import { getHistoricalMoneroPriceWithCache } from "../../../utils/moneroPrice";
 import Monero from "../../../utils/Monero.server";
 import Modal from "../components/Modal";
+import tradeCounting from "../../../utils/tradesCounting";
 // read the data from the backend when the page is loaded and pass it to the component
 export async function loader({ request }) {
   const session = await getSession(request.headers.get("Cookie"));
@@ -47,6 +48,25 @@ export async function loader({ request }) {
       };
     })
   );
+  // get the user data for the market section, excluding the current user
+  const usersWithTrades = await prisma.user.findMany({
+    where: { id: { not: userIdD } }, // Exclude current user
+    select: {
+      id: true,
+      username: true,
+      moneroAccounts: {
+        select: {
+          id: true,
+          Transaction: {
+            select: { status: true }, // Only get transaction status
+          },
+        },
+      },
+    },
+  });
+  const trades = tradeCounting(usersWithTrades);
+  console.log(trades);
+
   // return the user data and the account data
   return {
     email: user.email,
@@ -54,36 +74,7 @@ export async function loader({ request }) {
     phone: user.phone,
 
     accounts: accounts,
-    market: [
-      {
-        userId: 1,
-        userName: "Judit Eisendreich",
-        imageSrc: "https://randomuser.me/api/portraits/women/21.jpg",
-        successRate: 98,
-        totalTrades: 120,
-      },
-      {
-        userId: 2,
-        userName: "Judit Eisendreich",
-        imageSrc: "https://randomuser.me/api/portraits/women/21.jpg",
-        successRate: 58,
-        totalTrades: 12,
-      },
-      {
-        userId: 3,
-        userName: "Judit Eisendreich",
-        imageSrc: "https://randomuser.me/api/portraits/women/21.jpg",
-        successRate: 100,
-        totalTrades: 10,
-      },
-      {
-        userId: 4,
-        userName: "Judit Eisendreich",
-        imageSrc: "https://randomuser.me/api/portraits/women/21.jpg",
-        successRate: 95,
-        totalTrades: 182,
-      },
-    ], // will be fetched from Feedback and User tables
+    market: trades,
     moneroApiChart: historicalPrice,
     transaction: [
       {
@@ -154,9 +145,6 @@ export default function Index() {
   const [openModal, setOpenModal] = React.useState(false);
 
   const response = useActionData();
-  if (response?.monero) {
-    console.log(response.monero);
-  }
 
   return (
     <div className="mt-5 ml-5">
@@ -192,7 +180,6 @@ export default function Index() {
                 isOpen={openModal}
                 onClose={() => setOpenModal(false)}
                 title={"Creating"}
-                response={response?.monero}
               >
                 <input
                   type="text"
@@ -249,7 +236,7 @@ export default function Index() {
           {data.market.map((market) => (
             <ProfileCard
               key={market.userId}
-              name={market.userName}
+              name={market.username}
               imageSrc={market.imageSrc}
               successRate={market.successRate}
               totalTrades={market.totalTrades}

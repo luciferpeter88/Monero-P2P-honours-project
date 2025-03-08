@@ -6,7 +6,7 @@ export default function MoneroTraderProfile({
   totalTrades,
 }) {
   return (
-    <div className="w-full  bg-primary dark:bg-gray-900 rounded-lg overflow-hidden shadow-md p-4 flex gap-x-3">
+    <div className=" w-80 bg-primary dark:bg-gray-900 rounded-lg overflow-hidden shadow-md p-4 flex gap-x-3">
       {/* Left Section - Profile Picture & Basic Info */}
       <div className="w-full flex flex-col items-center">
         <img
