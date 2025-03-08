@@ -10,6 +10,7 @@ import bcrypt from "bcryptjs";
 import generateOTP from "../../utils/generateOTP";
 import { getSession, commitSession } from "../../utils/session.server";
 import sendOTPEmail from "../../utils/sendOTPEmail";
+
 export async function action({ request }) {
   // get form data
   const formdata = await request.formData();

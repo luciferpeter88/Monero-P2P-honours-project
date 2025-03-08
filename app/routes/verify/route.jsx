@@ -8,6 +8,7 @@ import prisma from "../../../prisma/prisma";
 import { getSession, destroySession } from "../../utils/session.server";
 import sendOTPEmail from "../../utils/sendOTPEmail";
 import generateOTP from "../../utils/generateOTP";
+import Monero from "../../utils/Monero.server";
 
 // loader is used to initally load the page and get the session data, if there is no session data, it will redirect to the home page
 export async function loader({ request }) {
@@ -47,6 +48,9 @@ export async function action({ request }) {
         emailVerified: true,
       },
     });
+    // Create a Monero account for the user, this is done after the user is verified
+    const monero = new Monero(user.id);
+    await monero.createAccount("Primary");
     return redirect("/login", {
       headers: {
         "Set-Cookie": await destroySession(session),
