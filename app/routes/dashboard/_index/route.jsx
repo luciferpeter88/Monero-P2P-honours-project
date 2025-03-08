@@ -218,7 +218,7 @@ export default function Index() {
         </div>
         <div className="w-full bg-third p-5 rounded-lg">
           <h2 className="text-lg font-semibold">Accounts</h2>
-          <div className="mt-5 flex flex-col">
+          <div className="mt-5 flex flex-col overflow-scroll h-[25vh]">
             {data.accounts.map((account, index) => (
               <Account
                 index={index}
