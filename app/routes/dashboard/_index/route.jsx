@@ -16,7 +16,8 @@ import { useLoaderData, useActionData } from "@remix-run/react";
 import { getHistoricalMoneroPriceWithCache } from "../../../utils/moneroPrice";
 import Monero from "../../../utils/Monero.server";
 import Modal from "../components/Modal";
-import tradeCounting from "../../../utils/tradesCounting";
+import tradeCounting from "../../../utils/tradesCounting.server";
+import getAllAccounts from "../../../utils/getAllAccounts";
 // read the data from the backend when the page is loaded and pass it to the component
 export async function loader({ request }) {
   const session = await getSession(request.headers.get("Cookie"));
@@ -30,41 +31,9 @@ export async function loader({ request }) {
   });
   // get the historical price of Monero using the CoinGecko API with custom caching
   const historicalPrice = await getHistoricalMoneroPriceWithCache();
-  // initialize Monero class with the user id to determine the user's account
-  const monero = new Monero(userIdD);
   // get the account details for each account
-  // I use Promise.all to run the async function for each account in parallel
-  const accounts = await Promise.all(
-    user.moneroAccounts.map(async (user) => {
-      // get the balance for each account
-      const balance = await monero.getBalance(user.accountIndex);
-      // return the account details
-      return {
-        id: user.id,
-        accountName: user.accountLabel,
-        accountAddress: user.accountAddress,
-        balance: balance.balance,
-        unlockedBalance: balance.unlocked_balance,
-      };
-    })
-  );
-  // get the user data for the market section, excluding the current user
-  const usersWithTrades = await prisma.user.findMany({
-    where: { id: { not: userIdD } }, // Exclude current user
-    select: {
-      id: true,
-      username: true,
-      moneroAccounts: {
-        select: {
-          id: true,
-          Transaction: {
-            select: { status: true }, // Only get transaction status
-          },
-        },
-      },
-    },
-  });
-  const trades = tradeCounting(usersWithTrades);
+  const accounts = await getAllAccounts(userIdD, user.moneroAccounts);
+  const trades = await tradeCounting(userIdD);
   console.log(trades);
 
   // return the user data and the account data

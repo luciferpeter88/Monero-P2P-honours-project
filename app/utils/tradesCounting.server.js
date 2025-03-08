@@ -1,10 +1,29 @@
-export default function countTrades(usersWithTrades) {
-  const user = usersWithTrades.map((user) => {
+import prisma from "../../prisma/prisma";
+
+export default async function countTrades(userIdD) {
+  const usersWithTrades = await prisma.user.findMany({
+    where: { id: { not: userIdD } }, // Exclude current user
+    select: {
+      id: true,
+      username: true,
+      moneroAccounts: {
+        select: {
+          id: true,
+          Transaction: {
+            select: { status: true }, // Only get transaction status
+          },
+        },
+      },
+    },
+  });
+
+  return usersWithTrades.map((user) => {
     const allTransactions = user.moneroAccounts.flatMap(
       (acc) => acc.transactions || []
     ); // merge all transactions from a user's accounts into a single array
 
     const totalTrades = allTransactions.length; // This will be 0 if there are no transactions
+    // filter the transactions to get only the confirmed ones
     const confirmedTrades = allTransactions.filter(
       (t) => t.status === "confirmed"
     ).length;
@@ -16,10 +35,9 @@ export default function countTrades(usersWithTrades) {
       id: user.id,
       username: user.username,
       imgsrc: "https://randomuser.me/api/portraits/women/21.jpg",
-      totalTrades, // If no trades exist, this will be 0
-      confirmedTrades, // If no confirmed trades exist, this will be 0
-      successRate, // If total trades are 0, success rate will be 0%
+      totalTrades,
+      confirmedTrades,
+      successRate,
     };
   });
-  return user;
 }
