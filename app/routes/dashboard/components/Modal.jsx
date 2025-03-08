@@ -1,18 +1,20 @@
-export default function EditAccountModal({
-  title,
-  isOpen,
-  onClose,
-  children,
-  response,
-}) {
+import { useNavigation } from "@remix-run/react";
+import { useEffect } from "react";
+
+export default function EditAccountModal({ title, isOpen, onClose, children }) {
+  const transition = useNavigation();
+  const isSubmitting = transition.state === "submitting";
+  console.log(transition.state);
+  useEffect(() => {
+    if (transition.state !== "idle") {
+      onClose();
+    }
+  }, [transition.state, onClose]);
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
       <div className="bg-third p-6 rounded-lg w-full max-w-md relative">
-        <h3 className="absolute top-[-20%] left-[35%] text-green-500 font-semibold text-xl">
-          {response}
-        </h3>
         <button className="absolute top-3 right-3 font-bold" onClick={onClose}>
           X
         </button>
@@ -31,11 +33,13 @@ export default function EditAccountModal({
           >
             Cancel
           </button>
+
           <button
             className="bg-secondary text-white px-4 py-2 rounded"
             type="submit"
+            disabled={isSubmitting}
           >
-            Save
+            {isSubmitting ? "Saving..." : "Save"}
           </button>
         </div>
       </div>

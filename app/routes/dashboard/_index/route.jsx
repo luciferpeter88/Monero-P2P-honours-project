@@ -138,16 +138,13 @@ export async function action({ request }) {
     }
   } else if (formType === "createMoneroAccount") {
     const newAccountName = formData.get("newAccountName");
-    // const monero = new Monero(userIdD);
-    // await monero.createAccount("Pizza Fund");
+    const monero = new Monero(userIdD);
+    await monero.createAccount(newAccountName);
     console.log(newAccountName);
     return {
       monero: "Account created",
     };
   }
-  // console.log("Creating account for user:", userIdD);
-  // const monero = new Monero(userIdD);
-  // await monero.createAccount("Pizza Fund");
 }
 
 export default function Index() {
