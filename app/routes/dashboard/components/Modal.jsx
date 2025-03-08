@@ -1,4 +1,3 @@
-import {toast}
 export default function EditAccountModal({
   title,
   isOpen,
