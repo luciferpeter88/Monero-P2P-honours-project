@@ -35,7 +35,6 @@ export async function loader({ request }) {
   const accounts = await getAllAccounts(userIdD, user.moneroAccounts);
   // get the market data, like the number of trades, success rate
   const trades = await tradeCounting(userIdD);
-  console.log(trades);
 
   // return the user data and the account data
   return {
@@ -94,14 +93,12 @@ export async function action({ request }) {
         monero: "Account name was updated",
       };
     } catch (error) {
-      console.error("Error updating Monero account:", error);
       return { error: "Failed to update account" }, { status: 500 };
     }
   } else if (formType === "createMoneroAccount") {
     const newAccountName = formData.get("newAccountName");
     const monero = new Monero(userIdD);
     await monero.createAccount(newAccountName);
-    console.log(newAccountName);
     return {
       monero: "Account created",
     };
@@ -113,7 +110,7 @@ export default function Index() {
   const data = useLoaderData();
   const [usedaccount, setUsedAccount] = React.useState(0);
   const [openModal, setOpenModal] = React.useState(false);
-
+  console.log(data);
   const response = useActionData();
 
   return (
@@ -205,7 +202,8 @@ export default function Index() {
         <div className="flex gap-5">
           {data.market.map((market) => (
             <ProfileCard
-              key={market.userId}
+              key={market.id}
+              id={market.id}
               name={market.username}
               imageSrc={market.imageSrc}
               successRate={market.successRate}

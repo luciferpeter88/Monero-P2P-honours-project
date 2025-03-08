@@ -1,9 +1,11 @@
 import { Button } from "../../../../src/components/components/ui/button";
+import { Link } from "@remix-run/react";
 export default function MoneroTraderProfile({
   name,
   imageSrc,
   successRate,
   totalTrades,
+  id,
 }) {
   return (
     <div className=" w-80 bg-primary dark:bg-gray-900 rounded-lg overflow-hidden shadow-md p-4 flex gap-x-3">
@@ -39,9 +41,11 @@ export default function MoneroTraderProfile({
           <Button className="bg-secondary text-xs h-8 hover:bg-third">
             Message
           </Button>
-          <Button className="bg-third text-xs h-8 hover:bg-opacity-80">
-            View Profile
-          </Button>
+          <Link to={`/profile/${id}`}>
+            <Button className="bg-third text-xs h-8 hover:bg-opacity-80">
+              View Profile
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

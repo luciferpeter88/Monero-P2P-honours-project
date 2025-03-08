@@ -12,7 +12,6 @@ export async function getCurrentMoneroPrice() {
     cacheCurrentMoneroPrice.data &&
     Date.now() - cacheCurrentMoneroPrice.timestamp < cacheDuration
   ) {
-    console.log("Serving from cache.");
     return cacheCurrentMoneroPrice.data;
   }
   const response = await axios.get(
@@ -59,11 +58,9 @@ export async function getHistoricalMoneroPriceWithCache(days = 90) {
 
   // Check if cached data is still valid
   if (cache.data && Date.now() - cache.timestamp < cacheDuration) {
-    console.log("Serving from cache.");
     return cache.data;
   }
 
-  console.log("Fetching new data...");
   const prices = await getHistoricalMoneroPrice(days);
 
   cache.data = prices;
