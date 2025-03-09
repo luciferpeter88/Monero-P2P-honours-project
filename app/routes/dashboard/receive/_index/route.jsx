@@ -1,6 +1,66 @@
 import Card from "../components/Card";
 import ReceiveForm from "../components/ReceiveForm";
+import { getSession } from "../../../../utils/session.server";
+import { redirect } from "@remix-run/node";
+import prisma from "../../../../../prisma/prisma";
+import { useLoaderData } from "@remix-run/react";
+import Monero from "../../../../utils/Monero.server";
+import { useState } from "react";
+
+export async function loader({ request }) {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  if (!userIdD) {
+    return redirect("/");
+  }
+  // get the user's monero accounts and its details, subaadresses will be generated based on the account's index
+  const userAccount = await prisma.user.findUnique({
+    where: { id: userIdD },
+    include: {
+      moneroAccounts: {
+        select: {
+          id: true,
+          accountLabel: true,
+          accountIndex: true,
+          subaddresses: {
+            select: {
+              accountId: true,
+              address: true,
+            },
+          },
+        },
+      },
+    },
+  });
+  // return the user's monero accounts and its subaddresses
+  return {
+    moneroAccounts: userAccount.moneroAccounts,
+  };
+}
+export async function action({ request }) {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  const formData = await request.formData();
+  const moneroAccountIndex = formData.get("selectedAccount");
+  const monero = new Monero(userIdD);
+  const createSubaddress = await monero.createSubAddress(
+    Number(moneroAccountIndex),
+    "New Subaddress"
+  );
+  // return the subaddress id to determine the belonging account
+  const subaddressID = createSubaddress;
+  return { moneroAccountID: subaddressID };
+}
+
 export default function Index() {
+  // get the data from the loader
+  const data = useLoaderData();
+  // State for selected account,subaddress will be generated based on this account's index
+  const [selectedAccount, setSelectedAccount] = useState(
+    data.moneroAccounts[0].accountIndex
+  );
+
+  console.log("data", data.moneroAccounts[0].subaddresses);
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg">
@@ -29,7 +89,11 @@ export default function Index() {
           />
         </div>
       </div>
-      <ReceiveForm />
+      <ReceiveForm
+        accounts={data.moneroAccounts}
+        selectedAccount={selectedAccount}
+        setSelectedAccount={setSelectedAccount}
+      />
     </div>
   );
 }

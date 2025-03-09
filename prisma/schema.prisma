@@ -79,16 +79,16 @@ model Message {
 }
 
 model MoneroAccount {
-  id              Int           @id @default(autoincrement()) @map("account_id")
-  userId          Int           @map("user_table_id")
-  accountLabel    String        @map("account_label")
-  createdAt       DateTime      @default(now()) @map("created_at")
-  updatedAt       DateTime      @updatedAt @map("updated_at")
-  accountAddress  String        @map("account_address")
-  accountIndex    Int           @map("account_index")
-  user            User          @relation(fields: [userId], references: [id])
-  subaddresses    Subaddress[]
-  Transaction     Transaction[]
+  id             Int           @id @default(autoincrement()) @map("account_id")
+  userId         Int           @map("user_table_id")
+  accountLabel   String        @map("account_label")
+  createdAt      DateTime      @default(now()) @map("created_at")
+  updatedAt      DateTime      @updatedAt @map("updated_at")
+  accountAddress String        @map("account_address")
+  accountIndex   Int           @map("account_index")
+  user           User          @relation(fields: [userId], references: [id])
+  subaddresses   Subaddress[]
+  Transaction    Transaction[]
 
   @@index([userId], map: "Monero_Account_user_table_id_fkey")
   @@map("Monero_Account")
@@ -98,7 +98,6 @@ model Subaddress {
   id          Int           @id @default(autoincrement()) @map("subaddress_id")
   accountId   Int           @map("account_id")
   address     String
-  label       String?
   createdAt   DateTime      @default(now()) @map("created_at")
   account     MoneroAccount @relation(fields: [accountId], references: [id])
   Transaction Transaction[]

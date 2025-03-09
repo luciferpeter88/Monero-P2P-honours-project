@@ -7,23 +7,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../../../src/components/components/ui/select";
-export default function ReceiveForm() {
-  // State for selected account, generated address, loading status, and copy feedback.
-  const [selectedAccount, setSelectedAccount] = useState("primary");
+import { Form } from "@remix-run/react";
+export default function ReceiveForm({
+  accounts,
+  selectedAccount,
+  setSelectedAccount,
+}) {
   const [generatedAddress, setGeneratedAddress] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
-
-  // Simulate generating a new subaddress (replace with your actual logic)
-  const generateAddress = () => {
-    setIsGenerating(true);
-    // Simulate an asynchronous request
-    setTimeout(() => {
-      // In a real app, replace this with the real generated address.
-      setGeneratedAddress("4A3f2G6mN...exampleSubaddress...");
-      setIsGenerating(false);
-    }, 1500);
-  };
 
   // Copy the generated address to the clipboard
   const copyToClipboard = () => {
@@ -33,7 +25,7 @@ export default function ReceiveForm() {
       setTimeout(() => setCopySuccess(false), 2000);
     }
   };
-  console.log(selectedAccount);
+  // console.log(selectedAccount);
 
   return (
     <div className="flex flex-col md:flex-row gap-5 mt-5 text-white">
@@ -51,38 +43,33 @@ export default function ReceiveForm() {
             <SelectTrigger className="w-full h-12 rounded-lg sm:ml-auto px-3 border-none outline-none bg-primary text-white focus:outline-none focus:border-none focus:ring-0 focus:ring-offset-0 focus:ring-primary focus:ring-offset-primary">
               <SelectValue className="outline-none border-none bg-primary text-white" />
             </SelectTrigger>
+
             <SelectContent className="rounded-b-lg rounded-t-none border-muted-foreground w-full bg-primary border-none">
-              <SelectItem
-                value="primary"
-                className="rounded-lg w-full p-3 hover:bg-primary hover:outline-none cursor-pointer text-white focus:bg-third focus:text-white"
-              >
-                Primary account
-              </SelectItem>
-              <SelectItem
-                value="business"
-                className="rounded-lg w-full p-3 hover:bg-primary hover:outline-none cursor-pointer text-white focus:bg-third focus:text-white"
-              >
-                Buisness
-              </SelectItem>
-              <SelectItem
-                value="hidden"
-                className="rounded-lg w-full p-3 hover:bg-primary hover:outline-none cursor-pointer text-white focus:bg-third focus:text-white"
-              >
-                Hidden Services
-              </SelectItem>
+              {accounts.map((account) => (
+                <SelectItem
+                  key={account.accountIndex}
+                  value={account.accountIndex}
+                  className="rounded-lg w-full p-3 hover:bg-primary hover:outline-none cursor-pointer text-white focus:bg-third focus:text-white"
+                >
+                  {account.accountLabel}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
         {/* Generate Address Button */}
-        <div className="mb-5">
-          <Button
-            onClick={generateAddress}
-            disabled={isGenerating}
-            className="bg-secondary"
-          >
-            {isGenerating ? "Generating..." : "Generate Address"}
-          </Button>
-        </div>
+        <Form method="post">
+          <input type="hidden" name="selectedAccount" value={selectedAccount} />
+          <div className="mb-5">
+            <Button
+              disabled={isGenerating}
+              className="bg-secondary"
+              type="submit"
+            >
+              Generate Address
+            </Button>
+          </div>
+        </Form>
         {/* Display the Generated Address */}
         {generatedAddress && (
           <div className="mt-5">

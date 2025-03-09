@@ -12,7 +12,7 @@ import { getSession } from "../../../utils/session.server";
 import { redirect } from "@remix-run/node";
 import { Form, Link } from "@remix-run/react";
 import prisma from "../../../../prisma/prisma";
-import { useLoaderData, useActionData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { getHistoricalMoneroPriceWithCache } from "../../../utils/moneroPrice";
 import Monero from "../../../utils/Monero.server";
 import Modal from "../components/Modal";
@@ -111,7 +111,6 @@ export default function Index() {
   const [usedaccount, setUsedAccount] = React.useState(0);
   const [openModal, setOpenModal] = React.useState(false);
   console.log(data.market);
-  const response = useActionData();
 
   return (
     <div className="mt-5 ml-5">
