@@ -383,3 +383,29 @@
 2025-03-08 18:43:52.711	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
 2025-03-08 18:43:52.711	  0x7ff850963b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
 2025-03-08 18:43:54.121	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-08 22:11:19.163	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-08 22:11:19.508	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-08 22:11:19.509	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-08 22:11:19.509	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-08 22:11:19.509	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4149	pull_blocks failed, try_count=3
+2025-03-08 22:11:19.509	[RPC0]	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:159	Exception at while refreshing, what=no connection to daemon
+2025-03-09 05:15:43.228	  0x700007fbf000	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:2224	Transaction extra has unsupported format: <41ade4ae59f917926058e5a8512f5dd6f0deced210e2b79231050fd49e2eac13>
+2025-03-09 08:30:17.958	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-09 08:30:18.316	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-09 08:30:18.317	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-09 08:30:18.318	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-09 08:30:18.318	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4149	pull_blocks failed, try_count=3
+2025-03-09 08:30:18.318	[RPC0]	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:159	Exception at while refreshing, what=no connection to daemon
+2025-03-09 09:11:02.580	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4700	Stopped wallet RPC server
+2025-03-09 09:11:02.582	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4703	Saving wallet...
+2025-03-09 09:11:02.668	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4705	Successfully saved
+2025-03-09 09:11:07.010	  0x7ff850963b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-09 09:11:07.010	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-09 09:11:07.010	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-09 09:11:07.010	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-09 09:11:07.013	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-03-09 09:11:07.015	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-09 09:11:09.464	  0x7ff850963b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-03-09 09:11:09.800	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-03-09 09:11:09.800	  0x7ff850963b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
+2025-03-09 09:11:10.597	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server

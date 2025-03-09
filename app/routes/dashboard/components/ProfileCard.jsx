@@ -13,7 +13,10 @@ export default function MoneroTraderProfile({
       <div className="w-full flex flex-col items-center">
         <img
           className="h-24 w-24 mt-auto rounded-full border-4 border-white dark:border-gray-800"
-          src={imageSrc}
+          src={
+            imageSrc ||
+            "https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
+          }
           alt="User"
         />
         <div className="text-center mt-2 w-full">

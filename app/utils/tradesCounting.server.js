@@ -34,7 +34,7 @@ export default async function countTrades(userIdD, user = "all") {
     return {
       id: user.id,
       username: user.username,
-      imgsrc: "https://randomuser.me/api/portraits/women/21.jpg",
+      imgsrc: "",
       totalTrades,
       confirmedTrades,
       successRate,

@@ -1,4 +1,5 @@
 import { Form, useLoaderData } from "@remix-run/react";
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -11,6 +12,7 @@ import Footer from "../../../components/Footer";
 import tradeCounting from "../../../utils/tradesCounting.server";
 import { getSession } from "../../../utils/session.server";
 import { redirect } from "@remix-run/node";
+import prisma from "../../../../prisma/prisma";
 
 const reviews = [
   {
@@ -53,25 +55,60 @@ export const loader = async ({ params, request }) => {
   const { id } = params;
 
   const userStats = await tradeCounting(Number(id), "one");
-  console.log(userStats);
-  console.log(userIdD);
-  return {
-    userData: userStats[0],
-  };
+  try {
+    const feedbacks = await prisma.feedback.findMany({
+      where: { toUserId: parseInt(Number(id)) }, // Get comments for this user
+      orderBy: { createdAt: "desc" },
+      include: {
+        fromUser: { select: { id: true, username: true } }, // Fetch who left the feedback
+      },
+    });
+
+    return {
+      userData: userStats[0],
+      currentUserID: userIdD,
+      feedback: feedbacks,
+    };
+  } catch (error) {
+    console.error("Error fetching feedback:", error);
+    return { error: "Failed to fetch feedback" }, { status: 500 };
+  }
 };
 
-// export const action = async ({ request }) => {
-//   const formData = await request.formData();
-//   const newReview = {
-//     user: formData.get("user"),
-//     content: formData.get("content"),
-//     rating: Number(formData.get("rating")),
-//   };
-//   await saveReviewToDB(newReview);
-//   return json(newReview);
-// };
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  // get the form data
+  const content = formData.get("content");
+  // get the rating
+  const rating = formData.get("rating");
+  // get the current user
+  const currentUser = formData.get("currenUser");
+  // get the visited user
+  const visitedUser = formData.get("visitedUser");
+  // check if the user is trying to submit a review for themselves
+  if (currentUser === visitedUser) {
+    return (
+      { error: "You cannot submit a review for yourself" }, { status: 400 }
+    );
+  }
+  try {
+    await prisma.feedback.create({
+      data: {
+        fromUserId: Number(currentUser),
+        toUserId: Number(visitedUser),
+        rating: Number(rating),
+        comment: content,
+      },
+    });
+  } catch (error) {
+    return { error: "Failed to submit feedback" }, { status: 500 };
+  }
+
+  return { response: "Review submitted successfully" };
+};
 
 export default function Index() {
+  const [rating, setRating] = useState(5);
   const data = useLoaderData();
   console.log(data);
   return (
@@ -80,10 +117,13 @@ export default function Index() {
       <div className="flex flex-col md:flex-row mt-5 gap-5">
         <div className="md:min-w-[350px] md:w-1/3 w-full">
           <div className="rounded-lg bg-third px-4 pt-8 pb-10 shadow-lg">
-            <div className="relative mx-auto w-36 rounded-full">
+            <div className="relative mx-auto rounded-full">
               <img
-                className="mx-auto h-auto w-full rounded-full"
-                src={data.userData.imgsrc}
+                className="mx-auto h-36 w-36 rounded-full object-cover"
+                src={
+                  data.userData.imgsrc ||
+                  "https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
+                }
                 alt="Profile"
               />
             </div>
@@ -120,17 +160,28 @@ export default function Index() {
                 className="w-full md:h-2/3 h-32 bg-primary focus-within:border-0 text-white"
                 required
               />
-              <input type="hidden" name="user" value="Current User" />
+              <input
+                type="hidden"
+                name="currenUser"
+                value={data.currentUserID}
+              />
+              <input
+                type="hidden"
+                name="visitedUser"
+                value={data.userData.id}
+              />
+              <input type="hidden" name="rating" value={rating} />
               <div className="flex items-center space-x-2">
                 <label className="text-gray-400">Rating:</label>
                 <select
                   name="rating"
-                  defaultValue={5}
+                  defaultValue={rating}
+                  onChange={(e) => setRating(e.target.value)}
                   className="border rounded p-1 bg-white"
                 >
                   {[5, 4, 3, 2, 1].map((r) => (
                     <option key={r} value={r}>
-                      {r} Star{r > 1 ? "s" : ""}
+                      {r}
                     </option>
                   ))}
                 </select>
@@ -150,8 +201,8 @@ export default function Index() {
 
       <Card>
         <CardContent id="reviews" className="space-y-4 p-0 bg-primary">
-          {reviews && reviews.length > 0 ? (
-            reviews.map((review) => (
+          {data.feedback && data.feedback.length > 0 ? (
+            data.feedback.map((review) => (
               <div key={review.id} className=" bg-third p-4 rounded-xl">
                 <div className="flex">
                   <img
@@ -161,16 +212,16 @@ export default function Index() {
                   />
                   <div className=" ml-4 flex flex-col gap-2">
                     <h4 className="font-medium text-lg text-white">
-                      {review.user}
+                      {review.fromUser.username}
                     </h4>
 
                     <p className="text-sm text-muted-foreground">
                       {"⭐".repeat(review.rating)}
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      08, Feb, 2025
+                      {new Date(review.createdAt).toDateString()}
                     </p>
-                    <p className="mt-2 text-white">{review.content}</p>
+                    <p className="mt-2 text-white">{review.comment}</p>
                   </div>
                 </div>
               </div>
