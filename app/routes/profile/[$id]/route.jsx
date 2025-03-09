@@ -14,38 +14,6 @@ import { getSession } from "../../../utils/session.server";
 import { redirect } from "@remix-run/node";
 import prisma from "../../../../prisma/prisma";
 
-const reviews = [
-  {
-    id: 1,
-    user: "John Doe",
-    content: "Great trader! Fast and reliable.",
-    rating: 5,
-  },
-  // {
-  //   id: 2,
-  //   user: "Jane Smith",
-  //   content: "Smooth transaction, highly recommend.",
-  //   rating: 4,
-  // },
-  // {
-  //   id: 3,
-  //   user: "Mike Johnson",
-  //   content: "Good communication and fast payment.",
-  //   rating: 5,
-  // },
-  // {
-  //   id: 4,
-  //   user: "Emily Davis",
-  //   content: "Had a slight delay but overall a good experience.",
-  //   rating: 3,
-  // },
-  // {
-  //   id: 5,
-  //   user: "Chris Brown",
-  //   content: "Excellent service, will trade again.",
-  //   rating: 5,
-  // },
-];
 export const loader = async ({ params, request }) => {
   const session = await getSession(request.headers.get("Cookie"));
   const userIdD = session.get("user_id");
