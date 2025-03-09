@@ -41,11 +41,8 @@ export default function MoneroTraderProfile({
           </div>
         </div>
         <div className="flex w-full gap-2 justify-center mt-3">
-          <Button className="bg-secondary text-xs h-8 hover:bg-third">
-            Message
-          </Button>
           <Link to={`/profile/${userID}`}>
-            <Button className="bg-third text-xs h-8 hover:bg-opacity-80">
+            <Button className="bg-secondary text-xs h-8 hover:bg-third">
               View Profile
             </Button>
           </Link>

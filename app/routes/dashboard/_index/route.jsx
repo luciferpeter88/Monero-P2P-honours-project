@@ -211,7 +211,9 @@ export default function Index() {
             />
           ))}
         </div>
-        <Button className="ml-auto mt-5 bg-secondary">Explore</Button>
+        <Link to="/dashboard/market" className="ml-auto mt-auto">
+          <Button className="ml-auto mt-5 bg-secondary">Explore</Button>
+        </Link>
       </div>
       <TransactionHistory
         header="Latest Transaction History"

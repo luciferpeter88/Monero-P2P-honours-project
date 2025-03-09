@@ -1,4 +1,5 @@
 import { Button } from "../../../../src/components/components/ui/button";
+import { Link } from "@remix-run/react";
 export default function WithdrawalRecords({ header, data }) {
   // const transactions = [
   //   {
@@ -98,7 +99,9 @@ export default function WithdrawalRecords({ header, data }) {
           </tbody>
         </table>
       </div>
-      <Button className="bg-secondary mt-8">History</Button>
+      <Link to="/dashboard/transactions">
+        <Button className="bg-secondary mt-8">History</Button>
+      </Link>
     </div>
   );
 }
