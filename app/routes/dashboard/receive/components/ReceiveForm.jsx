@@ -20,18 +20,17 @@ export default function ReceiveForm({
   // Copy a specific subaddress to the clipboard
   const copyToClipboard = (address) => {
     navigator.clipboard.writeText(address);
-    setCopySuccess((prev) => ({
-      ...prev,
+    setCopySuccess(() => ({
       [address]: true, // Mark only this address as copied
     }));
 
     setTimeout(() => {
-      setCopySuccess((prev) => ({
-        ...prev,
+      setCopySuccess(() => ({
         [address]: false, // Reset after timeout
       }));
     }, 2000);
   };
+  console.log("copy", copySuccess);
   return (
     <div className="flex flex-col md:flex-row gap-5 mt-5 text-white">
       {/* Left Side - Interactive Form */}
