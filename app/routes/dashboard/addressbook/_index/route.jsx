@@ -1,58 +1,95 @@
-import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { Trash2, Plus, Pencil } from "lucide-react";
 import ContactDialog from "../components/ContactDialog";
+import { getSession } from "../../../../utils/session.server";
+import { redirect } from "@remix-run/node";
+import prisma from "../../../../../prisma/prisma";
 import { useState } from "react";
-// Dummy Data (Replace with database later)
-const dummyData = [
-  {
-    id: 1,
-    name: "Alice Doe",
-    address: "43Xmr123...abcd",
-    notes: "Frequent trades",
-  },
-  {
-    id: 2,
-    name: "Bob Crypto",
-    address: "47Xmr456...efgh",
-    notes: "Business partner",
-  },
-];
 
 // Loader to fetch contacts
-export const loader = async () => {
-  return json({ contacts: dummyData });
+export const loader = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  if (!userIdD) {
+    return redirect("/");
+  }
+  const addressBookEntries = await prisma.addressBook.findMany({
+    where: { userId: userIdD },
+    select: {
+      id: true,
+      contactMoneroAddress: true,
+      contactNickname: true,
+      notes: true,
+    },
+    orderBy: { createdAt: "desc" },
+  });
+
+  return { contacts: addressBookEntries };
 };
 
 // Action to handle adding, editing, and deleting
 export const action = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  if (!userIdD) {
+    return redirect("/");
+  }
   const formData = await request.formData();
   const intent = formData.get("_intent");
 
   if (intent === "delete") {
     const id = formData.get("id");
-    console.log(`Deleting contact with ID: ${id}`);
-    return json({ success: true });
+    await prisma.addressBook.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    return { success: true };
   }
 
   if (intent === "edit") {
-    console.log("Editing contact:", formData.get("id"));
-    // return redirect("/address-book");
+    const id = formData.get("id");
+    const address = formData.get("address");
+    const name = formData.get("name");
+    const notes = formData.get("notes");
+    await prisma.addressBook.update({
+      where: { id: Number(id) },
+      data: {
+        contactMoneroAddress: address,
+        contactNickname: name || null,
+        notes: notes || null,
+      },
+    });
+    return { success: true };
   }
 
   if (intent === "add") {
-    console.log("Adding new contact:", Object.fromEntries(formData));
-    // return redirect("/address-book");
+    console.log("user_id", userIdD);
+    const data = Object.fromEntries(formData);
+    await prisma.addressBook.create({
+      data: {
+        userId: userIdD,
+        contactMoneroAddress: data.address,
+        contactNickname: data.name || null,
+        notes: data.notes || null,
+      },
+    });
+    return { success: true };
   }
 
   return null;
 };
 
 export default function AddressBook() {
-  const [openModal, setOpenModal] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
 
   const { contacts } = useLoaderData();
-
+  const copyToClipboard = (address) => {
+    navigator.clipboard.writeText(address);
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 2000);
+  };
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg">
@@ -81,33 +118,51 @@ export default function AddressBook() {
 
             {/* Table Body */}
             <tbody className="w-full">
-              {contacts.map((contact) => (
-                <tr
-                  key={contact.id}
-                  className=" bg-third border-t border-primary hover:bg-primary hover:bg-opacity-90"
-                >
-                  <td className="p-3 w-1/4">{contact.name}</td>
-                  <td className="p-3 w-1/4">{contact.address}</td>
-                  <td className="p-3 w-1/4">{contact.notes || "-"}</td>
-                  <td className="p-3 w-1/4 flex gap-2">
-                    {/* Edit Dialog */}
-                    <ContactDialog
-                      actionType="edit"
-                      contact={contact}
-                      triggerLabel="Edit"
-                      triggerIcon={<Pencil size={14} />}
-                    />
+              {contacts.length > 0 ? (
+                contacts.map((contact) => (
+                  <tr
+                    key={contact.id}
+                    className=" bg-third border-t border-primary hover:bg-primary hover:bg-opacity-90"
+                  >
+                    <td className="p-3 w-1/4">{contact.contactNickname}</td>
+                    <td className="p-3 w-1/4">
+                      {contact.contactMoneroAddress.slice(0, 6)}.....
+                      <button
+                        onClick={() =>
+                          copyToClipboard(contact.contactMoneroAddress)
+                        }
+                        className="ml-3 text-secondary hover:text-white"
+                      >
+                        {copySuccess ? "Copied!" : "Copy"}
+                      </button>
+                    </td>
+                    <td className="p-3 w-1/4">{contact.notes || "-"}</td>
+                    <td className="p-3 w-1/4 flex gap-2">
+                      {/* Edit Dialog */}
+                      <ContactDialog
+                        actionType="edit"
+                        contact={contact}
+                        triggerLabel="Edit"
+                        triggerIcon={<Pencil size={14} />}
+                      />
 
-                    {/* Delete Dialog */}
-                    <ContactDialog
-                      actionType="delete"
-                      contact={contact}
-                      triggerLabel="Delete"
-                      triggerIcon={<Trash2 size={14} />}
-                    />
+                      {/* Delete Dialog */}
+                      <ContactDialog
+                        actionType="delete"
+                        contact={contact}
+                        triggerLabel="Delete"
+                        triggerIcon={<Trash2 size={14} />}
+                      />
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={4} className="p-3 text-center">
+                    No contacts found.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>

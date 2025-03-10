@@ -38,7 +38,7 @@ model User {
 model AddressBook {
   id                   Int      @id @default(autoincrement()) @map("addressbook_id")
   userId               Int      @map("user_id")
-  contactUserId        Int?     @map("contact_user_id")
+  notes        String?     @map("contact_notes")
   contactMoneroAddress String   @map("contact_monero_address")
   contactNickname      String?  @map("contact_nickname")
   createdAt            DateTime @default(now()) @map("created_at")

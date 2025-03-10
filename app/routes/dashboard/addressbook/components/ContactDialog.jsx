@@ -60,7 +60,8 @@ export default function ContactDialog({
               {/* Delete Confirmation */}
               <p className="text-gray-400 text-sm">
                 Are you sure you want to delete{" "}
-                <span className="text-red-400">{contact?.name}</span>?
+                <span className="text-red-400">{contact?.contactNickname}</span>
+                ?
               </p>
               <Input type="hidden" name="id" value={contact?.id} />
             </React.Fragment>
@@ -71,14 +72,14 @@ export default function ContactDialog({
               <Input
                 name="name"
                 placeholder="Name"
-                defaultValue={contact?.name}
+                defaultValue={contact?.contactNickname}
                 required
                 className="bg-primary border-muted-foreground focus:ring focus:ring-offset-white focus-visible:ring-1"
               />
               <Input
                 name="address"
                 placeholder="Monero Address"
-                defaultValue={contact?.address}
+                defaultValue={contact?.contactMoneroAddress}
                 required
                 className="bg-primary border-muted-foreground focus:ring focus:ring-offset-white focus-visible:ring-1"
               />
