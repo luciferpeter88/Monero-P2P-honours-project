@@ -5,7 +5,7 @@ import { redirect } from "@remix-run/node";
 import prisma from "../../../../../prisma/prisma";
 import { useLoaderData } from "@remix-run/react";
 import Monero from "../../../../utils/Monero.server";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export async function loader({ request }) {
   const session = await getSession(request.headers.get("Cookie"));
@@ -57,10 +57,19 @@ export default function Index() {
   const data = useLoaderData();
   // State for selected account,subaddress will be generated based on this account's index
   const [selectedAccount, setSelectedAccount] = useState(
-    data.moneroAccounts[0].accountIndex
+    data.moneroAccounts[0].id
   );
+  const [subadresses, setSubadresses] = useState([]);
 
-  console.log("data", data.moneroAccounts[0].subaddresses);
+  useEffect(() => {
+    // get the subaddresses of the selected account
+    const subadresses = data.moneroAccounts.find(
+      (account) => account.id === selectedAccount
+    ).subaddresses;
+    setSubadresses(subadresses);
+  }, [selectedAccount, data]);
+  console.log("subadresses", subadresses);
+
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg">
@@ -93,6 +102,7 @@ export default function Index() {
         accounts={data.moneroAccounts}
         selectedAccount={selectedAccount}
         setSelectedAccount={setSelectedAccount}
+        subadresses={subadresses}
       />
     </div>
   );

@@ -91,26 +91,25 @@ export default class Monero {
    * @param {string} label - The label for the subaddress
    * @returns {Promise<object>}
    */
-  async createSubAddress(accountIndex, label) {
+  async createSubAddress(id, label) {
     try {
-      // Send request to create a new Monero subaddress
-      const data = await this.sendRequest("create_address", {
-        account_index: accountIndex,
-        label: label,
-      });
-
       // Find the Monero account associated with the user and accountIndex
       const moneroAccount = await prisma.moneroAccount.findFirst({
         where: {
           userId: this.userId, // Find account for this user
-          accountIndex: accountIndex, // With this specific Monero account index
+          id: id, // With this specific Monero account index
         },
-        select: { id: true }, // Get the id of the account to link the subaddress
+        select: { accountIndex: true, id: true },
       });
 
       if (!moneroAccount) {
         throw new Error("Monero account not found for this user.");
       }
+      // Send request to create a new Monero subaddress
+      const data = await this.sendRequest("create_address", {
+        account_index: moneroAccount.accountIndex,
+        label: label,
+      });
 
       // Store the new subaddress in the database
       await prisma.subaddress.create({

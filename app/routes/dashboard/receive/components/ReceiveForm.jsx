@@ -12,6 +12,7 @@ export default function ReceiveForm({
   accounts,
   selectedAccount,
   setSelectedAccount,
+  subadresses,
 }) {
   const [generatedAddress, setGeneratedAddress] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
@@ -47,8 +48,8 @@ export default function ReceiveForm({
             <SelectContent className="rounded-b-lg rounded-t-none border-muted-foreground w-full bg-primary border-none">
               {accounts.map((account) => (
                 <SelectItem
-                  key={account.accountIndex}
-                  value={account.accountIndex}
+                  key={account.id}
+                  value={account.id}
                   className="rounded-lg w-full p-3 hover:bg-primary hover:outline-none cursor-pointer text-white focus:bg-third focus:text-white"
                 >
                   {account.accountLabel}
@@ -71,27 +72,37 @@ export default function ReceiveForm({
           </div>
         </Form>
         {/* Display the Generated Address */}
-        {generatedAddress && (
-          <div className="mt-5">
-            <label className="block text-sm font-medium mb-2">
-              Your Receiving Address
-            </label>
-            <div className="flex items-center bg-primary p-3 rounded-md">
-              <input
-                type="text"
-                value={generatedAddress}
-                readOnly
-                className="w-full bg-transparent text-white text-sm focus:outline-none"
-              />
-              <button
-                onClick={copyToClipboard}
-                className="ml-3 text-secondary hover:text-white"
+
+        <div className="mt-5">
+          <label className="block text-sm font-medium mb-2">
+            Your Receiving Address
+          </label>
+          {subadresses.length > 0 ? (
+            subadresses.map((subaddress, index) => (
+              <div
+                key={index}
+                className="flex items-center bg-primary p-3 rounded-md my-3"
               >
-                {copySuccess ? "Copied!" : "Copy"}
-              </button>
-            </div>
-          </div>
-        )}
+                <input
+                  type="text"
+                  value={subaddress.address}
+                  readOnly
+                  className="w-full bg-transparent text-white text-sm focus:outline-none"
+                />
+                <button
+                  onClick={copyToClipboard}
+                  className="ml-3 text-secondary hover:text-white"
+                >
+                  {copySuccess ? "Copied!" : "Copy"}
+                </button>
+              </div>
+            ))
+          ) : (
+            <p className="text-muted-foreground text-sm">
+              No subaddresses found for this account.
+            </p>
+          )}
+        </div>
       </div>
       {/* Right Side - Tips & Best Practices */}
       <div className="w-full md:w-64 bg-third p-6 rounded-lg shadow-lg">
