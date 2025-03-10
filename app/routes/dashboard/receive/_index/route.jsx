@@ -68,7 +68,6 @@ export default function Index() {
     ).subaddresses;
     setSubadresses(subadresses);
   }, [selectedAccount, data]);
-  console.log("subadresses", subadresses);
 
   return (
     <div className="mt-5 ml-5">

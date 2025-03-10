@@ -2,7 +2,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { Trash2, Plus, Pencil } from "lucide-react";
 import ContactDialog from "../components/ContactDialog";
-
+import { useState } from "react";
 // Dummy Data (Replace with database later)
 const dummyData = [
   {
@@ -49,6 +49,8 @@ export const action = async ({ request }) => {
 };
 
 export default function AddressBook() {
+  const [openModal, setOpenModal] = useState(false);
+
   const { contacts } = useLoaderData();
 
   return (

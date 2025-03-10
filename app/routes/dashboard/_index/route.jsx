@@ -110,7 +110,6 @@ export default function Index() {
   const data = useLoaderData();
   const [usedaccount, setUsedAccount] = React.useState(0);
   const [openModal, setOpenModal] = React.useState(false);
-  console.log(data.market);
 
   return (
     <div className="mt-5 ml-5">
