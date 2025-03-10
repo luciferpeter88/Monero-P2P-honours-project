@@ -1,48 +1,25 @@
-import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import Filter from "../components/Filter";
 import MoneroTraderCard from "../components/MoneroTraderCard";
 import ChatPopup from "../components/ChatPopUp";
-// Dummy Data (Replace with actual DB query)
-const sellers = [
-  {
-    id: 1,
-    name: "Alice",
-    rating: 98,
-    price: 120,
-    totalTrades: 120,
-    tradMin: 0.5,
-    tradeMax: 5,
-  },
-  {
-    id: 2,
-    name: "Bob",
-    rating: 90,
-    price: 110,
-    totalTrades: 12,
-    tradeMin: 0.8,
-    tradeMax: 5,
-  },
-  {
-    id: 3,
-    name: "Charlie XMR",
-    rating: 85,
-    price: 105,
-    totalTrades: 10,
-    tradeMin: 0.5,
-    tradeMax: 15,
-  },
-];
+import { getSession } from "../../../../utils/session.server";
+import { redirect } from "@remix-run/node";
+import tradeCounting from "../../../../utils/tradesCounting.server";
+
 const messages = [];
 // Loader Function (Server-Side Filtering)
 export const loader = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  if (!userIdD) {
+    return redirect("/");
+  }
+  const trades = await tradeCounting(userIdD, "all");
   const url = new URL(request.url);
   const query = url.searchParams.get("query")?.toLowerCase() || "";
   const rating = url.searchParams.get("rating");
   const minPrice = url.searchParams.get("minPrice");
   const maxPrice = url.searchParams.get("maxPrice");
-
-  let filteredSellers = sellers;
 
   // Filter by Name
   if (query) {
@@ -70,12 +47,13 @@ export const loader = async ({ request }) => {
     );
   }
 
-  return json({ sellers: filteredSellers, messages });
+  return { sellers: trades, messages };
 };
 
 export default function Index() {
+  // const data = useLoaderData();
   const { sellers } = useLoaderData();
-
+  // console.log(data);
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg flex items-baseline justify-between w-full">
