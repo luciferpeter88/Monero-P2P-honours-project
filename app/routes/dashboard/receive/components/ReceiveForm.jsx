@@ -30,7 +30,6 @@ export default function ReceiveForm({
       }));
     }, 2000);
   };
-  console.log("copy", copySuccess);
   return (
     <div className="flex flex-col md:flex-row gap-5 mt-5 text-white">
       {/* Left Side - Interactive Form */}
