@@ -39,7 +39,7 @@ export default function ReceiveForm({
         </h3>
         {/* Account Selection */}
         <div className="mb-5">
-          <label className="block text-sm font-medium mb-2">
+          <label className="block text-sm font-medium mb-2" htmlFor="account">
             Select Account
           </label>
           <Select value={selectedAccount} onValueChange={setSelectedAccount}>
@@ -72,7 +72,7 @@ export default function ReceiveForm({
 
         {/* Display the Generated Address */}
         <div className="mt-5">
-          <label className="block text-sm font-medium mb-2">
+          <label className="block text-sm font-medium mb-2" htmlFor="address">
             Your Receiving Address
           </label>
           {subadresses.length > 0 ? (
