@@ -8,26 +8,30 @@ import {
   SelectValue,
 } from "../../../../../src/components/components/ui/select";
 import { Form } from "@remix-run/react";
+
 export default function ReceiveForm({
   accounts,
   selectedAccount,
   setSelectedAccount,
   subadresses,
 }) {
-  const [generatedAddress, setGeneratedAddress] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [copySuccess, setCopySuccess] = useState(false);
+  const [copySuccess, setCopySuccess] = useState({});
 
-  // Copy the generated address to the clipboard
-  const copyToClipboard = () => {
-    if (generatedAddress) {
-      navigator.clipboard.writeText(generatedAddress);
-      setCopySuccess(true);
-      setTimeout(() => setCopySuccess(false), 2000);
-    }
+  // Copy a specific subaddress to the clipboard
+  const copyToClipboard = (address) => {
+    navigator.clipboard.writeText(address);
+    setCopySuccess((prev) => ({
+      ...prev,
+      [address]: true, // Mark only this address as copied
+    }));
+
+    setTimeout(() => {
+      setCopySuccess((prev) => ({
+        ...prev,
+        [address]: false, // Reset after timeout
+      }));
+    }, 2000);
   };
-  // console.log(selectedAccount);
-
   return (
     <div className="flex flex-col md:flex-row gap-5 mt-5 text-white">
       {/* Left Side - Interactive Form */}
@@ -62,41 +66,43 @@ export default function ReceiveForm({
         <Form method="post">
           <input type="hidden" name="selectedAccount" value={selectedAccount} />
           <div className="mb-5">
-            <Button
-              disabled={isGenerating}
-              className="bg-secondary"
-              type="submit"
-            >
+            <Button className="bg-secondary" type="submit">
               Generate Address
             </Button>
           </div>
         </Form>
-        {/* Display the Generated Address */}
 
+        {/* Display the Generated Address */}
         <div className="mt-5">
           <label className="block text-sm font-medium mb-2">
             Your Receiving Address
           </label>
           {subadresses.length > 0 ? (
-            subadresses.map((subaddress, index) => (
-              <div
-                key={index}
-                className="flex items-center bg-primary p-3 rounded-md my-3"
-              >
-                <input
-                  type="text"
-                  value={subaddress.address}
-                  readOnly
-                  className="w-full bg-transparent text-white text-sm focus:outline-none"
-                />
-                <button
-                  onClick={copyToClipboard}
-                  className="ml-3 text-secondary hover:text-white"
+            subadresses.map((subaddress, index) => {
+              const shortAddress =
+                subaddress.address.slice(0, 6) +
+                "..." +
+                subaddress.address.slice(-6);
+              return (
+                <div
+                  key={index}
+                  className="flex items-center bg-primary p-3 rounded-md my-3"
                 >
-                  {copySuccess ? "Copied!" : "Copy"}
-                </button>
-              </div>
-            ))
+                  <input
+                    type="text"
+                    value={shortAddress} // Display shortened address
+                    readOnly
+                    className="w-full bg-transparent text-white text-sm focus:outline-none"
+                  />
+                  <button
+                    onClick={() => copyToClipboard(subaddress.address)}
+                    className="ml-3 text-secondary hover:text-white"
+                  >
+                    {copySuccess[subaddress.address] ? "Copied!" : "Copy"}
+                  </button>
+                </div>
+              );
+            })
           ) : (
             <p className="text-muted-foreground text-sm">
               No subaddresses found for this account.
