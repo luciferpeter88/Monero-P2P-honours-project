@@ -78,7 +78,6 @@ export const action = async ({ request }) => {
 export default function Index() {
   const [rating, setRating] = useState(5);
   const data = useLoaderData();
-  console.log(data);
   return (
     <div className=" container mx-auto px-5">
       <Navbar />

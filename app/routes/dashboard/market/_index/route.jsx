@@ -15,37 +15,37 @@ export const loader = async ({ request }) => {
     return redirect("/");
   }
   const trades = await tradeCounting(userIdD, "all");
-  const url = new URL(request.url);
-  const query = url.searchParams.get("query")?.toLowerCase() || "";
-  const rating = url.searchParams.get("rating");
-  const minPrice = url.searchParams.get("minPrice");
-  const maxPrice = url.searchParams.get("maxPrice");
+  // const url = new URL(request.url);
+  // const query = url.searchParams.get("query")?.toLowerCase() || "";
+  // const rating = url.searchParams.get("rating");
+  // const minPrice = url.searchParams.get("minPrice");
+  // const maxPrice = url.searchParams.get("maxPrice");
 
   // Filter by Name
-  if (query) {
-    filteredSellers = filteredSellers.filter((seller) =>
-      seller.name.toLowerCase().includes(query)
-    );
-  }
+  // if (query) {
+  //   filteredSellers = filteredSellers.filter((seller) =>
+  //     seller.name.toLowerCase().includes(query)
+  //   );
+  // }
 
-  // Filter by Rating
-  if (rating) {
-    filteredSellers = filteredSellers.filter(
-      (seller) => seller.rating >= parseInt(rating) || rating === "all"
-    );
-  }
+  // // Filter by Rating
+  // if (rating) {
+  //   filteredSellers = filteredSellers.filter(
+  //     (seller) => seller.rating >= parseInt(rating) || rating === "all"
+  //   );
+  // }
 
-  // Filter by Price Range
-  if (minPrice) {
-    filteredSellers = filteredSellers.filter(
-      (seller) => seller.price >= parseFloat(minPrice)
-    );
-  }
-  if (maxPrice) {
-    filteredSellers = filteredSellers.filter(
-      (seller) => seller.price <= parseFloat(maxPrice)
-    );
-  }
+  // // Filter by Price Range
+  // if (minPrice) {
+  //   filteredSellers = filteredSellers.filter(
+  //     (seller) => seller.price >= parseFloat(minPrice)
+  //   );
+  // }
+  // if (maxPrice) {
+  //   filteredSellers = filteredSellers.filter(
+  //     (seller) => seller.price <= parseFloat(maxPrice)
+  //   );
+  // }
 
   return { sellers: trades, messages, loggedInUserID: userIdD };
 };
