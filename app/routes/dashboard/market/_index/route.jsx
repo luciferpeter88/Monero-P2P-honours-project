@@ -46,8 +46,22 @@ export const loader = async ({ request }) => {
   //     (seller) => seller.price <= parseFloat(maxPrice)
   //   );
   // }
-
   return { sellers: trades, messages, loggedInUserID: userIdD };
+};
+export const action = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  if (!userIdD) {
+    return redirect("/");
+  }
+  const formdata = await request.formData();
+  const text = formdata.get("message");
+  const receiver = formdata.get("receiver");
+  const sender = formdata.get("sender");
+  console.log(text, receiver, sender);
+  return {
+    data: { text, receiver, sender },
+  };
 };
 
 export default function Index() {

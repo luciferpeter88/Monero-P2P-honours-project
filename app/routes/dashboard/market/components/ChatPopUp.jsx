@@ -1,4 +1,9 @@
-import { Form, useLoaderData } from "@remix-run/react";
+import {
+  Form,
+  useLoaderData,
+  useNavigation,
+  useActionData,
+} from "@remix-run/react";
 import {
   Sheet,
   SheetContent,
@@ -9,9 +14,48 @@ import { Input } from "../../../../../src/components/components/ui/input";
 import { Button } from "../../../../../src/components/components/ui/button";
 import { Send } from "lucide-react";
 import { DialogTitle } from "@radix-ui/react-dialog";
+import { useEffect, useState } from "react";
 
 export default function ChatPopup({ traderName, sellerID }) {
-  const { messages, loggedInUserID } = useLoaderData();
+  const { loggedInUserID } = useLoaderData();
+  const data = useActionData();
+
+  const [messages, setMessages] = useState([]);
+  const [ws, setWs] = useState(null);
+  const navigation = useNavigation(); // For handling loading state
+
+  useEffect(() => {
+    // Connect WebSocket when the component mounts
+    const socket = new WebSocket("ws://localhost:3000");
+    console.log("Socket: ", socket);
+    setWs(socket);
+
+    // Listen for incoming messages
+    socket.onmessage = (event) => {
+      // Parse incoming message
+      const message = JSON.parse(event.data);
+      // Add message to the state to display in the chat
+      setMessages((prev) => [...prev, message]);
+    };
+    // Cleanup WebSocket on unmount
+    return () => socket.close();
+  }, []);
+  function sendMessage(event) {
+    event.preventDefault();
+    if (!ws) return;
+
+    const formData = new FormData(event.target);
+    const sender = formData.get("sender");
+    const receiver = formData.get("receiver");
+    const text = formData.get("message").trim();
+    if (!text) return;
+
+    const message = { sender, receiver, text };
+    // Send message to websocket server
+    ws.send(JSON.stringify(message));
+    // delete the message from the input field
+    event.target.reset();
+  }
   return (
     <Sheet className="border-none">
       {/* Trigger Button */}
@@ -52,17 +96,14 @@ export default function ChatPopup({ traderName, sellerID }) {
                   msg.sender === "user" ? "bg-blue-500 self-end" : "bg-gray-800"
                 }`}
               >
-                {msg.message}
-                <br />
-                Logged in: {loggedInUserID} <br />
-                To the person {sellerID}
+                {msg.message.text}
               </div>
             ))
           )}
         </div>
 
         {/* Message Input Form */}
-        <Form method="post" className="p-3 flex items-center gap-2">
+        <Form method="post" onSubmit={sendMessage}>
           <Input
             type="text"
             name="message"
@@ -70,6 +111,8 @@ export default function ChatPopup({ traderName, sellerID }) {
             className="flex-1 bg-primary text-white border-none focus:ring-0 focus:outline-none ring-0 focus:ring-offset-0 focus-visible:ring-offset-0 focus-visible:ring-0"
             autoComplete="off"
           />
+          <Input type="hidden" name="receiver" value={sellerID} />
+          <Input type="hidden" name="sender" value={loggedInUserID} />
           <Button
             className="bg-primary hover:bg-opacity-80 text-white"
             size="icon"
