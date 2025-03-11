@@ -6,7 +6,7 @@ import { getSession } from "../../../../utils/session.server";
 import { redirect } from "@remix-run/node";
 import tradeCounting from "../../../../utils/tradesCounting.server";
 
-const messages = [];
+const messages = [{ message: "Testing" }];
 // Loader Function (Server-Side Filtering)
 export const loader = async ({ request }) => {
   const session = await getSession(request.headers.get("Cookie"));
@@ -47,13 +47,11 @@ export const loader = async ({ request }) => {
     );
   }
 
-  return { sellers: trades, messages };
+  return { sellers: trades, messages, loggedInUserID: userIdD };
 };
 
 export default function Index() {
-  // const data = useLoaderData();
   const { sellers } = useLoaderData();
-  // console.log(data);
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg flex items-baseline justify-between w-full">

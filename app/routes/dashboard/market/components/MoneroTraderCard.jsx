@@ -72,7 +72,7 @@ export default function MoneroTraderCard({ seller }) {
       {/* Action Buttons */}
       <div className="flex flex-col items-end ml-auto">
         <div className="flex gap-2 mt-4">
-          <ChatPopup traderName={seller.username} />
+          <ChatPopup traderName={seller.username} sellerID={seller.id} />
           <Link to={`/profile/${seller.id}`}>
             <Button
               variant="outline"

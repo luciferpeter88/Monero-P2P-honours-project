@@ -3,31 +3,39 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetDescription,
 } from "../../../../../src/components/components/ui/sheet";
 import { Input } from "../../../../../src/components/components/ui/input";
 import { Button } from "../../../../../src/components/components/ui/button";
 import { Send } from "lucide-react";
+import { DialogTitle } from "@radix-ui/react-dialog";
 
-export default function ChatPopup({ traderName }) {
-  const { messages } = useLoaderData(); // Get messages from the server
-
+export default function ChatPopup({ traderName, sellerID }) {
+  const { messages, loggedInUserID } = useLoaderData();
   return (
     <Sheet className="border-none">
       {/* Trigger Button */}
       <SheetTrigger asChild>
         <Button className="bg-orange-500 hover:bg-orange-600 text-white px-5 w-full sm:w-auto">
-          Message Me
+          Chat
         </Button>
       </SheetTrigger>
 
       {/* Chat Popup Content */}
       <SheetContent
         side="bottom"
-        className=" max-w-[30rem] ml-auto h-[35rem] border-none bg-third text-white rounded-lg flex flex-col"
+        className="max-w-[30rem] ml-auto h-[35rem] border-none bg-third text-white rounded-lg flex flex-col"
       >
         {/* Header */}
-        <div className="p-3 flex justify-between items-center border-b border-muted-foreground">
-          <h3 className="text-lg font-medium text-white">{traderName}</h3>
+        <div className="p-3 flex flex-col justify-between items-center border-b border-muted-foreground">
+          <DialogTitle className="text-lg font-medium text-white">
+            {traderName}
+          </DialogTitle>
+          <div>
+            <SheetDescription className="text-sm text-secondary">
+              This is a private chat between you and {traderName}
+            </SheetDescription>
+          </div>
         </div>
 
         {/* Chat Messages */}
@@ -44,14 +52,17 @@ export default function ChatPopup({ traderName }) {
                   msg.sender === "user" ? "bg-blue-500 self-end" : "bg-gray-800"
                 }`}
               >
-                {msg.text}
+                {msg.message}
+                <br />
+                Logged in: {loggedInUserID} <br />
+                To the person {sellerID}
               </div>
             ))
           )}
         </div>
 
-        {/* Message Input Form (Remix Form for Server Handling) */}
-        <Form method="post" className="p-3  flex items-center gap-2">
+        {/* Message Input Form */}
+        <Form method="post" className="p-3 flex items-center gap-2">
           <Input
             type="text"
             name="message"
