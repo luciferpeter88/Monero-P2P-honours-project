@@ -546,3 +546,4 @@
 2025-03-14 18:55:09.091	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
 2025-03-14 18:55:09.443	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
 2025-03-14 18:55:09.444	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 20:40:46.070	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
