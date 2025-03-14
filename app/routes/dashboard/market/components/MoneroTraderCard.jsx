@@ -1,9 +1,10 @@
 import { BadgeCheck, BarChart, Wallet } from "lucide-react";
 import { Button } from "../../../../../src/components/components/ui/button";
 import ChatPopup from "./ChatPopUp";
-import { Link } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
+export default function MoneroTraderCard({ seller, messages }) {
+  const { loggedInUserID } = useLoaderData();
 
-export default function MoneroTraderCard({ seller }) {
   let ratingColor = "text-red-400";
   if (seller.rating >= 90) {
     ratingColor = "text-green-400";
@@ -72,7 +73,11 @@ export default function MoneroTraderCard({ seller }) {
       {/* Action Buttons */}
       <div className="flex flex-col items-end ml-auto">
         <div className="flex gap-2 mt-4">
-          <ChatPopup traderName={seller.username} sellerID={seller.id} />
+          <ChatPopup
+            traderName={seller.username}
+            sellerID={seller.id}
+            messages={messages}
+          />
           <Link to={`/profile/${seller.id}`}>
             <Button
               variant="outline"

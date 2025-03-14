@@ -1,12 +1,13 @@
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useActionData } from "@remix-run/react";
 import Filter from "../components/Filter";
 import MoneroTraderCard from "../components/MoneroTraderCard";
 import ChatPopup from "../components/ChatPopUp";
 import { getSession } from "../../../../utils/session.server";
 import { redirect } from "@remix-run/node";
 import tradeCounting from "../../../../utils/tradesCounting.server";
+// import prisma from "../../../../../prisma/prisma";
 
-const messages = [{ message: "Testing" }];
+// const messages = [{ message: "Testing" }];
 // Loader Function (Server-Side Filtering)
 export const loader = async ({ request }) => {
   const session = await getSession(request.headers.get("Cookie"));
@@ -15,6 +16,20 @@ export const loader = async ({ request }) => {
     return redirect("/");
   }
   const trades = await tradeCounting(userIdD, "all");
+
+  // if (recipientId) {
+  //   messages = await prisma.message.findMany({
+  //     where: {
+  //       OR: [
+  //         { senderId: userIdD, recipientId: recipientId },
+  //         { senderId: recipientId, recipientId: userIdD },
+  //       ],
+  //     },
+  //     orderBy: { createdAt: "asc" },
+  //     select: { content: true, senderId: true },
+  //   });
+  // }
+
   // const url = new URL(request.url);
   // const query = url.searchParams.get("query")?.toLowerCase() || "";
   // const rating = url.searchParams.get("rating");
@@ -46,7 +61,8 @@ export const loader = async ({ request }) => {
   //     (seller) => seller.price <= parseFloat(maxPrice)
   //   );
   // }
-  return { sellers: trades, messages, loggedInUserID: userIdD };
+
+  return { sellers: trades, loggedInUserID: userIdD };
 };
 export const action = async ({ request }) => {
   const session = await getSession(request.headers.get("Cookie"));
@@ -58,14 +74,23 @@ export const action = async ({ request }) => {
   const text = formdata.get("message");
   const receiver = formdata.get("receiver");
   const sender = formdata.get("sender");
-  console.log(text, receiver, sender);
-  return {
-    data: { text, receiver, sender },
-  };
+  console.log("Action", text, receiver, sender);
+
+  // await prisma.message.create({
+  //   data: {
+  //     senderId: Number(sender),
+  //     recipientId: Number(receiver),
+  //     content: text,
+  //   },
+  // });
+  const messages = [{ content: "Puszilom Jaksa fejet!" }];
+  return { messages };
 };
 
 export default function Index() {
   const { sellers } = useLoaderData();
+  const data = useActionData();
+  const message = data ? data.messages : [];
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg flex items-baseline justify-between w-full">
@@ -81,6 +106,7 @@ export default function Index() {
               seller={seller}
               key={seller.id}
               popup={ChatPopup}
+              messages={message}
             />
           ))
         )}

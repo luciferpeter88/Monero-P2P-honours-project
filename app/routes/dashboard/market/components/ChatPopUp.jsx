@@ -1,9 +1,4 @@
-import {
-  Form,
-  useLoaderData,
-  useNavigation,
-  useActionData,
-} from "@remix-run/react";
+import { Form, useLoaderData } from "@remix-run/react";
 import {
   Sheet,
   SheetContent,
@@ -14,48 +9,56 @@ import { Input } from "../../../../../src/components/components/ui/input";
 import { Button } from "../../../../../src/components/components/ui/button";
 import { Send } from "lucide-react";
 import { DialogTitle } from "@radix-ui/react-dialog";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ChatPopup({ traderName, sellerID }) {
   const { loggedInUserID } = useLoaderData();
-  const data = useActionData();
-
   const [messages, setMessages] = useState([]);
-  const [ws, setWs] = useState(null);
-  const navigation = useNavigation(); // For handling loading state
 
-  useEffect(() => {
-    // Connect WebSocket when the component mounts
-    const socket = new WebSocket("ws://localhost:3000");
-    console.log("Socket: ", socket);
-    setWs(socket);
+  async function sendMessage(e) {
+    // Prevent refreshing the page
+    e.preventDefault();
+    // target the form
+    const formData = new FormData(e.target);
+    // get the name of the input field's value
+    const message = formData.get("message");
+    // make a POST request to the server
+    const response = await fetch("/api/createmessage", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      // send the message and the recipient id
+      body: new URLSearchParams({ recipientId: sellerID, content: message }),
+    });
 
-    // Listen for incoming messages
-    socket.onmessage = (event) => {
-      // Parse incoming message
-      const message = JSON.parse(event.data);
-      // Add message to the state to display in the chat
-      setMessages((prev) => [...prev, message]);
-    };
-    // Cleanup WebSocket on unmount
-    return () => socket.close();
-  }, []);
-  function sendMessage(event) {
-    event.preventDefault();
-    if (!ws) return;
-
-    const formData = new FormData(event.target);
-    const sender = formData.get("sender");
-    const receiver = formData.get("receiver");
-    const text = formData.get("message").trim();
-    if (!text) return;
-
-    const message = { sender, receiver, text };
-    // Send message to websocket server
-    ws.send(JSON.stringify(message));
-    // delete the message from the input field
-    event.target.reset();
+    if (response.ok) {
+      // const data = await response.json();
+      e.target.reset();
+    } else {
+      console.error("Hiba történt az üzenet küldésekor.");
+    }
   }
+  useEffect(() => {
+    // Create a new EventSource and pass the recipientId as a query parameter to the server
+    // to retrieve the messages between the logged-in user and the seller
+    const eventSource = new EventSource(
+      `/api/streammessage?recipientId=${sellerID}`
+    );
+
+    eventSource.onmessage = (event) => {
+      const newMessages = JSON.parse(event.data);
+      setMessages(newMessages);
+    };
+
+    eventSource.onerror = () => {
+      console.error("SSE hiba történt.");
+      eventSource.close();
+    };
+
+    return () => {
+      eventSource.close();
+    };
+  }, []);
+
   return (
     <Sheet className="border-none">
       {/* Trigger Button */}
@@ -92,11 +95,13 @@ export default function ChatPopup({ traderName, sellerID }) {
             messages.map((msg, index) => (
               <div
                 key={index}
-                className={`p-2 rounded-md ${
-                  msg.sender === "user" ? "bg-blue-500 self-end" : "bg-gray-800"
+                className={`message p-2 rounded-md ${
+                  msg.senderId === loggedInUserID
+                    ? "bg-secondary self-end"
+                    : "bg-gray-800"
                 }`}
               >
-                {msg.message.text}
+                {msg.content}
               </div>
             ))
           )}

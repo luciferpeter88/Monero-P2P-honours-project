@@ -461,3 +461,88 @@
 2025-03-11 14:57:22.097	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
 2025-03-11 14:57:22.097	  0x7ff850963b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
 2025-03-11 14:57:24.064	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-12 06:26:43.134	  0x7ff850963b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-12 06:26:43.135	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-12 06:26:43.135	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-12 06:26:43.135	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-12 06:26:43.135	  0x7ff850963b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to monero-wallet-rpc.log
+2025-03-12 06:26:43.137	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-12 06:26:45.214	  0x7ff850963b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-03-12 06:26:53.775	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-03-12 06:26:53.776	  0x7ff850963b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
+2025-03-12 06:26:54.385	  0x7ff850963b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-12 17:31:35.232	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 17:31:35.562	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 17:31:35.562	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 20:44:32.269	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 20:44:32.596	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 20:44:32.597	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 20:44:32.597	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 20:44:32.597	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4149	pull_blocks failed, try_count=3
+2025-03-12 20:44:32.598	[RPC0]	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:159	Exception at while refreshing, what=no connection to daemon
+2025-03-12 21:00:36.264	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 21:58:49.393	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 21:58:49.406	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 21:58:49.407	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 22:59:57.376	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-12 23:52:47.316	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 00:47:00.084	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 00:47:00.451	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 01:41:12.857	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 02:35:23.426	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 02:35:23.449	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 03:45:57.194	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 03:45:57.216	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 04:52:51.162	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 04:52:51.182	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 05:53:57.251	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 06:24:52.084	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 06:55:04.979	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 06:55:05.184	  0x700000a7f000	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 07:37:17.146	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 07:37:17.178	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 08:56:08.170	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 08:56:08.174	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 08:56:08.174	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 08:56:08.175	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 08:56:08.504	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4149	pull_blocks failed, try_count=3
+2025-03-13 08:56:08.507	[RPC0]	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:159	Exception at while refreshing, what=no connection to daemon
+2025-03-13 09:57:10.152	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 09:57:10.153	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 10:58:12.175	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 10:58:12.177	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 10:58:12.178	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 10:58:12.178	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 10:58:12.178	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4149	pull_blocks failed, try_count=3
+2025-03-13 10:58:12.178	[RPC0]	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:159	Exception at while refreshing, what=no connection to daemon
+2025-03-13 11:23:09.349	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 14:37:55.078	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 14:37:55.415	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 14:37:55.416	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 14:37:55.416	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 14:37:55.416	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4149	pull_blocks failed, try_count=3
+2025-03-13 14:37:55.416	[RPC0]	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:159	Exception at while refreshing, what=no connection to daemon
+2025-03-13 15:46:29.076	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 15:46:29.080	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 15:46:29.080	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 15:46:29.081	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 15:46:29.081	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4149	pull_blocks failed, try_count=3
+2025-03-13 15:46:29.081	[RPC0]	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:159	Exception at while refreshing, what=no connection to daemon
+2025-03-13 16:49:26.921	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-13 16:49:26.941	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 06:42:31.423	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 06:42:31.426	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 06:42:31.426	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 06:42:31.426	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 06:42:31.427	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4149	pull_blocks failed, try_count=3
+2025-03-14 06:42:31.427	[RPC0]	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:159	Exception at while refreshing, what=no connection to daemon
+2025-03-14 06:42:51.444	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 13:51:30.103	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 13:51:30.437	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 13:51:30.443	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 13:51:30.444	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 13:51:30.444	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:4149	pull_blocks failed, try_count=3
+2025-03-14 13:51:30.470	[RPC0]	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:159	Exception at while refreshing, what=no connection to daemon
+2025-03-14 18:55:09.091	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 18:55:09.443	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
+2025-03-14 18:55:09.444	[RPC0]	ERROR	wallet.wallet2	src/wallet/wallet2.cpp:15137	!r. THROW EXCEPTION: tools::error::no_connection_to_daemon
