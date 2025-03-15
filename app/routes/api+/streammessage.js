@@ -17,6 +17,7 @@ export const loader = async ({ request }) => {
     return { error: "Missing recipientId" }, { status: 400 };
   }
   // set it to null
+  let lastMessage = null;
   return new Response(
     // create a new readable stream
     new ReadableStream({
@@ -35,11 +36,14 @@ export const loader = async ({ request }) => {
               ],
             },
             orderBy: { createdAt: "asc" },
-            select: { content: true, senderId: true },
+            select: { content: true, senderId: true, id: true },
           });
           // last message
-
-          sendEvent(messages);
+          let lastMessageID = messages[messages.length - 1]?.id;
+          if (!lastMessage || lastMessageID !== lastMessage) {
+            lastMessage = lastMessageID;
+            sendEvent(messages);
+          }
         }, 500); // 0.5 seconds
 
         request.signal.addEventListener("abort", () => {
