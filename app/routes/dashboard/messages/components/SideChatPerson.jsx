@@ -1,22 +1,26 @@
-export default function SideChatPerson() {
+export default function SideChatPerson({ user, setUserId, id, userId }) {
   return (
-    <div className="p-3 rounded-xl hover:bg-primary cursor-pointer  flex items-center gap-3 ">
+    <button
+      className={`p-3 rounded-xl hover:bg-primary cursor-pointer  flex items-center gap-3 w-full ${
+        userId === id ? "bg-primary" : ""
+      }`}
+      onClick={() => setUserId(id)}
+    >
       <div className="w-12 h-12 rounded-xl overflow-hidden">
         <img
-          src="https://res.cloudinary.com/djv4xa6wu/image/upload/v1737831467/abhiraj_tdwxdf.webp"
+          src="https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
           alt="User"
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="flex-1 min-w-0 ">
+      <div className=" ">
         <div className="flex items-center justify-between">
-          <h3 className="font-semibold">Abhi</h3>
-          <span className="text-xs text-muted-foreground">20m</span>
+          <h3 className="font-semibold">{user}</h3>
         </div>
         <p className="text-sm text-muted-foreground truncate">
-          Hey! We are ready to start...
+          Chat with {user}
         </p>
       </div>
-    </div>
+    </button>
   );
 }

@@ -1,6 +1,6 @@
 import SideChatPerson from "./SideChatPerson";
 
-export default function SideBar() {
+export default function SideBar({ users, setUserId, userId }) {
   return (
     <aside className="w-80 bg-third rounded-lg">
       <div className="p-4">
@@ -26,9 +26,19 @@ export default function SideBar() {
         </div>
       </div>
       <div className="overflow-y-auto h-[calc(100vh-12.5rem)] px-2 space-y-1">
-        <SideChatPerson />
-        {/* More chat items */}
-        <SideChatPerson />
+        {users ? (
+          users?.map((user) => (
+            <SideChatPerson
+              key={user.id}
+              id={user.id}
+              user={user.username}
+              userId={userId}
+              setUserId={setUserId}
+            />
+          ))
+        ) : (
+          <p className="text-muted-foreground text-center">No users found</p>
+        )}
       </div>
     </aside>
   );
