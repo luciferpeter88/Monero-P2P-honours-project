@@ -16,14 +16,23 @@ export const loader = async ({ request }) => {
   // get the recipient id from the db based on the sender id
   const exchangeMessageWithUsers = await prisma.message.findMany({
     where: {
-      senderId: userIdD,
+      OR: [{ senderId: userIdD }, { recipientId: userIdD }],
     },
     orderBy: { createdAt: "asc" },
-    select: { recipientId: true },
+    select: { recipientId: true, senderId: true },
   });
   // get the unique recipient ids
   const uniqueRecipientIds = [
-    ...new Set(exchangeMessageWithUsers.map((item) => item.recipientId)),
+    ...new Set(
+      exchangeMessageWithUsers.map((item) => {
+        // if the sender id is the same as the logged in user's id, then return the recipient id and vice versa to show the user's messages in the chat list
+        if (item.senderId === userIdD) {
+          return item.recipientId;
+        } else {
+          return item.senderId;
+        }
+      })
+    ),
   ];
   const users = await Promise.all(
     uniqueRecipientIds.map(async (id) => {
@@ -43,7 +52,7 @@ export default function Index() {
   const [messages, setMessages] = useState([]);
   const [userName, setUserName] = useState(data?.users?.[0]?.username || null);
   const [loading, setLoading] = useState(false);
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     if (!userId) return;
