@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `User` ADD COLUMN `image_src` VARCHAR(191) NULL,
+    ADD COLUMN `trading_fee` DECIMAL(65, 30) NOT NULL DEFAULT 0.00;

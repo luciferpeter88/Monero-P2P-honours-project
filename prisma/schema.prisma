@@ -20,6 +20,8 @@ model User {
   emailVerified          Boolean            @default(false) @map("email_verified")
   otpSecret              String?            @map("otp_secret")
   phone                  String?            @unique
+  imageSrc               String?            @map("image_src")
+  tradingFee             Int?               @map("trading_fee")
   AddressBook            AddressBook[]
   FeedbackFromUser       Feedback[]         @relation("FeedbackFromUser")
   FeedbackToUser         Feedback[]         @relation("FeedbackToUser")

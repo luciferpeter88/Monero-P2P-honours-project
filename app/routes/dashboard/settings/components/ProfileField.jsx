@@ -24,7 +24,7 @@ export default function ProfileField({
       </div>
       <div className="flex items-center gap-3">
         <p className="text-sm text-muted-foreground">{value}</p>
-        <Dialog>
+        <Dialog className="bg-transparent">
           <DialogTrigger asChild>
             <Button
               variant="outline"
@@ -34,7 +34,7 @@ export default function ProfileField({
               Change {title}
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="bg-third">
             <ProfileModal field={modalType} />
           </DialogContent>
         </Dialog>

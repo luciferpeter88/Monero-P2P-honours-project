@@ -1,8 +1,70 @@
+import { getSession } from "../../../../utils/session.server";
+import prisma from "../../../../../prisma/prisma";
+import { useLoaderData, redirect } from "@remix-run/react";
 import { Mail, Percent, Phone, User, UserCheck } from "lucide-react";
 import ProfileField from "../components/ProfileField";
 import ProfilePhoto from "../components/ProfilePhoto";
 import AccountOption from "../components/AccountOptions";
+import uploadImage from "../../../../utils/uploadPicture.server";
+
+export const loader = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+
+  if (!userIdD) {
+    return { error: "Unauthorized" }, { status: 401 };
+  }
+  const user = await prisma.user.findUnique({
+    where: { id: userIdD },
+    select: {
+      id: true,
+      username: true,
+      email: true,
+      phone: true,
+      imageSrc: true,
+      tradingFee: true,
+    },
+  });
+  return { user };
+};
+
+export const action = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  if (!userIdD) {
+    return redirect("/");
+  }
+
+  const formData = await request.formData();
+  const nickname = formData.get("nickname");
+  const photo = formData.get("profilePhoto");
+  let imgSrc = "";
+  if (photo) {
+    imgSrc = await uploadImage(photo, userIdD);
+  }
+  console.log(imgSrc);
+  const email = formData.get("email");
+  const phone = formData.get("phone");
+  const tradingFee = Number(formData.get("tradingFee"));
+
+  await prisma.user.update({
+    where: { id: userIdD },
+    data: {
+      username: nickname ? nickname : undefined,
+      email: email ? email : undefined,
+      phone: phone ? phone : undefined,
+      tradingFee: tradingFee ? tradingFee : undefined,
+      imageSrc: imgSrc.filePath ? imgSrc.filePath : undefined,
+    },
+  });
+  return {
+    success: true,
+  };
+};
+
 export default function Index() {
+  const data = useLoaderData();
+  const user = data?.user;
   return (
     <div className="mt-5">
       <div className="bg-third text-white rounded-lg p-6 ">
@@ -12,29 +74,30 @@ export default function Index() {
             icon={<User size={20} className="text-muted-foreground" />}
             title="Nickname"
             description="This is your display name that will appear to others on the platform"
-            value="Lucifer"
+            value={user.username}
             modalType="nickname"
           />
-          <ProfilePhoto />
+          <ProfilePhoto imgSrc={user.imageSrc} />
           <ProfileField
             icon={<Mail size={20} className="text-muted-foreground" />}
             title="Email"
             description="We use this email for account verification and important notifications"
-            value="kaszapnagyp@gmail.com"
+            value={user.email}
             modalType="email"
           />
           <ProfileField
             icon={<Phone size={20} className="text-muted-foreground" />}
             title="Phone Number"
             description="Your phone number helps secure your account with two-factor authentication"
-            value="(555) 123-4567"
+            value={user.phone || "not set"}
             modalType="phone"
           />
           <ProfileField
             icon={<Percent size={20} className="text-muted-foreground" />}
             title="Trading Fee Level"
             description="This shows the current discount or rate applied to your trading fees based on your activity"
-            value="VIP 0: 0.01%"
+            value={user.tradingFee || "not set"}
+            modalType="tradingFee"
             buttonLabel="More Details"
           />
         </div>

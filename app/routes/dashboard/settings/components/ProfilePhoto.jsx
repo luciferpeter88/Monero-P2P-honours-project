@@ -6,7 +6,7 @@ import {
 } from "../../../../../src/components/components/ui/dialog";
 import { Button } from "../../../../../src/components/components/ui/button";
 import ProfileModal from "./ProfileModal";
-export default function ProfilePhoto() {
+export default function ProfilePhoto({ imgSrc }) {
   return (
     <div className="flex justify-between items-center hover:bg-primary p-4 rounded-lg">
       <div className="flex items-center gap-3">
@@ -20,11 +20,7 @@ export default function ProfilePhoto() {
         </div>
       </div>
       <div className="flex items-center gap-3">
-        <img
-          src="https://randomuser.me/api/portraits/women/21.jpg"
-          alt="profile"
-          className="w-12 h-12 rounded-full"
-        />
+        <img src={imgSrc} alt="profile" className="w-12 h-12 rounded-full" />
         <Dialog>
           <DialogTrigger asChild>
             <Button
@@ -35,7 +31,7 @@ export default function ProfilePhoto() {
               Change
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="bg-third">
             <ProfileModal field="photo" />
           </DialogContent>
         </Dialog>
