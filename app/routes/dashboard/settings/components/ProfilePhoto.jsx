@@ -20,7 +20,14 @@ export default function ProfilePhoto({ imgSrc }) {
         </div>
       </div>
       <div className="flex items-center gap-3">
-        <img src={imgSrc} alt="profile" className="w-12 h-12 rounded-full" />
+        <img
+          src={
+            imgSrc ||
+            "https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
+          }
+          alt="profile"
+          className="w-12 h-12 rounded-full"
+        />
         <Dialog>
           <DialogTrigger asChild>
             <Button

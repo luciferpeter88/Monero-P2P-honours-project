@@ -40,8 +40,10 @@ export const action = async ({ request }) => {
   const photo = formData.get("profilePhoto");
   const deletePhoto = formData.get("deletePhoto");
   const actionType = formData.get("action");
+  const actionAccount = formData.get("actionAccount");
+  console.log(actionAccount);
   let imgSrc = "";
-  if (photo.name) {
+  if (photo?.name) {
     imgSrc = await uploadImage(photo, userIdD);
   }
   const email = formData.get("email");
@@ -65,6 +67,23 @@ export const action = async ({ request }) => {
       imageSrc: imgSrc.filePath ? imgSrc.filePath : undefined,
     },
   });
+  if (actionAccount === "freeze") {
+    await prisma.user.update({
+      where: { id: userIdD },
+      data: {
+        accountStatus: "frozen",
+      },
+    });
+    return redirect("/");
+  } else if (actionAccount === "close") {
+    await prisma.user.update({
+      where: { id: userIdD },
+      data: {
+        accountStatus: "closed",
+      },
+    });
+    return redirect("/");
+  }
 
   return {
     success: true,
@@ -117,12 +136,16 @@ export default function Index() {
           <AccountOption
             icon={<UserCheck size={20} className="text-muted-foreground" />}
             title="Freeze Account"
+            modalType="Are you sure you want to freeze your account?"
             description="Temporarily disable your account to prevent any activity while keeping your data intact"
+            actionType="freeze"
           />
           <AccountOption
             icon={<User size={20} className="text-muted-foreground" />}
             title="Close Account"
+            modalType="Are you sure you want to close your account?"
             description="Once you close your account, it is permanent and can't be restored"
+            actionType="close"
           />
         </div>
       </div>

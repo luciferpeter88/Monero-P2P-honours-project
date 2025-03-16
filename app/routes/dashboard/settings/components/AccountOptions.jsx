@@ -1,7 +1,23 @@
 import { Button } from "../../../../../src/components/components/ui/button";
-export default function AccountOption({ icon, title, description }) {
+import Modal from "./Modal";
+import { useState } from "react";
+
+export default function AccountOption({
+  icon,
+  title,
+  description,
+  modalType,
+  actionType,
+}) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex justify-between items-center p-4 rounded-lg hover:bg-primary">
+      <Modal
+        modalType={modalType}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        actionType={actionType}
+      />
       <div className="flex items-center gap-3">
         {icon}
         <div>
@@ -9,7 +25,12 @@ export default function AccountOption({ icon, title, description }) {
           <p className="text-xs text-muted-foreground">{description}</p>
         </div>
       </div>
-      <Button variant="ghost" size="icon" className="bg-muted-foreground">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="bg-muted-foreground"
+        onClick={() => setIsOpen(true)}
+      >
         ➝
       </Button>
     </div>
