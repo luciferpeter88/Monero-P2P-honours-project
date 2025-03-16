@@ -24,11 +24,11 @@ export default function ProfileModal({ field }) {
               name="profilePhoto"
               accept="image/*"
               className="w-full border p-2 bg-gray-800 text-white rounded"
-              required
+              // required
             />
-            {/* <input type="hidden" name="deletePhoto" value="true" /> */}
+            <input type="hidden" name="deletePhoto" value="true" />
 
-            {/* <Button
+            <Button
               variant="destructive"
               name="action"
               value="delete"
@@ -36,7 +36,7 @@ export default function ProfileModal({ field }) {
             >
               <Trash2 size={16} className="mr-2" />
               Delete Photo
-            </Button> */}
+            </Button>
           </>
         ) : (
           <>

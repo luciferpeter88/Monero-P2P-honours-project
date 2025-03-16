@@ -41,14 +41,20 @@ export const action = async ({ request }) => {
   const deletePhoto = formData.get("deletePhoto");
   const actionType = formData.get("action");
   let imgSrc = "";
-  if (photo) {
+  if (photo.name) {
     imgSrc = await uploadImage(photo, userIdD);
   }
-  console.log(imgSrc);
   const email = formData.get("email");
   const phone = formData.get("phone");
   const tradingFee = Number(formData.get("tradingFee"));
-
+  if (actionType === "delete" && deletePhoto) {
+    await prisma.user.update({
+      where: { id: userIdD },
+      data: {
+        imageSrc: null,
+      },
+    });
+  }
   await prisma.user.update({
     where: { id: userIdD },
     data: {
@@ -59,14 +65,6 @@ export const action = async ({ request }) => {
       imageSrc: imgSrc.filePath ? imgSrc.filePath : undefined,
     },
   });
-  // if (actionType === "delete" && deletePhoto) {
-  //   await prisma.user.update({
-  //     where: { id: userIdD },
-  //     data: {
-  //       imageSrc: null,
-  //     },
-  //   });
-  // }
 
   return {
     success: true,
