@@ -38,6 +38,8 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const nickname = formData.get("nickname");
   const photo = formData.get("profilePhoto");
+  const deletePhoto = formData.get("deletePhoto");
+  const actionType = formData.get("action");
   let imgSrc = "";
   if (photo) {
     imgSrc = await uploadImage(photo, userIdD);
@@ -57,6 +59,15 @@ export const action = async ({ request }) => {
       imageSrc: imgSrc.filePath ? imgSrc.filePath : undefined,
     },
   });
+  // if (actionType === "delete" && deletePhoto) {
+  //   await prisma.user.update({
+  //     where: { id: userIdD },
+  //     data: {
+  //       imageSrc: null,
+  //     },
+  //   });
+  // }
+
   return {
     success: true,
   };
