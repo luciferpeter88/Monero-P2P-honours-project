@@ -25,14 +25,16 @@ export const action = async ({ request }) => {
     where: { id: userIdD },
     include: { UserSecurity: true },
   });
+  console.log(user);
   const formdata = await request.formData();
   const type = formdata.get("type");
+  console.log(type);
   switch (type) {
     case "passkey":
       await prisma.userSecurity.update({
         where: { userId: userIdD },
         data: {
-          passkeyEnabled: !user.passkeyEnabled,
+          passkeyEnabled: !user.UserSecurity.passkeyEnabled,
         },
       });
       break;
@@ -40,7 +42,7 @@ export const action = async ({ request }) => {
       await prisma.userSecurity.update({
         where: { userId: userIdD },
         data: {
-          phoneAuthEnabled: !user.phoneAuthEnabled,
+          phoneAuthEnabled: !user.UserSecurity.phoneAuthEnabled,
         },
       });
       break;
@@ -48,7 +50,7 @@ export const action = async ({ request }) => {
       await prisma.userSecurity.update({
         where: { userId: userIdD },
         data: {
-          smsAuthEnabled: !user.smsAuthEnabled,
+          smsAuthEnabled: !user.UserSecurity.smsAuthEnabled,
         },
       });
       break;
@@ -64,7 +66,7 @@ export const action = async ({ request }) => {
       await prisma.userSecurity.update({
         where: { userId: userIdD },
         data: {
-          mobileAuthEnabled: !user.mobileAuthEnabled,
+          mobileAuthEnabled: !user.UserSecurity.mobileAuthEnabled,
         },
       });
       break;
@@ -72,7 +74,7 @@ export const action = async ({ request }) => {
       await prisma.userSecurity.update({
         where: { userId: userIdD },
         data: {
-          emailAuthEnabled: !user.emailAuthEnabled,
+          emailAuthEnabled: !user.UserSecurity.emailAuthEnabled,
         },
       });
       break;
@@ -111,8 +113,6 @@ export const loader = async ({ request }) => {
       include: { UserSecurity: true },
     });
   }
-  // const respopnse = await sendVerificationCode("+447401772626");
-  // console.log(respopnse);
   return { data: user.UserSecurity };
 };
 

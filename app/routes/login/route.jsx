@@ -14,6 +14,7 @@ export async function action({ request }) {
   const inputPassword = formdata.get("password");
   const User = await prisma.user.findUnique({
     where: { email },
+    include: { UserSecurity: true },
   });
   if (!User) {
     return { error: "Invalid Credential" };
@@ -34,6 +35,28 @@ export async function action({ request }) {
   const session = await getSession(request.headers.get("Cookie"));
   // Set the user_id in the session to keep track of the user
   session.set("user_id", User.id);
+  // if the user has any security feature enabled, redirect to the mfa page
+  if (User.UserSecurity) {
+    const userSecurity = User.UserSecurity;
+    const passkeyEnabled = userSecurity.passkeyEnabled;
+    const phoneAuthEnabled = userSecurity.phoneAuthEnabled;
+    const smsAuthEnabled = userSecurity.smsAuthEnabled;
+    const emailAuthEnabled = userSecurity.emailAuthEnabled;
+    const mobileAuthEnabled = userSecurity.mobileAuthEnabled;
+    if (
+      passkeyEnabled ||
+      phoneAuthEnabled ||
+      smsAuthEnabled ||
+      emailAuthEnabled ||
+      mobileAuthEnabled
+    ) {
+      return redirect("/mfa", {
+        headers: {
+          "Set-Cookie": await commitSession(session),
+        },
+      });
+    }
+  }
   return redirect("/dashboard", {
     headers: {
       "Set-Cookie": await commitSession(session),
