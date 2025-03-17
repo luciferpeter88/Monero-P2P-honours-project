@@ -10,8 +10,114 @@ import {
 } from "lucide-react";
 import SectionHeader from "../components/SectionHeader";
 import SecurityFeature from "../components/SecurityFeature";
+// import sendVerificationCode from "../../../../utils/twillio.server";
+import { getSession } from "../../../../utils/session.server";
+import prisma from "../../../../../prisma/prisma";
+import { useLoaderData } from "@remix-run/react";
+
+export const action = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  if (!userIdD) {
+    return { error: "Unauthorized" }, { status: 401 };
+  }
+  const user = await prisma.user.findUnique({
+    where: { id: userIdD },
+    include: { UserSecurity: true },
+  });
+  const formdata = await request.formData();
+  const type = formdata.get("type");
+  switch (type) {
+    case "passkey":
+      await prisma.userSecurity.update({
+        where: { userId: userIdD },
+        data: {
+          passkeyEnabled: !user.passkeyEnabled,
+        },
+      });
+      break;
+    case "phone":
+      await prisma.userSecurity.update({
+        where: { userId: userIdD },
+        data: {
+          phoneAuthEnabled: !user.phoneAuthEnabled,
+        },
+      });
+      break;
+    case "sms":
+      await prisma.userSecurity.update({
+        where: { userId: userIdD },
+        data: {
+          smsAuthEnabled: !user.smsAuthEnabled,
+        },
+      });
+      break;
+    case "antiphishing":
+      await prisma.userSecurity.update({
+        where: { userId: userIdD },
+        data: {
+          antiPhishingCode: "test",
+        },
+      });
+      break;
+    case "mobile-auth":
+      await prisma.userSecurity.update({
+        where: { userId: userIdD },
+        data: {
+          mobileAuthEnabled: !user.mobileAuthEnabled,
+        },
+      });
+      break;
+    case "email":
+      await prisma.userSecurity.update({
+        where: { userId: userIdD },
+        data: {
+          emailAuthEnabled: !user.emailAuthEnabled,
+        },
+      });
+      break;
+    default:
+      break;
+  }
+
+  console.log(type);
+  return { test: "test" };
+};
+
+export const loader = async ({ request }) => {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+  if (!userIdD) {
+    return { error: "Unauthorized" }, { status: 401 };
+  }
+  let user = await prisma.user.findUnique({
+    where: { id: userIdD },
+    include: { UserSecurity: true },
+  });
+  if (!user.UserSecurity) {
+    await prisma.userSecurity.create({
+      data: {
+        userId: userIdD,
+        passkeyEnabled: false,
+        phoneAuthEnabled: false,
+        smsAuthEnabled: false,
+        antiPhishingCode: "test",
+        mobileAuthEnabled: false,
+        emailAuthEnabled: false,
+      },
+    });
+    user = await prisma.user.findUnique({
+      where: { id: userIdD },
+      include: { UserSecurity: true },
+    });
+  }
+  // const respopnse = await sendVerificationCode("+447401772626");
+  // console.log(respopnse);
+  return { data: user.UserSecurity };
+};
 
 export default function Index() {
+  const { data } = useLoaderData();
   return (
     <div className="w-full mt-5 bg-primary text-white">
       <div className="bg-third p-6 rounded-lg">
@@ -26,6 +132,7 @@ export default function Index() {
             description="Use passkeys for a secure, passwordless login experience, tied to your device"
             buttonLabel="Set up"
             modalType="passkey"
+            status={data?.passkeyEnabled}
           />
           <SecurityFeature
             icon={<Phone size={20} className="text-muted-foreground" />}
@@ -33,13 +140,15 @@ export default function Index() {
             description="Enable phone authentication for additional security during logins and transactions"
             buttonLabel="Set up"
             modalType="phone"
+            status={data?.phoneAuthEnabled}
           />
           <SecurityFeature
             icon={<Mail size={20} className="text-muted-foreground" />}
-            title="Phone authentication"
+            title="Sms authentication"
             description="Enable phone authentication for additional security during logins and transactions"
             buttonLabel="Set up"
-            modalType="phone"
+            modalType="sms"
+            status={data?.smsAuthEnabled}
           />
           <SecurityFeature
             icon={<Shield size={20} className="text-muted-foreground" />}
@@ -47,20 +156,22 @@ export default function Index() {
             description="Set up a personalized code to ensure emails from the platform are authentic"
             buttonLabel="Set up"
             modalType="antiphishing"
+            status={data?.antiPhishing}
           />
-          <SecurityFeature
+          {/* <SecurityFeature
             icon={<Lock size={20} className="text-muted-foreground" />}
             title="Google Authentication"
             description="Sign in with your Google account for secure and fast authentication"
             buttonLabel="Sign in with Google"
             modalType="google-auth"
-          />
+          /> */}
           <SecurityFeature
             icon={<Smartphone size={20} className="text-muted-foreground" />}
             title="Mobile App Authentication"
             description="Use a mobile authentication app (like Microsoft Authenticator) for secure logins"
             buttonLabel="Set up mobile authentication"
             modalType="mobile-auth"
+            status={data?.mobileAuthEnabled}
           />
           <SecurityFeature
             icon={<Mail size={20} className="text-muted-foreground" />}
@@ -68,13 +179,7 @@ export default function Index() {
             description="Use email authentication for login and transaction confirmations"
             buttonLabel="Change email"
             modalType="email"
-          />
-          <SecurityFeature
-            icon={<Lock size={20} className="text-muted-foreground" />}
-            title="Login password"
-            description="Set a strong password to protect your account from unauthorized access"
-            buttonLabel="Change password"
-            modalType="password"
+            status={data?.emailAuthEnabled}
           />
         </div>
       </div>
