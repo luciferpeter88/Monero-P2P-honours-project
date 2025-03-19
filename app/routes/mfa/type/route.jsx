@@ -5,27 +5,37 @@ import { redirect } from "@remix-run/node";
 import { getSession, commitSession } from "../../../utils/session.server";
 import sendOTPEmail from "../../../utils/sendOTPEmail";
 import generateOTP from "../../../utils/generateOTP";
+import sendVerificationCode from "../../../utils/twillio.server";
 
 export async function action({ request }) {
   const formdata = await request.formData();
   // get the method from the query string
   const url = new URL(request.url);
   const methodValue = url.searchParams.get("method");
+  // get the verification code from the form data
   const code = formdata.get("verificationCode");
   const session = await getSession(request.headers.get("Cookie"));
   const userIdD = session.get("user_id");
   if (!userIdD) {
     return redirect("/");
   }
+  //   const user = await prisma.user.findUnique({
+  //     where: { id: userIdD },
+  //   });
 
   // based on the method, we can switch and perform the necessary action
   switch (methodValue) {
     case "passkeyEnabled":
       break;
-    case "phoneAuthEnabled":
-      break;
-    case "smsAuthEnabled":
-      break;
+    case "smsAuthEnabled": {
+      const smsAuth = session.get("smsAuth");
+      if (smsAuth && Number(smsAuth) === Number(code)) {
+        return redirect("/dashboard");
+      }
+
+      return { error: "Invalid code, the new code has been resent!" };
+    }
+
     case "emailAuthEnabled": {
       const emailAuth = session.get("emailAuth");
       if (emailAuth && Number(emailAuth) === Number(code)) {
@@ -33,8 +43,7 @@ export async function action({ request }) {
       }
       return { error: "Invalid code, the new code has been resent!" };
     }
-    case "mobileAuthEnabled":
-      break;
+
     default:
       break;
   }
@@ -51,19 +60,33 @@ export const loader = async ({ request }) => {
   }
   const user = await prisma.user.findUnique({
     where: { id: userIdD },
-    include: { UserSecurity: true },
   });
 
   // will trigger auth method based on the chosen method when the route is loaded
   switch (methodValue) {
     case "passkeyEnabled":
       break;
-    case "phoneAuthEnabled":
-      console.log("Route is loaded, logged in phoneAuthEnabled");
-      break;
-    case "smsAuthEnabled":
+
+    case "smsAuthEnabled": {
+      const generateOTPCode = generateOTP();
+      // set the OTP code in the session
+      session.set("smsAuth", `${generateOTPCode}2`);
+      // send the OTP code to the user's phone number
+
+      if (!user.phone) {
+        return { error: "Phone number not found" };
+      }
       console.log("Route is loaded, logged in smsAuthEnabled");
-      break;
+
+      await sendVerificationCode(user?.phone, `${generateOTPCode}2`);
+      return new Response(JSON.stringify({ message: "SMS sent" }), {
+        headers: {
+          "Content-Type": "application/json",
+          "Set-Cookie": await commitSession(session),
+        },
+      });
+    }
+
     case "emailAuthEnabled": {
       // generate OTP code
       const generateOTPCode = generateOTP();
@@ -80,8 +103,6 @@ export const loader = async ({ request }) => {
       });
     }
 
-    case "mobileAuthEnabled":
-      break;
     default:
       break;
   }

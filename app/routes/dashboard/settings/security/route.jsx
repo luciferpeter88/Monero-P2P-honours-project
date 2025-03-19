@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import SectionHeader from "../components/SectionHeader";
 import SecurityFeature from "../components/SecurityFeature";
-// import sendVerificationCode from "../../../../utils/twillio.server";
 import { getSession } from "../../../../utils/session.server";
 import prisma from "../../../../../prisma/prisma";
 import { useLoaderData } from "@remix-run/react";
@@ -134,14 +133,14 @@ export default function Index() {
             modalType="passkey"
             status={data?.passkeyEnabled}
           />
-          <SecurityFeature
+          {/* <SecurityFeature
             icon={<Phone size={20} className="text-muted-foreground" />}
             title="Phone authentication"
             description="Enable phone authentication for additional security during logins and transactions"
             buttonLabel="Set up"
             modalType="phone"
             status={data?.phoneAuthEnabled}
-          />
+          /> */}
           <SecurityFeature
             icon={<Mail size={20} className="text-muted-foreground" />}
             title="Sms authentication"
@@ -150,14 +149,14 @@ export default function Index() {
             modalType="sms"
             status={data?.smsAuthEnabled}
           />
-          <SecurityFeature
+          {/* <SecurityFeature
             icon={<Shield size={20} className="text-muted-foreground" />}
             title="Anti-phishing code"
             description="Set up a personalized code to ensure emails from the platform are authentic"
             buttonLabel="Set up"
             modalType="antiphishing"
             status={data?.antiPhishing}
-          />
+          /> */}
           {/* <SecurityFeature
             icon={<Lock size={20} className="text-muted-foreground" />}
             title="Google Authentication"
@@ -165,14 +164,14 @@ export default function Index() {
             buttonLabel="Sign in with Google"
             modalType="google-auth"
           /> */}
-          <SecurityFeature
+          {/* <SecurityFeature
             icon={<Smartphone size={20} className="text-muted-foreground" />}
             title="Mobile App Authentication"
             description="Use a mobile authentication app (like Microsoft Authenticator) for secure logins"
             buttonLabel="Set up mobile authentication"
             modalType="mobile-auth"
             status={data?.mobileAuthEnabled}
-          />
+          /> */}
           <SecurityFeature
             icon={<Mail size={20} className="text-muted-foreground" />}
             title="Email authentication"
@@ -195,13 +194,13 @@ export default function Index() {
             buttonLabel="Manage"
             modalType="devices"
           />
-          <SecurityFeature
+          {/* <SecurityFeature
             icon={<CheckCircle size={20} className="text-muted-foreground" />}
             title="Trading permissions"
             description="Control what types of trades and transactions your account is allowed to perform"
             buttonLabel="Turn on"
             modalType="trading"
-          />
+          /> */}
         </div>
       </div>
 

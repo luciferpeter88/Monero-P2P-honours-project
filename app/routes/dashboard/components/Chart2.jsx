@@ -21,7 +21,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../../src/components/components/ui/select";
-
+import { Use } from "../context/Context";
+import useStoredValue from "../components/useStoredValue";
 export default function Component({ data }) {
   // Create chartData with a minimum value for zero balances
   const chartData = data.map((item, index) => {
@@ -52,14 +53,29 @@ export default function Component({ data }) {
     [activeMonth]
   );
   const accounts = React.useMemo(() => chartData.map((item) => item.id), []);
-
+  const { fontSize } = Use();
+  const typography = useStoredValue("typography");
   return (
     <Card data-chart={id} className="flex flex-col p-5 pt-8 bg-transparent">
       <ChartStyle id={id} config={configChart} />
       <CardHeader className="flex-row items-start space-y-0 pb-0">
         <div className="grid gap-1">
-          <CardTitle className="text-white">Assets Overview</CardTitle>
-          <CardDescription className="mt-3">
+          <CardTitle
+            className="text-white"
+            style={{
+              fontSize:
+                typography?.size.fontSize + 3 || fontSize.size.fontSize + 3,
+            }}
+          >
+            Assets Overview
+          </CardTitle>
+          <CardDescription
+            className="mt-3"
+            style={{
+              fontSize:
+                typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+            }}
+          >
             Total {totalAssets.toLocaleString()} XMR
           </CardDescription>
         </div>

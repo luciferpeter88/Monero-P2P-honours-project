@@ -1,10 +1,15 @@
 import card from "./picture/card.svg";
+import { Use } from "../context/Context";
+import useStoredValue from "../components/useStoredValue";
+
 export default function Card({
   name,
   usedAccount,
   lockedBalance,
   unlockedBalance,
 }) {
+  const { fontSize } = Use();
+  const typography = useStoredValue("typography");
   return (
     <div className="card" style={{ backgroundImage: `url(${card})` }}>
       <div className="visa_logo">
@@ -18,15 +23,40 @@ export default function Card({
           src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png"
           alt=""
         />
-        <p>Your Balance</p>
-        <h2 className="absolute">
+        <p
+          style={{
+            fontSize:
+              typography?.size.fontSize + 0.5 || fontSize.size.fontSize + 0.5,
+          }}
+        >
+          Your Balance
+        </p>
+        <h2
+          className="absolute"
+          style={{
+            fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+          }}
+        >
           Locked {lockedBalance}{" "}
           <span className="ml-36">Unlocked {unlockedBalance}</span>
         </h2>
       </div>
       <div className="visa_crinfo">
-        <p>{usedAccount}</p>
-        <p>{name}</p>
+        <p
+          style={{
+            fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+          }}
+        >
+          {usedAccount}
+        </p>
+        <p
+          style={{
+            fontSize:
+              typography?.size.fontSize + 1 || fontSize.size.fontSize + 1,
+          }}
+        >
+          {name}
+        </p>
       </div>
     </div>
   );

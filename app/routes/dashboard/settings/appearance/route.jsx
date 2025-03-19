@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -13,11 +13,12 @@ import {
 } from "../../../../../src/components/components/ui/select";
 import CustomSlider from "../components/CustomSlider";
 import ColourSelection from "../components/ColourSelection";
+import { Use } from "../../context/Context";
 
 const Index = () => {
   const [theme, setTheme] = useState("light");
   const [font, setFont] = useState("Inter");
-  const [fontSize, setFontSize] = useState(16);
+  // const [fontSize, setFontSize] = useState(16);
   const [lineHeight, setLineHeight] = useState(1.5);
   const [letterSpacing, setLetterSpacing] = useState(0);
   const [borderRadius, setBorderRadius] = useState(8);
@@ -32,18 +33,15 @@ const Index = () => {
   const [textAlign, setTextAlign] = useState("left");
   const [profiles, setProfiles] = useState([]);
 
-  const updatePreferences = () => {
-    const root = document.querySelector(":root");
-    const style = root;
+  const { fontSize, setFontSize } = Use();
 
-    console.log("root", style);
-  };
+  const updatePreferences = () => {};
 
   const saveProfile = () => {
     const newProfile = {
       theme,
       font,
-      fontSize,
+      // fontSize,
       lineHeight,
       letterSpacing,
       borderRadius,
@@ -63,7 +61,7 @@ const Index = () => {
   const loadProfile = (profile) => {
     setTheme(profile.theme);
     setFont(profile.font);
-    setFontSize(profile.fontSize);
+    // setFontSize(profile.fontSize);
     setLineHeight(profile.lineHeight);
     setLetterSpacing(profile.letterSpacing);
     setBorderRadius(profile.borderRadius);
@@ -77,11 +75,22 @@ const Index = () => {
     setAnimationSpeed(profile.animationSpeed);
     setTextAlign(profile.textAlign);
   };
+  console.log(fontSize);
+
+  useEffect(() => {}, []);
 
   return (
     <div className="p-6 space-y-1 bg-third mt-5 rounded-lg">
-      <h1 className="text-xl font-medium">Appearance</h1>
-      <p className="text-muted-foreground text-sm">
+      <h1
+        className="text-xl font-medium"
+        style={{ fontSize: fontSize.size.fontSize + 1 }}
+      >
+        Appearance
+      </h1>
+      <p
+        className="text-muted-foreground text-sm"
+        style={{ fontSize: fontSize.size.fontSize - 4 }}
+      >
         Customize the appearance of the app. Automatically switch between day
         and night themes.
       </p>
@@ -89,7 +98,10 @@ const Index = () => {
       <Card className="bg-third">
         <CardContent className="space-y-4">
           <div className=" flex flex-col">
-            <label className="block text-sm font-medium text-white mt-5">
+            <label
+              className="block text-sm font-medium text-white mt-5"
+              style={{ fontSize: fontSize.size.fontSize - 4 }}
+            >
               Font
             </label>
             <Select value={font} onValueChange={setFont}>
@@ -115,13 +127,17 @@ const Index = () => {
 
           <CustomSlider
             label="Font Size"
-            defaultState={fontSize}
+            localStorageState={fontSize}
+            defaultState={fontSize.defaultFontSize}
             updateState={setFontSize}
+            type="defaultFontSize"
           />
           <CustomSlider
             label="Line Height"
-            defaultState={lineHeight}
-            updateState={setLineHeight}
+            defaultState={fontSize.defaultLineHeight}
+            localStorageState={fontSize}
+            updateState={setFontSize}
+            type="lineHeight"
           />
 
           <CustomSlider

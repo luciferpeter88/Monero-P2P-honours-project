@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-
+import { Use } from "../context/Context";
+import useStoredValue from "../components/useStoredValue";
 import {
   Card,
   CardContent,
@@ -49,12 +50,29 @@ export default function Chart({ chartData }) {
     return date >= startDate;
   });
 
+  const { fontSize } = Use();
+  const typography = useStoredValue("typography");
+
   return (
     <Card className="h-full bg-transparent">
       <CardHeader className="flex items-center gap-2 space-y-0  py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
-          <CardTitle className="text-white">Monero Chart</CardTitle>
-          <CardDescription className="mt-3">
+          <CardTitle
+            className="text-white"
+            style={{
+              fontSize:
+                typography?.size.fontSize + 5 || fontSize.size.fontSize + 5,
+            }}
+          >
+            Monero Chart
+          </CardTitle>
+          <CardDescription
+            className="mt-3"
+            style={{
+              fontSize:
+                typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+            }}
+          >
             Showing the price of Monero in the last {timeRange} days
           </CardDescription>
         </div>

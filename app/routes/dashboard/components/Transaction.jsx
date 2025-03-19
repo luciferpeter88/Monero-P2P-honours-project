@@ -1,5 +1,7 @@
 import { Button } from "../../../../src/components/components/ui/button";
 import { Link } from "@remix-run/react";
+import { Use } from "../context/Context";
+import useStoredValue from "../components/useStoredValue";
 export default function WithdrawalRecords({ header, data }) {
   // const transactions = [
   //   {
@@ -35,7 +37,8 @@ export default function WithdrawalRecords({ header, data }) {
   //     remarks: "-",
   //   },
   // ];
-
+  const { fontSize } = Use();
+  const typography = useStoredValue("typography");
   return (
     <div className="bg-third text-white p-6 rounded-xl shadow-lg mt-5">
       {/* Header Section */}

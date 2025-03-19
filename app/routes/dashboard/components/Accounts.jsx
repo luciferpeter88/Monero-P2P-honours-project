@@ -3,6 +3,8 @@ import { CiEdit } from "react-icons/ci";
 import { useState, useEffect } from "react";
 import { Form } from "@remix-run/react";
 import Modal from "../components/Modal";
+import { Use } from "../context/Context";
+import useStoredValue from "../components/useStoredValue";
 
 export default function Accounts({
   AccountType,
@@ -34,6 +36,8 @@ export default function Accounts({
       newName: e.target.value,
     }));
   };
+  const { fontSize } = Use();
+  const typography = useStoredValue("typography");
 
   return (
     <div
@@ -51,12 +55,28 @@ export default function Accounts({
           : ""
       }`}
     >
-      <p>{AccountType}</p>
-      <p className="ml-auto">{`${accountAddress.slice(
-        0,
-        10
-      )}......${accountAddress.slice(-10)}....`}</p>
-      <p>
+      <p
+        style={{
+          fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+        }}
+      >
+        {AccountType}
+      </p>
+      <p
+        className="ml-auto"
+        style={{
+          fontSize:
+            typography?.size.fontSize - 1.5 || fontSize.size.fontSize - 1.5,
+        }}
+      >{`${accountAddress.slice(0, 10)}......${accountAddress.slice(
+        -10
+      )}....`}</p>
+      <p
+        style={{
+          fontSize:
+            typography?.size.fontSize - 1.5 || fontSize.size.fontSize - 1.5,
+        }}
+      >
         {balance} <span className="ml-2">XMR</span>
       </p>
       <CiEdit onClick={() => setOpenModal(true)} />

@@ -4,6 +4,7 @@ import "./style/style.css";
 import { Outlet } from "@remix-run/react";
 import { getCurrentMoneroPrice } from "../../utils/moneroPrice";
 import { useLoaderData } from "@remix-run/react";
+import { Provider } from "./context/Context";
 
 export async function loader() {
   const currentPrice = await getCurrentMoneroPrice();
@@ -13,12 +14,14 @@ export async function loader() {
 export default function Shared() {
   const data = useLoaderData();
   return (
-    <div className="dashboard-container m-5">
-      <DashNavbar price={data.currentPrice} />
-      <SideBar />
-      <div className="dashboardMainLeft rounded-lg">
-        <Outlet />
+    <Provider>
+      <div className="dashboard-container m-5">
+        <DashNavbar price={data.currentPrice} />
+        <SideBar />
+        <div className="dashboardMainLeft rounded-lg">
+          <Outlet />
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 }

@@ -1,7 +1,6 @@
-import React from "react";
 import { Mail, Phone, Key, Smartphone } from "lucide-react";
 import prisma from "../../../../prisma/prisma";
-import { Link, Form, useActionData, useLoaderData } from "@remix-run/react";
+import { Form, useLoaderData } from "@remix-run/react";
 import { redirect } from "@remix-run/node";
 import { getSession } from "../../../utils/session.server";
 // import { Button } from "../../components/button";
@@ -27,15 +26,11 @@ export const loader = async ({ request }) => {
     include: { UserSecurity: true },
   });
 
-  // const respopnse = await sendVerificationCode("+447401772626");
   return { data: user.UserSecurity };
 };
 
 export default function Index() {
   const data = useLoaderData();
-  // const actionData = useActionData();
-  // console.log(actionData);
-
   const enabledMethods = [
     { name: "Passkeys", key: "passkeyEnabled", icon: <Key />, type: "passkey" },
     {

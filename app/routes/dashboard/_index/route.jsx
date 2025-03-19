@@ -1,5 +1,5 @@
 import "../style/style.css";
-import React from "react";
+import React, { useEffect } from "react";
 import UserDetails from "../components/UserDetails";
 import Card from "../components/Card";
 import Account from "../components/Accounts";
@@ -18,6 +18,8 @@ import Monero from "../../../utils/Monero.server";
 import Modal from "../components/Modal";
 import tradeCounting from "../../../utils/tradesCounting.server";
 import getAllAccounts from "../../../utils/getAllAccounts";
+import { Use } from "../context/Context";
+import useStoredValue from "../components/useStoredValue";
 // read the data from the backend when the page is loaded and pass it to the component
 export async function loader({ request }) {
   const session = await getSession(request.headers.get("Cookie"));
@@ -110,11 +112,21 @@ export default function Index() {
   const data = useLoaderData();
   const [usedaccount, setUsedAccount] = React.useState(0);
   const [openModal, setOpenModal] = React.useState(false);
+  const { fontSize } = Use();
 
+  const typography = useStoredValue("typography");
+  console.log("typography", typography);
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg">
-        <h3 className="font-medium">{data.name}</h3>
+        <h3
+          className="font-medium text"
+          style={{
+            fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+          }}
+        >
+          {data.name}
+        </h3>
         <div className="mt-3 flex gap-x-16 w-full ">
           <UserDetails firstText="Account" lastText={data.email} />
           <UserDetails
@@ -169,7 +181,15 @@ export default function Index() {
           </div>
         </div>
         <div className="w-full bg-third p-5 rounded-lg">
-          <h2 className="text-lg font-semibold">Accounts</h2>
+          <h2
+            className="text-lg font-semibold"
+            style={{
+              fontSize:
+                typography?.size.fontSize + 1 || fontSize.size.fontSize + 1,
+            }}
+          >
+            Accounts
+          </h2>
           <div className="mt-5 flex flex-col overflow-scroll h-[25vh]">
             {data.accounts.map((account, index) => (
               <Account
@@ -196,7 +216,15 @@ export default function Index() {
         </div>
       </div>
       <div className="bg-third p-5 rounded-lg mt-5 flex flex-col">
-        <h2 className="text-2xl font-semibold mb-4">Market</h2>
+        <h2
+          className="text-2xl font-semibold mb-4"
+          style={{
+            fontSize:
+              typography?.size.fontSize + 5 || fontSize.size.fontSize + 5,
+          }}
+        >
+          Market
+        </h2>
         <div className="flex gap-5">
           {data.market.map((market) => (
             <ProfileCard
