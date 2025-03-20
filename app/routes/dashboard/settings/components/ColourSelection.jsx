@@ -1,12 +1,11 @@
 import { Input } from "../../../../../src/components/components/ui/input";
-import { useState, useEffect } from "react";
-export default function ColourSelection({ label, type }) {
-  const [selectedColour, setSelectedColour] = useState({
-    primary: "#141919",
-    secondary: "#f88415",
-    tertiary: "#232828",
-  });
-
+import { useEffect } from "react";
+export default function ColourSelection({
+  label,
+  type,
+  selectedColour,
+  setSelectedColour,
+}) {
   useEffect(() => {
     const storedColour = localStorage.getItem("colourType");
     if (storedColour) {
@@ -26,6 +25,7 @@ export default function ColourSelection({ label, type }) {
               "colourType",
               JSON.stringify({ ...prev, [type]: e.target.value })
             );
+            console.log("prev", selectedColour);
             return { ...prev, [type]: e.target.value };
           })
         }

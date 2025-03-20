@@ -14,67 +14,17 @@ import {
 import CustomSlider from "../components/CustomSlider";
 import ColourSelection from "../components/ColourSelection";
 import { Use } from "../../context/Context";
+import useStoredValue from "../../components/useStoredValue";
 
 const Index = () => {
-  const [theme, setTheme] = useState("light");
-  const [lineHeight, setLineHeight] = useState(1.5);
-  const [letterSpacing, setLetterSpacing] = useState(0);
-  const [borderRadius, setBorderRadius] = useState(8);
-  const [primaryColor, setPrimaryColor] = useState("#1D4ED8");
-  const [secondaryColor, setSecondaryColor] = useState("#9333EA");
-  const [tertiaryColor, setTertiaryColor] = useState("#F59E0B");
-  const [buttonColor, setButtonColor] = useState("#2563EB");
-  const [hoverColor, setHoverColor] = useState("#3B82F6");
-  const [gridGap, setGridGap] = useState(10);
-  const [backgroundImage, setBackgroundImage] = useState("");
-  const [animationSpeed, setAnimationSpeed] = useState(1);
-  const [textAlign, setTextAlign] = useState("left");
-  const [profiles, setProfiles] = useState([]);
-
   const { fontSize, setFontSize } = Use();
 
-  const updatePreferences = () => {};
-
-  const saveProfile = () => {
-    const newProfile = {
-      theme,
-      font,
-      // fontSize,
-      lineHeight,
-      letterSpacing,
-      borderRadius,
-      primaryColor,
-      secondaryColor,
-      tertiaryColor,
-      buttonColor,
-      hoverColor,
-      gridGap,
-      backgroundImage,
-      animationSpeed,
-      textAlign,
-    };
-    setProfiles([...profiles, newProfile]);
-  };
-
-  const loadProfile = (profile) => {
-    setTheme(profile.theme);
-    setFont(profile.font);
-    // setFontSize(profile.fontSize);
-    setLineHeight(profile.lineHeight);
-    setLetterSpacing(profile.letterSpacing);
-    setBorderRadius(profile.borderRadius);
-    setPrimaryColor(profile.primaryColor);
-    setSecondaryColor(profile.secondaryColor);
-    setTertiaryColor(profile.tertiaryColor);
-    setButtonColor(profile.buttonColor);
-    setHoverColor(profile.hoverColor);
-    setGridGap(profile.gridGap);
-    setBackgroundImage(profile.backgroundImage);
-    setAnimationSpeed(profile.animationSpeed);
-    setTextAlign(profile.textAlign);
-  };
-
   const [selectedFont, setSelectedFont] = useState("Inter");
+  const [selectedColour, setSelectedColour] = useState({
+    primary: "#141919",
+    secondary: "#f88415",
+    tertiary: "#232828",
+  });
 
   useEffect(() => {
     const storedFont = localStorage.getItem("fontType");
@@ -87,8 +37,17 @@ const Index = () => {
     setSelectedFont(newFont);
     localStorage.setItem("fontType", JSON.stringify(newFont));
   };
+  const colorType = useStoredValue("colourType");
+  function clearLocalStorage() {
+    localStorage.clear();
+    window.location.reload();
+  }
+
   return (
-    <div className="p-6 space-y-1 bg-third mt-5 rounded-lg">
+    <div
+      className="p-6 space-y-1 bg-third mt-5 rounded-lg"
+      style={{ backgroundColor: colorType?.tertiary }}
+    >
       <h1
         className="text-xl font-medium"
         style={{ fontSize: fontSize.size.fontSize + 1 }}
@@ -103,7 +62,10 @@ const Index = () => {
         and night themes.
       </p>
 
-      <Card className="bg-third">
+      <Card
+        className="bg-third"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <CardContent className="space-y-4">
           <div className=" flex flex-col">
             <label
@@ -147,9 +109,24 @@ const Index = () => {
             updateState={setFontSize}
             type="lineHeight"
           />
-          <ColourSelection label="Primary Color" type="primary" />
-          <ColourSelection label="Secondary Color" type="secondary" />
-          <ColourSelection label="Tertiary Color" type="tertiary" />
+          <ColourSelection
+            label="Primary Color"
+            type="primary"
+            selectedColour={selectedColour}
+            setSelectedColour={setSelectedColour}
+          />
+          <ColourSelection
+            label="Secondary Color"
+            type="secondary"
+            selectedColour={selectedColour}
+            setSelectedColour={setSelectedColour}
+          />
+          <ColourSelection
+            label="Tertiary Color"
+            type="tertiary"
+            selectedColour={selectedColour}
+            setSelectedColour={setSelectedColour}
+          />
 
           <div>
             <label
@@ -160,51 +137,17 @@ const Index = () => {
             </label>
             <div className="flex space-x-4">
               <Button
-                className={`p-4 border ${
-                  theme === "light"
-                    ? "border-secondary"
-                    : "border-muted-foreground"
-                }`}
-                onClick={() => setTheme("light")}
+                className={`p-4 border border-secondary`}
+                onClick={clearLocalStorage}
               >
-                Light
+                Set back
               </Button>
               <Button
-                className={`p-4 border ${
-                  theme === "dark"
-                    ? "border-secondary"
-                    : "border-muted-foreground"
-                }`}
-                onClick={() => setTheme("dark")}
+                className={`p-4 border border-secondary`}
+                onClick={() => window.location.reload()}
               >
-                Dark
+                Submit
               </Button>
-              <Button
-                className={`p-4 border  ${
-                  theme === "custom"
-                    ? "border-secondary"
-                    : "border-muted-foreground"
-                }`}
-                onClick={() => setTheme("custom")}
-              >
-                Custom
-              </Button>
-            </div>
-          </div>
-
-          <Button onClick={updatePreferences}>Update Preferences</Button>
-          <Button onClick={saveProfile} className="ml-4">
-            Save Profile
-          </Button>
-
-          <div>
-            <h2 className="text-lg font-medium text-white">Saved Profiles</h2>
-            <div className="space-y-2 mt-3">
-              {profiles.map((profile, index) => (
-                <Button key={index} onClick={() => loadProfile(profile)}>
-                  Load Profile {index + 1}
-                </Button>
-              ))}
             </div>
           </div>
         </CardContent>

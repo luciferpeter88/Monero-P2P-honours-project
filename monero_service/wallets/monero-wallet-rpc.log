@@ -319,3 +319,5 @@
 2025-03-20 08:49:17.311	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
 2025-03-20 08:49:17.312	  0x7ff84cd78b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
 2025-03-20 08:49:18.075	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-20 17:03:53.103	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:4232	Detaching blockchain on height 3372041
+2025-03-20 17:03:53.103	[RPC0]	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:4317	Detached blockchain on height 3372041, transfers detached 0, blocks detached 1

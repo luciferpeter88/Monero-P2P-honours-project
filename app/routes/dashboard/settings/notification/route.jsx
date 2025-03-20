@@ -3,8 +3,11 @@ import {
   Card,
   CardContent,
 } from "../../../../../src/components/components/ui/card";
+import useStoredValue from "../../components/useStoredValue";
 
 import { Switch } from "../../../../../src/components/components/ui/switch";
+import Card1 from "./components/Card1";
+import Card2 from "./components/Card1";
 
 export default function Index() {
   const [notifications, setNotifications] = useState({
@@ -80,57 +83,56 @@ export default function Index() {
       description: "Receive notifications through text messages",
     },
   ];
+  const colorType = useStoredValue("colourType");
+  const [hover, sethover] = useState(false);
+
   return (
     <React.Fragment>
-      <div className="p-6 space-y-1 bg-third rounded-lg mt-5">
+      <div
+        className="p-6 space-y-1 bg-third rounded-lg mt-5"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <h1 className="text-xl font-medium">Notification Settings</h1>
         <p className="text-muted-foreground">
           Manage how you receive notifications from the platform
         </p>
 
         <Card>
-          <CardContent className="space-y-4 mt-5 bg-third ">
+          <CardContent
+            className="space-y-4 mt-5 bg-third "
+            style={{ backgroundColor: colorType?.tertiary }}
+          >
             {notificationSettings.map(({ key, label, description }) => (
-              <div
+              <Card1
                 key={key}
-                className="flex justify-between items-center p-4  hover:bg-primary rounded-lg "
-              >
-                <div>
-                  <h2 className="font-medium text-sm text-white">{label}</h2>
-                  <p className="text-xs text-muted-foreground">{description}</p>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <Switch
-                    className="data-[state=checked]:bg-secondary data-[state=unchecked]:bg-muted-foreground"
-                    checked={notifications[key].enabled}
-                    onCheckedChange={() => toggleNotification(key)}
-                  />
-                </div>
-              </div>
+                label={label}
+                description={description}
+                checked={notifications[key].enabled}
+                onCheckedChange={() => toggleNotification(key)}
+              />
             ))}
           </CardContent>
         </Card>
       </div>
-      <div className="p-6 space-y-3 bg-third rounded-lg mt-5">
+      <div
+        className="p-6 space-y-3 bg-third rounded-lg mt-5"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <h2 className="text-xl font-medium">Notification Preferences</h2>
 
         <Card>
-          <CardContent className="space-y-4 bg-third">
+          <CardContent
+            className="space-y-4 bg-third"
+            style={{ backgroundColor: colorType?.tertiary }}
+          >
             {notificationPreferences.map(({ key, label, description }) => (
-              <div
+              <Card2
                 key={key}
-                className="flex justify-between items-center p-4  hover:bg-primary rounded-lg "
-              >
-                <div>
-                  <h2 className="font-medium text-sm text-white">{label}</h2>
-                  <p className="text-xs text-muted-foreground">{description}</p>
-                </div>
-                <Switch
-                  className="data-[state=checked]:bg-secondary data-[state=unchecked]:bg-muted-foreground"
-                  checked={notifications[key].enabled}
-                  onCheckedChange={() => toggleNotification(key)}
-                />
-              </div>
+                label={label}
+                description={description}
+                checked={notifications[key].enabled}
+                onCheckedChange={() => toggleNotification(key)}
+              />
             ))}
           </CardContent>
         </Card>
