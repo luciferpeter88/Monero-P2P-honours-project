@@ -1,18 +1,10 @@
-import {
-  Lock,
-  Mail,
-  Phone,
-  Shield,
-  Key,
-  Settings,
-  CheckCircle,
-  Smartphone,
-} from "lucide-react";
+import { Mail, Key, Settings } from "lucide-react";
 import SectionHeader from "../components/SectionHeader";
 import SecurityFeature from "../components/SecurityFeature";
 import { getSession } from "../../../../utils/session.server";
 import prisma from "../../../../../prisma/prisma";
 import { useLoaderData } from "@remix-run/react";
+import useStoredValue from "../../components/useStoredValue";
 
 export const action = async ({ request }) => {
   const session = await getSession(request.headers.get("Cookie"));
@@ -117,9 +109,17 @@ export const loader = async ({ request }) => {
 
 export default function Index() {
   const { data } = useLoaderData();
+  const colorType = useStoredValue("colourType");
+
   return (
-    <div className="w-full mt-5 bg-primary text-white">
-      <div className="bg-third p-6 rounded-lg">
+    <div
+      className="w-full mt-5 bg-primary text-white"
+      style={{ backgroundColor: colorType?.primary }}
+    >
+      <div
+        className="bg-third p-6 rounded-lg"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <SectionHeader
           title="Authentication methods"
           description="Protect your funds by improving account security"
@@ -132,15 +132,9 @@ export default function Index() {
             buttonLabel="Set up"
             modalType="passkey"
             status={data?.passkeyEnabled}
+            colorType={colorType}
           />
-          {/* <SecurityFeature
-            icon={<Phone size={20} className="text-muted-foreground" />}
-            title="Phone authentication"
-            description="Enable phone authentication for additional security during logins and transactions"
-            buttonLabel="Set up"
-            modalType="phone"
-            status={data?.phoneAuthEnabled}
-          /> */}
+
           <SecurityFeature
             icon={<Mail size={20} className="text-muted-foreground" />}
             title="Sms authentication"
@@ -148,30 +142,9 @@ export default function Index() {
             buttonLabel="Set up"
             modalType="sms"
             status={data?.smsAuthEnabled}
+            colorType={colorType}
           />
-          {/* <SecurityFeature
-            icon={<Shield size={20} className="text-muted-foreground" />}
-            title="Anti-phishing code"
-            description="Set up a personalized code to ensure emails from the platform are authentic"
-            buttonLabel="Set up"
-            modalType="antiphishing"
-            status={data?.antiPhishing}
-          /> */}
-          {/* <SecurityFeature
-            icon={<Lock size={20} className="text-muted-foreground" />}
-            title="Google Authentication"
-            description="Sign in with your Google account for secure and fast authentication"
-            buttonLabel="Sign in with Google"
-            modalType="google-auth"
-          /> */}
-          {/* <SecurityFeature
-            icon={<Smartphone size={20} className="text-muted-foreground" />}
-            title="Mobile App Authentication"
-            description="Use a mobile authentication app (like Microsoft Authenticator) for secure logins"
-            buttonLabel="Set up mobile authentication"
-            modalType="mobile-auth"
-            status={data?.mobileAuthEnabled}
-          /> */}
+
           <SecurityFeature
             icon={<Mail size={20} className="text-muted-foreground" />}
             title="Email authentication"
@@ -179,12 +152,16 @@ export default function Index() {
             buttonLabel="Change email"
             modalType="email"
             status={data?.emailAuthEnabled}
+            colorType={colorType}
           />
         </div>
       </div>
 
       {/* Advanced Security */}
-      <div className="mt-5 p-6 bg-third rounded-lg">
+      <div
+        className="mt-5 p-6 bg-third rounded-lg"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <SectionHeader title="Advanced security" />
         <div className="space-y-4">
           <SecurityFeature
@@ -193,23 +170,23 @@ export default function Index() {
             description="Review and manage all devices currently authorized to access your account"
             buttonLabel="Manage"
             modalType="devices"
+            colorType={colorType}
           />
-          {/* <SecurityFeature
-            icon={<CheckCircle size={20} className="text-muted-foreground" />}
-            title="Trading permissions"
-            description="Control what types of trades and transactions your account is allowed to perform"
-            buttonLabel="Turn on"
-            modalType="trading"
-          /> */}
         </div>
       </div>
 
       {/* Trusted Devices & IP Logs */}
-      <div className="bg-third mt-5 p-6 rounded-lg">
+      <div
+        className="bg-third mt-5 p-6 rounded-lg"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <SectionHeader title="Trusted Devices and IP Addresses" />
         <div className=" p-4 rounded-lg">
           <table className="w-full text-left text-sm text-muted-foreground">
-            <thead className="bg-primary">
+            <thead
+              className="bg-primary"
+              style={{ backgroundColor: colorType?.primary }}
+            >
               <tr>
                 <th className="p-3">Trusted Device</th>
                 <th className="p-3">Login IP</th>

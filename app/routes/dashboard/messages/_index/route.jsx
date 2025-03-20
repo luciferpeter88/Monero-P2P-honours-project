@@ -5,7 +5,6 @@ import prisma from "../../../../../prisma/prisma";
 import { getSession } from "../../../../utils/session.server";
 import { useLoaderData } from "@remix-run/react";
 import { useState, useEffect } from "react";
-import { Use } from "../../context/Context";
 import useStoredValue from "../../components/useStoredValue";
 
 export const loader = async ({ request }) => {
@@ -106,6 +105,7 @@ export default function Index() {
   }
   const typography = useStoredValue("typography");
   const fontType = useStoredValue("fontType");
+  const colourType = useStoredValue("colourType");
   const nameStyle = {
     fontSize: typography?.size.fontSize,
     letterSpacing: typography?.size.lineHeight,
@@ -113,6 +113,7 @@ export default function Index() {
   const descRiptionstyle = {
     fontSize: typography?.size.fontSize - 2,
     letterSpacing: typography?.size.lineHeight,
+    backgroundColor: colourType?.primary,
   };
   return (
     <div
@@ -124,7 +125,10 @@ export default function Index() {
         <SideBar users={data.users} setUserId={setUserId} userId={userId} />
         {/* Main Chat */}
 
-        <main className="flex-1 flex flex-col bg-third rounded-xl max-h-[calc(100vh-5rem)]">
+        <main
+          className="flex-1 flex flex-col bg-third rounded-xl max-h-[calc(100vh-5rem)]"
+          style={{ backgroundColor: colourType?.tertiary }}
+        >
           <header className="p-4 border-b border-muted-foreground flex items-center justify-between">
             <div className="flex items-center gap-4">
               <h1 className="text-xl font-medium">{userName}</h1>
@@ -203,6 +207,7 @@ export default function Index() {
                 placeholder="Your message"
                 className="flex-1 bg-transparent focus:outline-none text-white placeholder-muted-foreground p-3 bg-primary"
                 name="message"
+                style={{ backgroundColor: colourType?.primary }}
               />
               <input type="hidden" name="sender" value={data?.loggedInUserID} />
             </div>

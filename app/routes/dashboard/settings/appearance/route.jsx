@@ -73,7 +73,6 @@ const Index = () => {
     setAnimationSpeed(profile.animationSpeed);
     setTextAlign(profile.textAlign);
   };
-  console.log(fontSize);
 
   const [selectedFont, setSelectedFont] = useState("Inter");
 
@@ -88,7 +87,6 @@ const Index = () => {
     setSelectedFont(newFont);
     localStorage.setItem("fontType", JSON.stringify(newFont));
   };
-  console.log(fontSize);
   return (
     <div className="p-6 space-y-1 bg-third mt-5 rounded-lg">
       <h1
@@ -130,12 +128,6 @@ const Index = () => {
                       {font}
                     </SelectItem>
                   ))}
-                  {/* <SelectItem value="Inter">Inter</SelectItem>
-                  <SelectItem value="Arial">Arial</SelectItem>
-                  <SelectItem value="Times New Roman">
-                    Times New Roman
-                  </SelectItem>
-                  <SelectItem value="Courier New">Courier New</SelectItem> */}
                 </SelectContent>
               </SelectTrigger>
             </Select>
@@ -155,48 +147,15 @@ const Index = () => {
             updateState={setFontSize}
             type="lineHeight"
           />
-
-          {/* <CustomSlider
-            label="Letter Spacing"
-            defaultState={letterSpacing}
-            updateState={setLetterSpacing}
-          /> */}
-          <ColourSelection
-            label="Primary Color"
-            defaultState={primaryColor}
-            updateState={setPrimaryColor}
-          />
-          <ColourSelection
-            label="Secondary Color"
-            defaultState={secondaryColor}
-            updateState={setSecondaryColor}
-          />
-
-          <ColourSelection
-            label="Tertiary Color"
-            defaultState={tertiaryColor}
-            updateState={setTertiaryColor}
-          />
-
-          <ColourSelection
-            label="Button Color"
-            defaultState={buttonColor}
-            updateState={setButtonColor}
-          />
-          <ColourSelection
-            label="Hover Color"
-            defaultState={hoverColor}
-            updateState={setHoverColor}
-          />
-
-          <CustomSlider
-            label="Grap Between Grid Items"
-            defaultState={gridGap}
-            updateState={setGridGap}
-          />
+          <ColourSelection label="Primary Color" type="primary" />
+          <ColourSelection label="Secondary Color" type="secondary" />
+          <ColourSelection label="Tertiary Color" type="tertiary" />
 
           <div>
-            <label className="block text-sm font-medium text-white mb-2">
+            <label
+              className="block text-sm font-medium text-white mb-2"
+              htmlFor="theme"
+            >
               Theme
             </label>
             <div className="flex space-x-4">

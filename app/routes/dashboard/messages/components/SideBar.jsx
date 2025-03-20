@@ -3,24 +3,28 @@ import { Use } from "../../context/Context";
 import useStoredValue from "../../components/useStoredValue";
 
 export default function SideBar({ users, setUserId, userId }) {
-  const { fontSize } = Use();
   const typography = useStoredValue("typography");
+  const colourType = useStoredValue("colourType");
   const nameStyle = {
-    fontSize: typography?.size.fontSize || fontSize.size.fontSize,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize,
+    letterSpacing: typography?.size.lineHeight,
   };
   const descRiptionstyle = {
-    fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize - 2,
+    letterSpacing: typography?.size.lineHeight,
   };
   return (
-    <aside className="w-80 bg-third rounded-lg">
+    <aside
+      className="w-80 bg-third rounded-lg"
+      style={{ backgroundColor: colourType?.tertiary }}
+    >
       <div className="p-4">
         <div className="relative">
           <input
             type="search"
             placeholder="Search"
             className="w-full bg-primary rounded-xl py-2 pl-10 pr-4 text-white placeholder-muted-foreground focus:outline-none "
+            style={{ backgroundColor: colourType?.primary }}
           />
           <svg
             className="w-5 h-5 text-muted-foreground absolute left-3 top-2.5"
@@ -48,6 +52,7 @@ export default function SideBar({ users, setUserId, userId }) {
               setUserId={setUserId}
               nameStyle={nameStyle}
               descRiptionstyle={descRiptionstyle}
+              colourType={colourType}
             />
           ))
         ) : (

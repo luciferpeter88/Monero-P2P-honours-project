@@ -1,5 +1,5 @@
 import "../style/style.css";
-import React, { useEffect } from "react";
+import React from "react";
 import UserDetails from "../components/UserDetails";
 import Card from "../components/Card";
 import Account from "../components/Accounts";
@@ -18,7 +18,6 @@ import Monero from "../../../utils/Monero.server";
 import Modal from "../components/Modal";
 import tradeCounting from "../../../utils/tradesCounting.server";
 import getAllAccounts from "../../../utils/getAllAccounts";
-import { Use } from "../context/Context";
 import useStoredValue from "../components/useStoredValue";
 // read the data from the backend when the page is loaded and pass it to the component
 export async function loader({ request }) {
@@ -115,6 +114,7 @@ export default function Index() {
   const typography = useStoredValue("typograhpy");
 
   const fontType = useStoredValue("fontType");
+  const colorType = useStoredValue("colourType");
   console.log("fonttype", fontType);
 
   return (
@@ -122,7 +122,10 @@ export default function Index() {
       className="mt-5 ml-5"
       style={{ fontFamily: fontType ? fontType : "Inter" }}
     >
-      <div className="bg-third p-5 rounded-lg">
+      <div
+        className="bg-third p-5 rounded-lg"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <h3
           className="font-medium text"
           style={{
@@ -144,12 +147,20 @@ export default function Index() {
             lastText={data.accounts[usedaccount].accountName}
           />
           <Link to="/dashboard/market" className="ml-auto mt-auto">
-            <Button className="bg-secondary ml-auto">Trade</Button>
+            <Button
+              className="bg-secondary ml-auto"
+              style={{ backgroundColor: colorType?.secondary }}
+            >
+              Trade
+            </Button>
           </Link>
         </div>
       </div>
       <div className="flex mt-5 gap-5">
-        <div className=" w-max p-5 rounded-lg flex flex-col bg-third">
+        <div
+          className=" w-max p-5 rounded-lg flex flex-col bg-third"
+          style={{ backgroundColor: colorType?.tertiary }}
+        >
           <Card
             name={data.name}
             usedAccount={data.accounts[usedaccount].accountName}
@@ -179,13 +190,17 @@ export default function Index() {
             </Form>
             <Button
               className="bg-secondary ml-auto"
+              style={{ backgroundColor: colorType?.secondary }}
               onClick={() => setOpenModal(true)}
             >
               Create Account
             </Button>
           </div>
         </div>
-        <div className="w-full bg-third p-5 rounded-lg">
+        <div
+          className="w-full bg-third p-5 rounded-lg"
+          style={{ backgroundColor: colorType?.tertiary }}
+        >
           <h2
             className="text-lg font-semibold"
             style={{
@@ -213,14 +228,23 @@ export default function Index() {
         </div>
       </div>
       <div className=" mt-5 rounded-lg flex h-[55vh] gap-5">
-        <div className="w-[75%] h-full bg-third p-5 rounded-lg">
+        <div
+          className="w-[75%] h-full bg-third p-5 rounded-lg"
+          style={{ backgroundColor: colorType?.tertiary }}
+        >
           <Chart chartData={data.moneroApiChart} />
         </div>
-        <div className="w-[35%] bg-third rounded-lg">
+        <div
+          className="w-[35%] bg-third rounded-lg"
+          style={{ backgroundColor: colorType?.tertiary }}
+        >
           <Chart2 data={data.accounts} />
         </div>
       </div>
-      <div className="bg-third p-5 rounded-lg mt-5 flex flex-col">
+      <div
+        className="bg-third p-5 rounded-lg mt-5 flex flex-col"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <h2
           className="text-2xl font-semibold mb-4"
           style={{
@@ -243,7 +267,12 @@ export default function Index() {
           ))}
         </div>
         <Link to="/dashboard/market" className="ml-auto mt-auto">
-          <Button className="ml-auto mt-5 bg-secondary">Explore</Button>
+          <Button
+            className="ml-auto mt-5 bg-secondary"
+            style={{ backgroundColor: colorType?.secondary }}
+          >
+            Explore
+          </Button>
         </Link>
       </div>
       <TransactionHistory

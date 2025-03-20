@@ -17,15 +17,20 @@ export default function ReceiveForm({
   setSelectedAccount,
   subadresses,
 }) {
-  const { fontSize } = Use();
   const typography = useStoredValue("typography");
+  const colorType = useStoredValue("colourType");
   const titleStyle = {
-    fontSize: typography?.size.fontSize || fontSize.size.fontSize,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize,
+    letterSpacing: typography?.size.lineHeight,
   };
   const descriptionStyle = {
-    fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize - 2,
+    letterSpacing: typography?.size.lineHeight,
+    backgroundColor: colorType?.primary,
+  };
+  const descriptionStyle2 = {
+    fontSize: typography?.size.fontSize - 2,
+    letterSpacing: typography?.size.lineHeight,
   };
 
   const [copySuccess, setCopySuccess] = useState({});
@@ -46,7 +51,10 @@ export default function ReceiveForm({
   return (
     <div className="flex flex-col md:flex-row gap-5 mt-5 text-white">
       {/* Left Side - Interactive Form */}
-      <div className="w-full bg-third p-6 rounded-lg shadow-lg">
+      <div
+        className="w-full bg-third p-6 rounded-lg shadow-lg"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <h3
           className="text-md font-medium flex items-center gap-2 mb-3"
           style={titleStyle}
@@ -59,11 +67,20 @@ export default function ReceiveForm({
             Select Account
           </label>
           <Select value={selectedAccount} onValueChange={setSelectedAccount}>
-            <SelectTrigger className="w-full h-12 rounded-lg sm:ml-auto px-3 border-none outline-none bg-primary text-white focus:outline-none focus:border-none focus:ring-0 focus:ring-offset-0 focus:ring-primary focus:ring-offset-primary">
-              <SelectValue className="outline-none border-none bg-primary text-white" />
+            <SelectTrigger
+              className="w-full h-12 rounded-lg sm:ml-auto px-3 border-none outline-none bg-primary text-white focus:outline-none focus:border-none focus:ring-0 focus:ring-offset-0 focus:ring-primary focus:ring-offset-primary"
+              style={{ backgroundColor: colorType?.primary }}
+            >
+              <SelectValue
+                className="outline-none border-none bg-primary text-white"
+                style={{ backgroundColor: colorType?.primary }}
+              />
             </SelectTrigger>
 
-            <SelectContent className="rounded-b-lg rounded-t-none border-muted-foreground w-full bg-primary border-none">
+            <SelectContent
+              className="rounded-b-lg rounded-t-none border-muted-foreground w-full bg-primary border-none"
+              style={{ backgroundColor: colorType?.primary }}
+            >
               {accounts.map((account) => (
                 <SelectItem
                   key={account.id}
@@ -80,7 +97,11 @@ export default function ReceiveForm({
         <Form method="post">
           <input type="hidden" name="selectedAccount" value={selectedAccount} />
           <div className="mb-5">
-            <Button className="bg-secondary" type="submit">
+            <Button
+              className="bg-secondary"
+              type="submit"
+              style={{ backgroundColor: colorType?.secondary }}
+            >
               Generate Address
             </Button>
           </div>
@@ -91,7 +112,7 @@ export default function ReceiveForm({
           <label
             className="block text-sm font-medium mb-2"
             htmlFor="address"
-            style={descriptionStyle}
+            style={descriptionStyle2}
           >
             Your Receiving Address
           </label>
@@ -117,6 +138,7 @@ export default function ReceiveForm({
                   <button
                     onClick={() => copyToClipboard(subaddress.address)}
                     className="ml-3 text-secondary hover:text-white"
+                    style={{ color: colorType?.secondary }}
                   >
                     {copySuccess[subaddress.address] ? "Copied!" : "Copy"}
                   </button>
@@ -134,20 +156,23 @@ export default function ReceiveForm({
         </div>
       </div>
       {/* Right Side - Tips & Best Practices */}
-      <div className="w-full md:w-64 bg-third p-6 rounded-lg shadow-lg">
+      <div
+        className="w-full md:w-64 bg-third p-6 rounded-lg shadow-lg"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <h3 className="text-lg font-semibold" style={titleStyle}>
           💡 Tips
         </h3>
         <p
           className="text-sm text-muted-foreground mt-2"
-          style={descriptionStyle}
+          style={descriptionStyle2}
         >
           Generating a new subaddress for each transaction improves your
           privacy.
         </p>
         <p
           className="text-sm text-muted-foreground mt-2"
-          style={descriptionStyle}
+          style={descriptionStyle2}
         >
           Share the generated address with the sender only after verifying it.
         </p>

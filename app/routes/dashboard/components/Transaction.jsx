@@ -1,21 +1,22 @@
 import { Button } from "../../../../src/components/components/ui/button";
 import { Link } from "@remix-run/react";
-import { Use } from "../context/Context";
 import useStoredValue from "../components/useStoredValue";
 export default function WithdrawalRecords({ header, data }) {
-  const { fontSize } = Use();
-
   const typography = useStoredValue("typography");
+  const colorType = useStoredValue("colourType");
   const headerStyle = {
-    fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize - 2,
+    letterSpacing: typography?.size.lineHeight,
   };
   const bodyStyle = {
-    fontSize: typography?.size.fontSize - 3 || fontSize.size.fontSize - 3,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize - 3,
+    letterSpacing: typography?.size.lineHeight,
   };
   return (
-    <div className="bg-third text-white p-6 rounded-xl shadow-lg mt-5">
+    <div
+      className="bg-third text-white p-6 rounded-xl shadow-lg mt-5"
+      style={{ backgroundColor: colorType?.tertiary }}
+    >
       {/* Header Section */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-medim">
@@ -27,7 +28,10 @@ export default function WithdrawalRecords({ header, data }) {
       <div className="overflow-x-auto ">
         <table className="w-full border-collapse text-left text-sm text-muted-foreground">
           {/* Table Head */}
-          <thead className="bg-primary text-white">
+          <thead
+            className="bg-primary text-white"
+            style={{ backgroundColor: colorType?.primary }}
+          >
             <tr>
               <th className="p-3 text-left font-medium" style={headerStyle}>
                 Date/Time
@@ -59,6 +63,7 @@ export default function WithdrawalRecords({ header, data }) {
               <tr
                 key={index}
                 className=" bg-third border-t border-primary hover:bg-primary hover:bg-opacity-90"
+                style={{ backgroundColor: colorType?.tertiary }}
               >
                 <td className="p-3" style={bodyStyle}>
                   {txn.time}
@@ -100,7 +105,12 @@ export default function WithdrawalRecords({ header, data }) {
         </table>
       </div>
       <Link to="/dashboard/transactions">
-        <Button className="bg-secondary mt-8">History</Button>
+        <Button
+          className="bg-secondary mt-8"
+          style={{ backgroundColor: colorType?.secondary }}
+        >
+          History
+        </Button>
       </Link>
     </div>
   );

@@ -70,12 +70,16 @@ export default function Index() {
     setSubadresses(subadresses);
   }, [selectedAccount, data]);
   const fontType = useStoredValue("fontType");
+  const colorType = useStoredValue("colourType");
   return (
     <div
       className="mt-5 ml-5"
       style={{ fontFamily: fontType ? fontType : "Inter" }}
     >
-      <div className="bg-third p-5 rounded-lg">
+      <div
+        className="bg-third p-5 rounded-lg"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <h3 className="font-medium text-xl">Receiving Steps</h3>
         {/* Step Cards */}
         <div className="mt-8 flex justify-between gap-x-5">

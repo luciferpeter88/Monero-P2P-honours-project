@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@remix-run/react";
 import { UserPen, ShieldCheck, SunMoon, Bell } from "lucide-react";
-export default function Tabs() {
+export default function Tabs({ colorType }) {
   const location = useLocation(); // Get current route path
 
   // Define tab options with paths
@@ -32,7 +32,10 @@ export default function Tabs() {
   ];
 
   return (
-    <div className="relative flex items-center bg-third rounded-lg p-1 w-full mx-auto">
+    <div
+      className="relative flex items-center bg-third rounded-lg p-1 w-full mx-auto"
+      style={{ backgroundColor: colorType?.tertiary }}
+    >
       {/* Moving Indicator */}
       <div
         className={` h-8 bg-white rounded-md transition-all duration-200 shadow-md`}
@@ -48,6 +51,14 @@ export default function Tabs() {
               ? "text-secondary bg-primary rounded-lg"
               : "text-muted-foreground"
           }`}
+          style={
+            location.pathname === tab.path
+              ? {
+                  color: colorType?.secondary,
+                  backgroundColor: colorType?.primary,
+                }
+              : {}
+          }
         >
           <div className="flex items-center justify-center gap-2">
             {tab.icon}

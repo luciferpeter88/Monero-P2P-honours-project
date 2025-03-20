@@ -36,9 +36,16 @@ export default function Accounts({
       newName: e.target.value,
     }));
   };
-  const { fontSize } = Use();
   const typography = useStoredValue("typography");
-
+  const colorType = useStoredValue("colourType");
+  const [isHovered, setIsHovered] = useState(false);
+  const style = {
+    backgroundColor:
+      id === data[account].id || isHovered ? colorType?.primary : null,
+    borderLeftColor:
+      id === data[account].id || isHovered ? colorType?.secondary : null,
+    color: id === data[account].id || isHovered ? colorType?.tertiary : null,
+  };
   return (
     <div
       role="button"
@@ -54,6 +61,9 @@ export default function Accounts({
           ? "bg-primary border-l-4 border-l-secondary text-secondary"
           : ""
       }`}
+      style={style}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <p
         style={{

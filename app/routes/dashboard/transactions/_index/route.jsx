@@ -38,7 +38,8 @@ export default function Index() {
     },
   ];
   const typography = useStoredValue("typography");
-  const fontType = useStoredValue("fontType");
+  const colorType = useStoredValue("colourType");
+
   const headerStyle = {
     fontSize: typography?.size.fontSize + 3,
     letterSpacing: typography?.size.lineHeight,
@@ -51,7 +52,7 @@ export default function Index() {
     <React.Fragment>
       <div
         className="mt-5 ml-5 bg-third p-5 rounded-lg"
-        style={{ fontFamily: fontType ? fontType : "Inter" }}
+        style={{ backgroundColor: colorType?.tertiary }}
       >
         <h3 className="font-medium text-xl" style={headerStyle}>
           Transaction History
@@ -61,7 +62,10 @@ export default function Index() {
         </p>
         <TransactionSearch />
       </div>
-      <div className="bg-third mt-5 ml-5 rounded-lg">
+      <div
+        className="bg-third mt-5 ml-5 rounded-lg"
+        style={{ backgroundColor: colorType?.third }}
+      >
         <TransactionHistory data={transactions} />
       </div>
     </React.Fragment>

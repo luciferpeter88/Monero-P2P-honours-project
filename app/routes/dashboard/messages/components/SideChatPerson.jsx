@@ -5,6 +5,7 @@ export default function SideChatPerson({
   userId,
   nameStyle,
   descRiptionstyle,
+  colourType,
 }) {
   return (
     <button
@@ -12,6 +13,7 @@ export default function SideChatPerson({
         userId === id ? "bg-primary" : ""
       }`}
       onClick={() => setUserId(id)}
+      style={{ backgroundColor: colourType?.primary }}
     >
       <div className="w-12 h-12 rounded-xl overflow-hidden">
         <img

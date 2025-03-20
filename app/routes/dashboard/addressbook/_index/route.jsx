@@ -85,6 +85,7 @@ export default function AddressBook() {
   const [copySuccess, setCopySuccess] = useState(false);
   const typography = useStoredValue("typography");
   const fontType = useStoredValue("fontType");
+  const colorType = useStoredValue("colourType");
 
   const { contacts } = useLoaderData();
   const copyToClipboard = (address) => {
@@ -99,13 +100,22 @@ export default function AddressBook() {
   const bodyStyle = {
     fontSize: typography?.size.fontSize - 3,
     letterSpacing: typography?.size.lineHeight,
+    backgroundColor: colorType?.tertiary,
+  };
+  const bodyStyle2 = {
+    fontSize: typography?.size.fontSize - 3,
+    letterSpacing: typography?.size.lineHeight,
+    backgroundColor: colorType?.primary,
   };
   return (
     <div
       className="mt-5 ml-5"
       style={{ fontFamily: fontType ? fontType : "Inter" }}
     >
-      <div className="bg-third p-5 rounded-lg">
+      <div
+        className="bg-third p-5 rounded-lg"
+        style={{ backgroundColor: colorType?.tertiary }}
+      >
         <h3 className="font-medium text-xl" style={headerStyle}>
           Address Book
         </h3>
@@ -114,8 +124,11 @@ export default function AddressBook() {
         <div className="overflow-x-auto mt-5 w-full">
           <table className="w-full border-collapse text-left text-sm text-muted-foreground">
             {/* Table Head */}
-            <thead className="bg-primary text-white">
-              <tr className="w-full" style={bodyStyle}>
+            <thead
+              className="bg-primary text-white"
+              style={{ backgroundColor: colorType?.primary }}
+            >
+              <tr className="w-full" style={bodyStyle2}>
                 <th className="p-3 text-left w-1/3 font-medium text-white">
                   Name
                 </th>

@@ -1,34 +1,33 @@
 import { BadgeCheck, BarChart, Wallet } from "lucide-react";
 import { Button } from "../../../../../src/components/components/ui/button";
 import ChatPopup from "./ChatPopUp";
-import { Link, useLoaderData } from "@remix-run/react";
-import { Use } from "../../context/Context";
+import { Link } from "@remix-run/react";
 import useStoredValue from "../../components/useStoredValue";
 
 export default function MoneroTraderCard({ seller, messages }) {
-  const { loggedInUserID } = useLoaderData();
-
   let ratingColor = "text-red-400";
   if (seller.rating >= 90) {
     ratingColor = "text-green-400";
   } else if (seller.rating >= 80) {
     ratingColor = "text-yellow-400";
   }
-  const { fontSize } = Use();
   const typography = useStoredValue("typography");
+  const colorType = useStoredValue("colourType");
+
   const headerStyle = {
-    fontSize: typography?.size.fontSize + 2 || fontSize.size.fontSize + 2,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize + 2,
+    letterSpacing: typography?.size.lineHeight,
   };
   const descriptionStyle = {
-    fontSize: typography?.size.fontSize - 3 || fontSize.size.fontSize - 3,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize - 3,
+    letterSpacing: typography?.size.lineHeight,
   };
   return (
     <div
       className="flex bg-third text-white rounded-lg p-5 shadow-lg w-full items-center flex-wrap
                  transition-transform duration-200"
       key={seller.id}
+      style={{ backgroundColor: colorType?.tertiary }}
     >
       {/* Trader Image */}
       <div className="w-38">

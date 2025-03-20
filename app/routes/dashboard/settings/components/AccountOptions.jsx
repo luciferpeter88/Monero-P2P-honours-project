@@ -8,10 +8,18 @@ export default function AccountOption({
   description,
   modalType,
   actionType,
+  colorType,
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [hover, sethover] = useState(false);
+
   return (
-    <div className="flex justify-between items-center p-4 rounded-lg hover:bg-primary">
+    <div
+      className="flex justify-between items-center p-4 rounded-lg hover:bg-primary"
+      style={hover ? { backgroundColor: colorType?.primary } : {}}
+      onMouseMove={() => sethover(true)}
+      onMouseLeave={() => sethover(false)}
+    >
       <Modal
         modalType={modalType}
         isOpen={isOpen}

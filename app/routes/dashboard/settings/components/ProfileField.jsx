@@ -5,6 +5,7 @@ import {
 } from "../../../../../src/components/components/ui/dialog";
 import { Button } from "../../../../../src/components/components/ui/button";
 import ProfileModal from "./ProfileModal";
+import { useState } from "react";
 
 export default function ProfileField({
   icon,
@@ -12,9 +13,16 @@ export default function ProfileField({
   description,
   modalType,
   value,
+  colorType,
 }) {
+  const [hover, sethover] = useState(false);
   return (
-    <div className="flex justify-between items-center p-4 rounded-lg hover:bg-primary">
+    <div
+      className="flex justify-between items-center p-4 rounded-lg hover:bg-primary"
+      style={hover ? { backgroundColor: colorType?.primary } : {}}
+      onMouseMove={() => sethover(true)}
+      onMouseLeave={() => sethover(false)}
+    >
       <div className="flex items-center gap-3 ">
         {icon}
         <div>

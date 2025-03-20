@@ -1,5 +1,4 @@
 import card from "./picture/card.svg";
-import { Use } from "../context/Context";
 import useStoredValue from "../components/useStoredValue";
 
 export default function Card({
@@ -8,7 +7,6 @@ export default function Card({
   lockedBalance,
   unlockedBalance,
 }) {
-  const { fontSize } = Use();
   const typography = useStoredValue("typography");
   return (
     <div className="card" style={{ backgroundImage: `url(${card})` }}>

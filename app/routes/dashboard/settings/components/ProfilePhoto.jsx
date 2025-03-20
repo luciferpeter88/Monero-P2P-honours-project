@@ -6,9 +6,17 @@ import {
 } from "../../../../../src/components/components/ui/dialog";
 import { Button } from "../../../../../src/components/components/ui/button";
 import ProfileModal from "./ProfileModal";
-export default function ProfilePhoto({ imgSrc }) {
+import { useState } from "react";
+export default function ProfilePhoto({ imgSrc, colorType }) {
+  const [hover, sethover] = useState(false);
+
   return (
-    <div className="flex justify-between items-center hover:bg-primary p-4 rounded-lg">
+    <div
+      className="flex justify-between items-center hover:bg-primary p-4 rounded-lg"
+      style={hover ? { backgroundColor: colorType?.primary } : {}}
+      onMouseMove={() => sethover(true)}
+      onMouseLeave={() => sethover(false)}
+    >
       <div className="flex items-center gap-3">
         <Camera size={24} className="text-muted-foreground" />
         <div>

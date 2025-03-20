@@ -9,10 +9,14 @@ export default function MoneroTraderProfile({
   totalTrades,
   userID,
 }) {
-  const { fontSize } = Use();
   const typography = useStoredValue("typography");
+  const colorType = useStoredValue("colourType");
+
   return (
-    <div className=" w-80 bg-primary dark:bg-gray-900 rounded-lg overflow-hidden shadow-md p-4 flex gap-x-3">
+    <div
+      className=" w-80 bg-primary dark:bg-gray-900 rounded-lg overflow-hidden shadow-md p-4 flex gap-x-3"
+      style={{ backgroundColor: colorType?.primary }}
+    >
       {/* Left Section - Profile Picture & Basic Info */}
       <div className="w-full flex flex-col items-center">
         <img
@@ -34,7 +38,10 @@ export default function MoneroTraderProfile({
             {name}
           </h3>
 
-          <div className="px-4 py-2 bg-third rounded-lg mt-2 w-full">
+          <div
+            className="px-4 py-2 bg-third rounded-lg mt-2 w-full"
+            style={{ backgroundColor: colorType?.tertiary }}
+          >
             <p
               className="text-white text-xs font-semibold"
               style={{
@@ -90,7 +97,10 @@ export default function MoneroTraderProfile({
         </div>
         <div className="flex w-full gap-2 justify-center mt-3">
           <Link to={`/profile/${userID}`}>
-            <Button className="bg-secondary text-xs h-8 hover:bg-third">
+            <Button
+              className="bg-secondary text-xs h-8 hover:bg-third"
+              style={{ backgroundColor: colorType?.secondary }}
+            >
               View Profile
             </Button>
           </Link>

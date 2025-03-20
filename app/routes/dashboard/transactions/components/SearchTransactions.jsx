@@ -16,10 +16,12 @@ import { Calendar } from "../../../../../src/components/components/ui/calendar";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Button } from "../../../../../src/components/components/ui/button";
+import useStoredValue from "../../components/useStoredValue";
 
 export default function TransactionSearch() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const colorType = useStoredValue("colourType");
 
   return (
     <div className="flex flex-wrap md:flex-nowrap items-center bg-transparent mt-5 rounded-lg w-full gap-5">
@@ -32,6 +34,7 @@ export default function TransactionSearch() {
               readOnly
               value={startDate ? format(startDate, "MM/dd/yyyy") : ""}
               className="bg-primary w-[150px] border-none text-white cursor-pointer focus:ring-offset-0 focus:ring-0 focus:outline-none outline-none focus:border-none  focus:ring-primary focus:ring-offset-primary"
+              style={{ backgroundColor: colorType?.primary }}
             />
             <CalendarIcon className="absolute right-2 top-2 h-4 w-4 text-gray-400" />
           </div>
@@ -56,6 +59,7 @@ export default function TransactionSearch() {
               readOnly
               value={endDate ? format(endDate, "MM/dd/yyyy") : ""}
               className="bg-primary w-[150px] border-none text-white cursor-pointer focus:ring-offset-0 focus:ring-0 focus:outline-none outline-none focus:border-none  focus:ring-primary focus:ring-offset-primary"
+              style={{ backgroundColor: colorType?.primary }}
             />
             <CalendarIcon className="absolute right-2 top-2 h-4 w-4 text-gray-400" />
           </div>
@@ -70,7 +74,10 @@ export default function TransactionSearch() {
 
       {/* Transaction Type */}
       <Select>
-        <SelectTrigger className="bg-primary w-[150px] border-none text-white cursor-pointer focus:ring-offset-0 focus:ring-0 focus:outline-none outline-none focus:border-none  focus:ring-primary focus:ring-offset-primary">
+        <SelectTrigger
+          className="bg-primary w-[150px] border-none text-white cursor-pointer focus:ring-offset-0 focus:ring-0 focus:outline-none outline-none focus:border-none  focus:ring-primary focus:ring-offset-primary"
+          style={{ backgroundColor: colorType?.primary }}
+        >
           <SelectValue placeholder="Type" />
         </SelectTrigger>
         <SelectContent>
@@ -81,7 +88,10 @@ export default function TransactionSearch() {
 
       {/* Account Number */}
       <Select>
-        <SelectTrigger className="bg-primary w-[150px] border-none text-white cursor-pointer focus:ring-offset-0 focus:ring-0 focus:outline-none outline-none focus:border-none  focus:ring-primary focus:ring-offset-primary">
+        <SelectTrigger
+          className="bg-primary w-[150px] border-none text-white cursor-pointer focus:ring-offset-0 focus:ring-0 focus:outline-none outline-none focus:border-none  focus:ring-primary focus:ring-offset-primary"
+          style={{ backgroundColor: colorType?.primary }}
+        >
           <SelectValue placeholder="Select Account" />
         </SelectTrigger>
         <SelectContent>
@@ -96,8 +106,14 @@ export default function TransactionSearch() {
         type="number"
         placeholder="Amount"
         className="bg-primary w-[160px] border-none text-white cursor-pointer focus:ring-offset-0 focus:ring-0 focus:outline-none outline-none focus:border-none  focus:ring-primary focus:ring-offset-primary"
+        style={{ backgroundColor: colorType?.primary }}
       />
-      <Button className="bg-secondary ml-auto">Search</Button>
+      <Button
+        className="bg-secondary ml-auto"
+        style={{ backgroundColor: colorType?.secondary }}
+      >
+        Search
+      </Button>
     </div>
   );
 }

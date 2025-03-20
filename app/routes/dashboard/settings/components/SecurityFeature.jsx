@@ -1,5 +1,6 @@
 import { Switch } from "../../../../../src/components/components/ui/switch";
 import { Form } from "@remix-run/react";
+import { useState } from "react";
 
 export default function SecurityFeature({
   icon,
@@ -7,9 +8,17 @@ export default function SecurityFeature({
   description,
   modalType,
   status,
+  colorType,
 }) {
+  const [hover, sethover] = useState(false);
+
   return (
-    <div className="flex justify-between items-center hover:bg-primary p-4 rounded-lg">
+    <div
+      className="flex justify-between items-center hover:bg-primary p-4 rounded-lg"
+      style={hover ? { backgroundColor: colorType?.primary } : {}}
+      onMouseMove={() => sethover(true)}
+      onMouseLeave={() => sethover(false)}
+    >
       <div className="flex items-center gap-3">
         {icon}
         <div>
