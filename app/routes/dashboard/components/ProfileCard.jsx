@@ -27,10 +27,8 @@ export default function MoneroTraderProfile({
           <h3
             className="font-bold text-lg text-white"
             style={{
-              fontSize:
-                typography?.size.fontSize + 1 || fontSize.size.fontSize + 1,
-              letterSpacing:
-                typography?.size.lineHeight || fontSize.size.lineHeight,
+              fontSize: typography?.size.fontSize + 1,
+              letterSpacing: typography?.size.lineHeight,
             }}
           >
             {name}
@@ -40,10 +38,8 @@ export default function MoneroTraderProfile({
             <p
               className="text-white text-xs font-semibold"
               style={{
-                fontSize:
-                  typography?.size.fontSize - 1 || fontSize.size.fontSize - 1,
-                letterSpacing:
-                  typography?.size.lineHeight || fontSize.size.lineHeight,
+                fontSize: typography?.size.fontSize - 1,
+                letterSpacing: typography?.size.lineHeight,
               }}
             >
               Trading Stats
@@ -53,11 +49,8 @@ export default function MoneroTraderProfile({
                 <p
                   className="text-sm font-bold text-green-500"
                   style={{
-                    fontSize:
-                      typography?.size.fontSize - 3 ||
-                      fontSize.size.fontSize - 3,
-                    letterSpacing:
-                      typography?.size.lineHeight || fontSize.size.lineHeight,
+                    fontSize: typography?.size.fontSize - 3,
+                    letterSpacing: typography?.size.lineHeight,
                   }}
                 >
                   {successRate}%
@@ -65,11 +58,8 @@ export default function MoneroTraderProfile({
                 <p
                   className="text-xs text-muted-foreground"
                   style={{
-                    fontSize:
-                      typography?.size.fontSize - 3 ||
-                      fontSize.size.fontSize - 3,
-                    letterSpacing:
-                      typography?.size.lineHeight || fontSize.size.lineHeight,
+                    fontSize: typography?.size.fontSize - 3,
+                    letterSpacing: typography?.size.lineHeight,
                   }}
                 >
                   Success Rate
@@ -79,11 +69,8 @@ export default function MoneroTraderProfile({
                 <p
                   className="text-sm font-bold text-secondary"
                   style={{
-                    fontSize:
-                      typography?.size.fontSize - 3 ||
-                      fontSize.size.fontSize - 3,
-                    letterSpacing:
-                      typography?.size.lineHeight || fontSize.size.lineHeight,
+                    fontSize: typography?.size.fontSize - 3,
+                    letterSpacing: typography?.size.lineHeight,
                   }}
                 >
                   {totalTrades}+
@@ -91,11 +78,8 @@ export default function MoneroTraderProfile({
                 <p
                   className="text-xs text-muted-foreground"
                   style={{
-                    fontSize:
-                      typography?.size.fontSize - 3 ||
-                      fontSize.size.fontSize - 3,
-                    letterSpacing:
-                      typography?.size.lineHeight || fontSize.size.lineHeight,
+                    fontSize: typography?.size.fontSize - 3,
+                    letterSpacing: typography?.size.lineHeight,
                   }}
                 >
                   Total Trades

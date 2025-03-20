@@ -6,6 +6,7 @@ import prisma from "../../../../../prisma/prisma";
 import { useLoaderData } from "@remix-run/react";
 import Monero from "../../../../utils/Monero.server";
 import { useEffect, useState } from "react";
+import useStoredValue from "../../components/useStoredValue";
 
 export async function loader({ request }) {
   const session = await getSession(request.headers.get("Cookie"));
@@ -68,9 +69,12 @@ export default function Index() {
     ).subaddresses;
     setSubadresses(subadresses);
   }, [selectedAccount, data]);
-
+  const fontType = useStoredValue("fontType");
   return (
-    <div className="mt-5 ml-5">
+    <div
+      className="mt-5 ml-5"
+      style={{ fontFamily: fontType ? fontType : "Inter" }}
+    >
       <div className="bg-third p-5 rounded-lg">
         <h3 className="font-medium text-xl">Receiving Steps</h3>
         {/* Step Cards */}

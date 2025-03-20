@@ -57,9 +57,8 @@ export default function Accounts({
     >
       <p
         style={{
-          fontSize: typography?.size.fontSize || fontSize.size.fontSize,
-          letterSpacing:
-            typography?.size.lineHeight || fontSize.size.lineHeight,
+          fontSize: typography?.size.fontSize,
+          letterSpacing: typography?.size.lineHeight,
         }}
       >
         {AccountType}
@@ -67,20 +66,16 @@ export default function Accounts({
       <p
         className="ml-auto"
         style={{
-          fontSize:
-            typography?.size.fontSize - 1.5 || fontSize.size.fontSize - 1.5,
-          letterSpacing:
-            typography?.size.lineHeight || fontSize.size.lineHeight,
+          fontSize: typography?.size.fontSize - 1.5,
+          letterSpacing: typography?.size.lineHeight,
         }}
       >{`${accountAddress.slice(0, 10)}......${accountAddress.slice(
         -10
       )}....`}</p>
       <p
         style={{
-          fontSize:
-            typography?.size.fontSize - 1.5 || fontSize.size.fontSize - 1.5,
-          letterSpacing:
-            typography?.size.lineHeight || fontSize.size.lineHeight,
+          fontSize: typography?.size.fontSize - 1.5,
+          letterSpacing: typography?.size.lineHeight,
         }}
       >
         {balance} <span className="ml-2">XMR</span>

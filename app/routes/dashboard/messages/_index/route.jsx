@@ -104,18 +104,21 @@ export default function Index() {
       console.error("Hiba történt az üzenet küldésekor.");
     }
   }
-  const { fontSize } = Use();
   const typography = useStoredValue("typography");
+  const fontType = useStoredValue("fontType");
   const nameStyle = {
-    fontSize: typography?.size.fontSize || fontSize.size.fontSize,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize,
+    letterSpacing: typography?.size.lineHeight,
   };
   const descRiptionstyle = {
-    fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize - 2,
+    letterSpacing: typography?.size.lineHeight,
   };
   return (
-    <div className="mt-5 ml-5">
+    <div
+      className="mt-5 ml-5"
+      style={{ fontFamily: fontType ? fontType : "Inter" }}
+    >
       <div className="flex h-full gap-x-5">
         {/* Chat List */}
         <SideBar users={data.users} setUserId={setUserId} userId={userId} />

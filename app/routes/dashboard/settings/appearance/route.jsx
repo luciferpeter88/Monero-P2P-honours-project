@@ -17,8 +17,6 @@ import { Use } from "../../context/Context";
 
 const Index = () => {
   const [theme, setTheme] = useState("light");
-  const [font, setFont] = useState("Inter");
-  // const [fontSize, setFontSize] = useState(16);
   const [lineHeight, setLineHeight] = useState(1.5);
   const [letterSpacing, setLetterSpacing] = useState(0);
   const [borderRadius, setBorderRadius] = useState(8);
@@ -77,8 +75,20 @@ const Index = () => {
   };
   console.log(fontSize);
 
-  useEffect(() => {}, []);
+  const [selectedFont, setSelectedFont] = useState("Inter");
 
+  useEffect(() => {
+    const storedFont = localStorage.getItem("fontType");
+    if (storedFont) {
+      setSelectedFont(JSON.parse(storedFont));
+    }
+  }, []);
+
+  const handleFontChange = (newFont) => {
+    setSelectedFont(newFont);
+    localStorage.setItem("fontType", JSON.stringify(newFont));
+  };
+  console.log(fontSize);
   return (
     <div className="p-6 space-y-1 bg-third mt-5 rounded-lg">
       <h1
@@ -101,10 +111,11 @@ const Index = () => {
             <label
               className="block text-sm font-medium text-white mt-5"
               style={{ fontSize: fontSize.size.fontSize - 4 }}
+              htmlFor="font"
             >
               Font
             </label>
-            <Select value={font} onValueChange={setFont}>
+            <Select value={selectedFont} onValueChange={handleFontChange}>
               <SelectTrigger
                 aria-label="Select a value"
                 className="max-w-[12.5rem] rounded-lg border-none outline-none bg-primary text-white focus:outline-none focus:border-none focus:ring-0 focus:ring-offset-0 focus:ring-primary focus:ring-offset-primary mt-3"
@@ -114,12 +125,17 @@ const Index = () => {
                   className="outline-none border-none bg-primary text-white"
                 />
                 <SelectContent>
-                  <SelectItem value="Inter">Inter</SelectItem>
+                  {fontSize.fontFamily.map((font, index) => (
+                    <SelectItem key={index} value={font}>
+                      {font}
+                    </SelectItem>
+                  ))}
+                  {/* <SelectItem value="Inter">Inter</SelectItem>
                   <SelectItem value="Arial">Arial</SelectItem>
                   <SelectItem value="Times New Roman">
                     Times New Roman
                   </SelectItem>
-                  <SelectItem value="Courier New">Courier New</SelectItem>
+                  <SelectItem value="Courier New">Courier New</SelectItem> */}
                 </SelectContent>
               </SelectTrigger>
             </Select>

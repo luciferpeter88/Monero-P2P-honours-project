@@ -93,15 +93,18 @@ export default function Index() {
   const { sellers } = useLoaderData();
   const data = useActionData();
   const message = data ? data.messages : [];
-  const { fontSize } = Use();
   const typography = useStoredValue("typography");
+  const fontType = useStoredValue("fontType");
   const headerStyle = {
-    fontSize: typography?.size?.fontSize + 2 || fontSize.size.fontSize + 2,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size?.fontSize + 2,
+    letterSpacing: typography?.size.lineHeight,
   };
 
   return (
-    <div className="mt-5 ml-5">
+    <div
+      className="mt-5 ml-5"
+      style={{ fontFamily: fontType ? fontType : "Inter" }}
+    >
       <div className="bg-third p-5 rounded-lg flex items-baseline justify-between w-full">
         <h3 className="font-medium text-xl" style={headerStyle}>
           Market

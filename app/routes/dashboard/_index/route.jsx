@@ -112,18 +112,22 @@ export default function Index() {
   const data = useLoaderData();
   const [usedaccount, setUsedAccount] = React.useState(0);
   const [openModal, setOpenModal] = React.useState(false);
-  const { fontSize } = Use();
-  const typography = useStoredValue("typography");
+  const typography = useStoredValue("typograhpy");
+
+  const fontType = useStoredValue("fontType");
+  console.log("fonttype", fontType);
 
   return (
-    <div className="mt-5 ml-5">
+    <div
+      className="mt-5 ml-5"
+      style={{ fontFamily: fontType ? fontType : "Inter" }}
+    >
       <div className="bg-third p-5 rounded-lg">
         <h3
           className="font-medium text"
           style={{
-            fontSize: typography?.size.fontSize || fontSize.size.fontSize,
-            letterSpacing:
-              typography?.size.lineHeight || fontSize.size.lineHeight,
+            fontSize: typography?.size.fontSize,
+            letterSpacing: typography?.size.lineHeight,
           }}
         >
           {data.name}
@@ -185,10 +189,8 @@ export default function Index() {
           <h2
             className="text-lg font-semibold"
             style={{
-              fontSize:
-                typography?.size.fontSize + 1 || fontSize.size.fontSize + 1,
-              letterSpacing:
-                typography?.size.lineHeight || fontSize.size.lineHeight,
+              fontSize: typography?.size.fontSize + 1,
+              letterSpacing: typography?.size.lineHeight,
             }}
           >
             Accounts
@@ -222,10 +224,8 @@ export default function Index() {
         <h2
           className="text-2xl font-semibold mb-4"
           style={{
-            fontSize:
-              typography?.size.fontSize + 5 || fontSize.size.fontSize + 5,
-            letterSpacing:
-              typography?.size.lineHeight || fontSize.size.lineHeight,
+            fontSize: typography?.size.fontSize + 5,
+            letterSpacing: typography?.size.lineHeight,
           }}
         >
           Market

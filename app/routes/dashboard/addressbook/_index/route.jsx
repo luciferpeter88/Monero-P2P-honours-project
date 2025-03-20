@@ -5,7 +5,6 @@ import { getSession } from "../../../../utils/session.server";
 import { redirect } from "@remix-run/node";
 import prisma from "../../../../../prisma/prisma";
 import { useState } from "react";
-import { Use } from "../../context/Context";
 import useStoredValue from "../../components/useStoredValue";
 // Loader to fetch contacts
 export const loader = async ({ request }) => {
@@ -84,8 +83,8 @@ export const action = async ({ request }) => {
 
 export default function AddressBook() {
   const [copySuccess, setCopySuccess] = useState(false);
-  const { fontSize } = Use();
   const typography = useStoredValue("typography");
+  const fontType = useStoredValue("fontType");
 
   const { contacts } = useLoaderData();
   const copyToClipboard = (address) => {
@@ -94,15 +93,18 @@ export default function AddressBook() {
     setTimeout(() => setCopySuccess(false), 2000);
   };
   const headerStyle = {
-    fontSize: typography?.size.fontSize + 3 || fontSize.size.fontSize + 3,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize + 3,
+    letterSpacing: typography?.size.lineHeight,
   };
   const bodyStyle = {
-    fontSize: typography?.size.fontSize - 3 || fontSize.size.fontSize - 3,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize - 3,
+    letterSpacing: typography?.size.lineHeight,
   };
   return (
-    <div className="mt-5 ml-5">
+    <div
+      className="mt-5 ml-5"
+      style={{ fontFamily: fontType ? fontType : "Inter" }}
+    >
       <div className="bg-third p-5 rounded-lg">
         <h3 className="font-medium text-xl" style={headerStyle}>
           Address Book

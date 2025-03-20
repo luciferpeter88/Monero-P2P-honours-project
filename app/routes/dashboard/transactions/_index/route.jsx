@@ -1,7 +1,6 @@
 import TransactionSearch from "../components/SearchTransactions";
 import TransactionHistory from "../../components/Transaction";
 import React from "react";
-import { Use } from "../../context/Context";
 import useStoredValue from "../../components/useStoredValue";
 export default function Index() {
   const transactions = [
@@ -38,19 +37,22 @@ export default function Index() {
       remarks: "-",
     },
   ];
-  const { fontSize } = Use();
   const typography = useStoredValue("typography");
+  const fontType = useStoredValue("fontType");
   const headerStyle = {
-    fontSize: typography?.size.fontSize + 3 || fontSize.size.fontSize + 3,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize + 3,
+    letterSpacing: typography?.size.lineHeight,
   };
   const bodyStyle = {
-    fontSize: typography?.size.fontSize - 3 || fontSize.size.fontSize - 3,
-    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
+    fontSize: typography?.size.fontSize - 3,
+    letterSpacing: typography?.size.lineHeight,
   };
   return (
     <React.Fragment>
-      <div className="mt-5 ml-5 bg-third p-5 rounded-lg">
+      <div
+        className="mt-5 ml-5 bg-third p-5 rounded-lg"
+        style={{ fontFamily: fontType ? fontType : "Inter" }}
+      >
         <h3 className="font-medium text-xl" style={headerStyle}>
           Transaction History
         </h3>

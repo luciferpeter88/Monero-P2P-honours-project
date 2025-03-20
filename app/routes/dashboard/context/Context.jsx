@@ -16,56 +16,19 @@ export function Provider({ children }) {
         lineHeight: 0 + defaultLineHeight,
         letterSpacing: 0,
       },
-      // h3: {
-      //   fontSize: 16 + defaultFontSize,
-      //   lineHeight: 1.5 + defaultLineHeight,
-      //   letterSpacing: 0,
-      // },
-      // h2: {
-      //   fontSize: 24 + defaultFontSize,
-      //   lineHeight: 1.5 + defaultLineHeight,
-      //   letterSpacing: 0,
-      // },
-      // p: {
-      //   fontSize: 14 + defaultFontSize,
-      //   lineHeight: 1.5 + defaultLineHeight,
-      //   letterSpacing: 0,
-      // },
-      // button: {
-      //   fontSize: 16 + defaultFontSize,
-      //   lineHeight: 1.5 + defaultLineHeight,
-      //   letterSpacing: 0,
-      // },
-      // input: {
-      //   fontSize: 16 + defaultFontSize,
-      //   lineHeight: 1.5 + defaultLineHeight,
-      //   letterSpacing: 0,
-      // },
-      // label: {
-      //   fontSize: 16 + defaultFontSize,
-      //   lineHeight: 1.5 + defaultLineHeight,
-      //   letterSpacing: 0,
-      // },
-      // thead: {
-      //   fontSize: 16 + defaultFontSize,
-      //   lineHeight: 1.5 + defaultLineHeight,
-      //   letterSpacing: 0,
-      // },
-      // th: {
-      //   fontSize: 16 + defaultFontSize,
-      //   lineHeight: 1.5 + defaultLineHeight,
-      //   letterSpacing: 0,
-      // },
-      // td: {
-      //   fontSize: 16 + defaultFontSize,
-      //   lineHeight: 1.5 + defaultLineHeight,
-      //   letterSpacing: 0,
-      // },
-      // select: {
-      //   fontSize: 16 + defaultFontSize,
-      //   lineHeight: 1.5 + defaultLineHeight,
-      //   letterSpacing: 0,
-      // },
+      fontFamily: [
+        "Inter",
+        "serif",
+        "sans-serif",
+        "monospace",
+        "cursive",
+        "fantasy",
+        "system-ui",
+        "ui-serif",
+        "ui-sans-serif",
+        "ui-monospace",
+        "Poppins",
+      ],
     };
   });
 

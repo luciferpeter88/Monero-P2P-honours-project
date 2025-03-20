@@ -1,6 +1,7 @@
 import Card from "../components/Card";
 import SendForm from "../components/SendForm";
 import Transaction from "../../components/Transaction";
+import useStoredValue from "../../components/useStoredValue";
 
 export default function Index() {
   const transactions = [
@@ -37,8 +38,13 @@ export default function Index() {
       remarks: "-",
     },
   ];
+  const fontType = useStoredValue("fontType");
+
   return (
-    <div className="mt-5 ml-5">
+    <div
+      className="mt-5 ml-5"
+      style={{ fontFamily: fontType ? fontType : "Inter" }}
+    >
       <div className="bg-third p-5 rounded-lg">
         <h3 className="font-medium text-xl">Sending Steps</h3>
         {/* square */}
