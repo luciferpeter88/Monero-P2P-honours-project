@@ -1,4 +1,11 @@
-export default function SideChatPerson({ user, setUserId, id, userId }) {
+export default function SideChatPerson({
+  user,
+  setUserId,
+  id,
+  userId,
+  nameStyle,
+  descRiptionstyle,
+}) {
   return (
     <button
       className={`p-3 rounded-xl hover:bg-primary cursor-pointer  flex items-center gap-3 w-full ${
@@ -15,9 +22,14 @@ export default function SideChatPerson({ user, setUserId, id, userId }) {
       </div>
       <div className=" ">
         <div className="flex items-center justify-between">
-          <h3 className="font-semibold">{user}</h3>
+          <h3 className="font-semibold" style={nameStyle}>
+            {user}
+          </h3>
         </div>
-        <p className="text-sm text-muted-foreground truncate">
+        <p
+          className="text-sm text-muted-foreground truncate"
+          style={descRiptionstyle}
+        >
           Chat with {user}
         </p>
       </div>

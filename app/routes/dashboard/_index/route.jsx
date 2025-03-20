@@ -113,9 +113,8 @@ export default function Index() {
   const [usedaccount, setUsedAccount] = React.useState(0);
   const [openModal, setOpenModal] = React.useState(false);
   const { fontSize } = Use();
-
   const typography = useStoredValue("typography");
-  console.log("typography", typography);
+
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg">

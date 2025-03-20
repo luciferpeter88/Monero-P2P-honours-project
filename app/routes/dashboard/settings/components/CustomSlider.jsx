@@ -1,5 +1,6 @@
 import React from "react";
 import { Slider } from "../../../../../src/components/components/ui/slider";
+
 export default function CustomSlider({
   label,
   defaultState,
@@ -14,7 +15,6 @@ export default function CustomSlider({
       setTypeography(JSON.parse(storedTypeography));
     }
   }, [localStorageState]);
-  console.log(typeography);
 
   return (
     <React.Fragment>
@@ -45,46 +45,6 @@ export default function CustomSlider({
                 fontSize: 16 + Number(newValue),
                 lineHeight: 1.5 + Number(newValue),
               },
-              // h2: {
-              //   ...prev.h2,
-              //   fontSize: 24 + Number(newValue),
-              // },
-              // p: {
-              //   ...prev.p,
-              //   fontSize: 14 + Number(newValue),
-              // },
-              // button: {
-              //   ...prev.button,
-              //   fontSize: 16 + Number(newValue),
-              // },
-              // input: {
-              //   ...prev.input,
-              //   fontSize: 16 + Number(newValue),
-              // },
-              // label: {
-              //   ...prev.label,
-              //   fontSize: 16 + Number(newValue),
-              // },
-              // thead: {
-              //   ...prev.thead,
-              //   fontSize: 16 + Number(newValue),
-              // },
-              // th: {
-              //   ...prev.th,
-              //   fontSize: 16 + Number(newValue),
-              // },
-              // td: {
-              //   ...prev.td,
-              //   fontSize: 16 + Number(newValue),
-              // },
-              // select: {
-              //   ...prev.select,
-              //   fontSize: 16 + Number(newValue),
-              // },
-              // h3: {
-              //   ...prev.h3,
-              //   fontSize: 16 + Number(newValue),
-              // },
             };
           })
         }

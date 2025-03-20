@@ -1,6 +1,16 @@
 import SideChatPerson from "./SideChatPerson";
+import { Use } from "../../context/Context";
+import useStoredValue from "../../components/useStoredValue";
 
 export default function SideBar({ users, setUserId, userId }) {
+  const { fontSize } = Use();
+  const typography = useStoredValue("typography");
+  const nameStyle = {
+    fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+  };
+  const descRiptionstyle = {
+    fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+  };
   return (
     <aside className="w-80 bg-third rounded-lg">
       <div className="p-4">
@@ -34,6 +44,8 @@ export default function SideBar({ users, setUserId, userId }) {
               user={user.username}
               userId={userId}
               setUserId={setUserId}
+              nameStyle={nameStyle}
+              descRiptionstyle={descRiptionstyle}
             />
           ))
         ) : (

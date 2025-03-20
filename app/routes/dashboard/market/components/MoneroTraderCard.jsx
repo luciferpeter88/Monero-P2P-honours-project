@@ -2,6 +2,9 @@ import { BadgeCheck, BarChart, Wallet } from "lucide-react";
 import { Button } from "../../../../../src/components/components/ui/button";
 import ChatPopup from "./ChatPopUp";
 import { Link, useLoaderData } from "@remix-run/react";
+import { Use } from "../../context/Context";
+import useStoredValue from "../../components/useStoredValue";
+
 export default function MoneroTraderCard({ seller, messages }) {
   const { loggedInUserID } = useLoaderData();
 
@@ -11,7 +14,14 @@ export default function MoneroTraderCard({ seller, messages }) {
   } else if (seller.rating >= 80) {
     ratingColor = "text-yellow-400";
   }
-
+  const { fontSize } = Use();
+  const typography = useStoredValue("typography");
+  const headerStyle = {
+    fontSize: typography?.size.fontSize + 2 || fontSize.size.fontSize + 2,
+  };
+  const descriptionStyle = {
+    fontSize: typography?.size.fontSize - 3 || fontSize.size.fontSize - 3,
+  };
   return (
     <div
       className="flex bg-third text-white rounded-lg p-5 shadow-lg w-full items-center flex-wrap
@@ -34,37 +44,39 @@ export default function MoneroTraderCard({ seller, messages }) {
       <div className="sm:px-6 bg-transparent flex-1">
         {/* Name & Verified Badge */}
         <div className="flex items-center gap-2 flex-wrap">
-          <h2 className="text-lg font-semibold">{seller.username}</h2>
+          <h2 className="text-lg font-semibold" style={headerStyle}>
+            {seller.username}
+          </h2>
           <BadgeCheck className="text-green-400" size={18} />
           <span className="text-gray-400 text-sm">Verified Monero Trader</span>
         </div>
-
-        {/* (Optional) Last Active */}
-        {seller.lastActive && (
-          <p className="text-xs text-gray-500 mt-1">
-            Last active: {seller.lastActive}
-          </p>
-        )}
 
         {/* Trading Stats */}
         <div className="mt-2 flex items-center gap-4 text-gray-300 flex-wrap">
           <div className="flex items-center gap-2">
             <BarChart size={16} className="text-green-400" />
             {/* 2. Color-coded rating */}
-            <span className={`text-sm font-semibold ${ratingColor}`}>
+            <span
+              className={`text-sm font-semibold ${ratingColor}`}
+              style={descriptionStyle}
+            >
               {seller.successRate}% Success Rate
             </span>
           </div>
           <div className="flex items-center gap-2">
             <Wallet size={16} className="text-yellow-400" />
-            <span className="text-sm">{seller.totalTrades} Total Trades</span>
+            <span className="text-sm" style={descriptionStyle}>
+              {seller.totalTrades} Total Trades
+            </span>
           </div>
         </div>
 
         {/* Trade Limits */}
         <div className="mt-2 text-gray-300 flex flex-wrap gap-x-2">
-          <span className="text-sm font-semibold">Trade Limits:</span>
-          <span className="text-white text-sm">
+          <span className="text-sm font-semibold" style={descriptionStyle}>
+            Trade Limits:
+          </span>
+          <span className="text-white text-sm" style={descriptionStyle}>
             Max: <strong>5 XMR</strong>
           </span>
         </div>

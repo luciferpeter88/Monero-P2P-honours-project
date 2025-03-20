@@ -5,7 +5,8 @@ import { getSession } from "../../../../utils/session.server";
 import { redirect } from "@remix-run/node";
 import prisma from "../../../../../prisma/prisma";
 import { useState } from "react";
-
+import { Use } from "../../context/Context";
+import useStoredValue from "../../components/useStoredValue";
 // Loader to fetch contacts
 export const loader = async ({ request }) => {
   const session = await getSession(request.headers.get("Cookie"));
@@ -83,6 +84,8 @@ export const action = async ({ request }) => {
 
 export default function AddressBook() {
   const [copySuccess, setCopySuccess] = useState(false);
+  const { fontSize } = Use();
+  const typography = useStoredValue("typography");
 
   const { contacts } = useLoaderData();
   const copyToClipboard = (address) => {
@@ -90,17 +93,25 @@ export default function AddressBook() {
     setCopySuccess(true);
     setTimeout(() => setCopySuccess(false), 2000);
   };
+  const headerStyle = {
+    fontSize: typography?.size.fontSize + 3 || fontSize.size.fontSize + 3,
+  };
+  const bodyStyle = {
+    fontSize: typography?.size.fontSize - 3 || fontSize.size.fontSize - 3,
+  };
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg">
-        <h3 className="font-medium text-xl">Address Book</h3>
+        <h3 className="font-medium text-xl" style={headerStyle}>
+          Address Book
+        </h3>
 
         {/* Table */}
         <div className="overflow-x-auto mt-5 w-full">
           <table className="w-full border-collapse text-left text-sm text-muted-foreground">
             {/* Table Head */}
             <thead className="bg-primary text-white">
-              <tr className="w-full">
+              <tr className="w-full" style={bodyStyle}>
                 <th className="p-3 text-left w-1/3 font-medium text-white">
                   Name
                 </th>
@@ -123,6 +134,7 @@ export default function AddressBook() {
                   <tr
                     key={contact.id}
                     className=" bg-third border-t border-primary hover:bg-primary hover:bg-opacity-90"
+                    style={bodyStyle}
                   >
                     <td className="p-3 w-1/4">{contact.contactNickname}</td>
                     <td className="p-3 w-1/4">

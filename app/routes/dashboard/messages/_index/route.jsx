@@ -5,6 +5,8 @@ import prisma from "../../../../../prisma/prisma";
 import { getSession } from "../../../../utils/session.server";
 import { useLoaderData } from "@remix-run/react";
 import { useState, useEffect } from "react";
+import { Use } from "../../context/Context";
+import useStoredValue from "../../components/useStoredValue";
 
 export const loader = async ({ request }) => {
   const session = await getSession(request.headers.get("Cookie"));
@@ -102,6 +104,14 @@ export default function Index() {
       console.error("Hiba történt az üzenet küldésekor.");
     }
   }
+  const { fontSize } = Use();
+  const typography = useStoredValue("typography");
+  const nameStyle = {
+    fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+  };
+  const descRiptionstyle = {
+    fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+  };
   return (
     <div className="mt-5 ml-5">
       <div className="flex h-full gap-x-5">
@@ -130,10 +140,14 @@ export default function Index() {
                     >
                       <div className="flex-1">
                         <div className="flex items-center justify-end gap-2 mb-1">
-                          <span className="font-semibold">You</span>
-                          <span className="text-xs text-gray-400">09:27</span>
+                          <span className="font-semibold" style={nameStyle}>
+                            You
+                          </span>
                         </div>
-                        <div className="bg-primary bg-opacity-70 rounded-xl p-4">
+                        <div
+                          className="bg-primary bg-opacity-70 rounded-xl p-4"
+                          style={descRiptionstyle}
+                        >
                           <p>{message.content}</p>
                         </div>
                       </div>
@@ -154,10 +168,14 @@ export default function Index() {
                       />
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="font-semibold">{userName}</span>
-                          <span className="text-xs text-gray-400">09:20</span>
+                          <span className="font-semibold" style={nameStyle}>
+                            {userName}
+                          </span>
                         </div>
-                        <div className="bg-primary rounded-xl p-4">
+                        <div
+                          className="bg-primary rounded-xl p-4"
+                          style={descRiptionstyle}
+                        >
                           <p>{message.content}</p>
                         </div>
                       </div>

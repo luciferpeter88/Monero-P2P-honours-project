@@ -7,14 +7,27 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../../../src/components/components/ui/select";
+import { Use } from "../../context/Context";
+import useStoredValue from "../../components/useStoredValue";
 export default function SendForm() {
+  const { fontSize } = Use();
+  const typography = useStoredValue("typography");
   const [timeRange, setTimeRange] = React.useState("90d");
+  const titleStyle = {
+    fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+  };
+  const descriptionStyle = {
+    fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+  };
   return (
     <div className="flex flex-col md:flex-row gap-5 mt-5  text-white">
       {/* Left Side - Form */}
       <div className="w-full bg-third p-6 rounded-lg shadow-lg">
         {/* Select Crypto */}
-        <h3 className="text-md font-medium flex items-center gap-2 mb-3">
+        <h3
+          className="text-md font-medium flex items-center gap-2 mb-3"
+          style={titleStyle}
+        >
           <span className="text-blue-500">📁</span> Select Account
         </h3>
         <Select value={timeRange} onValueChange={setTimeRange}>
@@ -52,19 +65,25 @@ export default function SendForm() {
 
         {/* Withdraw To */}
         <div className="mt-8 mb-3">
-          <h3 className="text-md font-medium flex items-center gap-2 mb-3">
+          <h3
+            className="text-md font-medium flex items-center gap-2 mb-3"
+            style={titleStyle}
+          >
             <span className="text-blue-500 ">💰</span>Select Amount
           </h3>
           <div className="mt-1 bg-primary p-3 py-4 text-muted-foreground rounded-md flex items-center justify-between">
-            <span className="text-sm">Minimum amount: 0.01 XMR</span>
+            <span className="text-sm" style={descriptionStyle}>
+              Minimum amount: 0.01 XMR
+            </span>
           </div>
           <p className="text-xs text-secondary mt-2">
             Available Balance: 1 XMR
           </p>
-          <label className="text-md font-medium block mt-8">
+          <label className="text-md font-medium block mt-8" style={titleStyle}>
             Select Address
           </label>
           <input
+            style={descriptionStyle}
             type="text"
             className="w-full bg-primary p-3 py-4 rounded-md mt-1 text-muted-foreground text-sm"
             value="TDxA3Nk2L42RLa4jwCXCmo8tDoHLrJXhnb"
@@ -74,7 +93,10 @@ export default function SendForm() {
 
         {/* Withdraw Amount */}
         <div className="mb-6">
-          <label className="text-sm text-white mb-2 block mt-8">
+          <label
+            className="text-sm text-white mb-2 block mt-8"
+            style={titleStyle}
+          >
             Remarks (optional)
           </label>
           <input
@@ -91,8 +113,13 @@ export default function SendForm() {
       {/* Right Side - Tips & FAQs */}
       <div className="w-full md:w-64 bg-third p-6 rounded-lg shadow-lg min-h-64">
         {/* Tips */}
-        <h3 className="text-lg font-semibold">💡 Tips</h3>
-        <p className="text-sm text-muted-foreground 400 mt-2">
+        <h3 className="text-lg font-semibold" style={titleStyle}>
+          💡 Tips
+        </h3>
+        <p
+          className="text-sm text-muted-foreground 400 mt-2"
+          style={descriptionStyle}
+        >
           For the safety of your funds, our customer support team may contact
           you by phone to confirm your withdrawal.
         </p>

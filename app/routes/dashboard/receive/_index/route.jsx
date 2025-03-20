@@ -1,4 +1,4 @@
-import Card from "../components/Card";
+import Card from "../../send/components/Card";
 import ReceiveForm from "../components/ReceiveForm";
 import { getSession } from "../../../../utils/session.server";
 import { redirect } from "@remix-run/node";

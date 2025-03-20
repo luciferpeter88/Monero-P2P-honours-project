@@ -261,3 +261,61 @@
 2025-03-06 09:37:05.254	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4700	Stopped wallet RPC server
 2025-03-06 09:37:05.254	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4703	Saving wallet...
 2025-03-06 09:37:05.329	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4705	Successfully saved
+2025-03-20 08:40:37.393	  0x7ff84cd78b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-20 08:40:37.394	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-20 08:40:37.394	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-20 08:40:37.394	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-20 08:40:37.394	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to ./monero_service/wallets/monero-wallet-rpc.log
+2025-03-20 08:40:37.400	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-20 08:40:39.880	  0x7ff84cd78b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-03-20 08:40:51.037	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-03-20 08:40:51.038	  0x7ff84cd78b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18082
+2025-03-20 08:40:53.459	  0x7ff84cd78b00	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1274	Error starting server: Failed to bind IPv4 (set to required)
+2025-03-20 08:40:53.459	  0x7ff84cd78b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4686	Failed to initialize wallet RPC server
+2025-03-20 08:44:21.075	  0x7ff84cd78b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-20 08:44:21.075	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-20 08:44:21.075	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-20 08:44:21.075	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-20 08:44:21.075	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to ./monero_service/wallets/monero-wallet-rpc.log
+2025-03-20 08:44:21.077	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-20 08:44:22.966	  0x7ff84cd78b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-03-20 08:44:30.170	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-03-20 08:44:30.171	  0x7ff84cd78b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
+2025-03-20 08:44:32.291	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-20 08:45:18.218	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4700	Stopped wallet RPC server
+2025-03-20 08:45:18.218	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4703	Saving wallet...
+2025-03-20 08:45:18.288	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4705	Successfully saved
+2025-03-20 08:47:50.805	  0x7ff84cd78b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-20 08:47:50.805	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-20 08:47:50.805	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-20 08:47:50.805	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-20 08:47:50.805	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to ./monero_service/wallets/monero-wallet-rpc.log
+2025-03-20 08:47:50.807	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-20 08:47:52.717	  0x7ff84cd78b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-03-20 08:47:53.070	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-03-20 08:47:53.070	  0x7ff84cd78b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
+2025-03-20 08:47:54.445	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server
+2025-03-20 08:48:51.802	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4700	Stopped wallet RPC server
+2025-03-20 08:48:51.802	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4703	Saving wallet...
+2025-03-20 08:48:51.892	[SRV_MAIN]	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4705	Successfully saved
+2025-03-20 08:49:01.377	  0x7ff84cd78b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-20 08:49:01.377	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-20 08:49:01.377	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-20 08:49:01.377	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-20 08:49:01.377	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to ./monero_service/wallets/monero-wallet-rpc.log
+2025-03-20 08:49:01.379	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-20 08:49:02.728	  0x7ff84cd78b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-03-20 08:49:03.052	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-03-20 08:49:03.052	  0x7ff84cd78b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18082
+2025-03-20 08:49:04.819	  0x7ff84cd78b00	FATAL	net	contrib/epee/include/net/abstract_tcp_server2.inl:1274	Error starting server: Failed to bind IPv4 (set to required)
+2025-03-20 08:49:04.819	  0x7ff84cd78b00	ERROR	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4686	Failed to initialize wallet RPC server
+2025-03-20 08:49:15.363	  0x7ff84cd78b00	INFO	logging	contrib/epee/src/mlog.cpp:274	New log categories: *:WARNING,net:FATAL,net.http:FATAL,net.ssl:FATAL,net.p2p:FATAL,net.cn:FATAL,daemon.rpc:FATAL,global:INFO,verify:FATAL,serialization:FATAL,daemon.rpc.payment:ERROR,stacktrace:INFO,logging:INFO,msgwriter:INFO
+2025-03-20 08:49:15.363	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	This is the RPC monero wallet. It needs to connect to a monero
+2025-03-20 08:49:15.364	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	daemon to work correctly.
+2025-03-20 08:49:15.364	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Monero 'Fluorine Fermi' (v0.18.3.4-release)
+2025-03-20 08:49:15.364	  0x7ff84cd78b00	INFO	msgwriter	src/common/scoped_message_writer.h:102	Logging to ./monero_service/wallets/monero-wallet-rpc.log
+2025-03-20 08:49:15.366	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4618	Loading wallet...
+2025-03-20 08:49:16.974	  0x7ff84cd78b00	WARNING	wallet.wallet2	src/wallet/wallet2.cpp:6119	Loaded wallet keys file, with public address: 432ufv1WpwY4DqKt5m3QEAenaWogkiVSqKb1SgSseE3yULi1KLDqhknf4pUZ1WGEwZQW9UtiDVUkKBZrfYcgf7VY49vzUKJ
+2025-03-20 08:49:17.311	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:298	Background mining not enabled. Run "set setup-background-mining 1" in monero-wallet-cli to change.
+2025-03-20 08:49:17.312	  0x7ff84cd78b00	INFO	global	contrib/epee/include/net/http_server_impl_base.h:79	Binding on 127.0.0.1 (IPv4):18083
+2025-03-20 08:49:18.075	  0x7ff84cd78b00	WARNING	wallet.rpc	src/wallet/wallet_rpc_server.cpp:4690	Starting wallet RPC server

@@ -6,6 +6,8 @@ import { getSession } from "../../../../utils/session.server";
 import { redirect } from "@remix-run/node";
 import tradeCounting from "../../../../utils/tradesCounting.server";
 // import prisma from "../../../../../prisma/prisma";
+import { Use } from "../../context/Context";
+import useStoredValue from "../../components/useStoredValue";
 
 // const messages = [{ message: "Testing" }];
 // Loader Function (Server-Side Filtering)
@@ -91,10 +93,18 @@ export default function Index() {
   const { sellers } = useLoaderData();
   const data = useActionData();
   const message = data ? data.messages : [];
+  const { fontSize } = Use();
+  const typography = useStoredValue("typography");
+  const headerStyle = {
+    fontSize: typography?.size?.fontSize + 2 || fontSize.size.fontSize + 2,
+  };
+
   return (
     <div className="mt-5 ml-5">
       <div className="bg-third p-5 rounded-lg flex items-baseline justify-between w-full">
-        <h3 className="font-medium text-xl">Market</h3>
+        <h3 className="font-medium text-xl" style={headerStyle}>
+          Market
+        </h3>
         <Filter />
       </div>
       <div className="mt-5 space-y-4">
