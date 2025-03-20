@@ -95,9 +95,11 @@ export default function AddressBook() {
   };
   const headerStyle = {
     fontSize: typography?.size.fontSize + 3 || fontSize.size.fontSize + 3,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   const bodyStyle = {
     fontSize: typography?.size.fontSize - 3 || fontSize.size.fontSize - 3,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   return (
     <div className="mt-5 ml-5">

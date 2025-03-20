@@ -29,6 +29,8 @@ export default function MoneroTraderProfile({
             style={{
               fontSize:
                 typography?.size.fontSize + 1 || fontSize.size.fontSize + 1,
+              letterSpacing:
+                typography?.size.lineHeight || fontSize.size.lineHeight,
             }}
           >
             {name}
@@ -40,6 +42,8 @@ export default function MoneroTraderProfile({
               style={{
                 fontSize:
                   typography?.size.fontSize - 1 || fontSize.size.fontSize - 1,
+                letterSpacing:
+                  typography?.size.lineHeight || fontSize.size.lineHeight,
               }}
             >
               Trading Stats
@@ -52,6 +56,8 @@ export default function MoneroTraderProfile({
                     fontSize:
                       typography?.size.fontSize - 3 ||
                       fontSize.size.fontSize - 3,
+                    letterSpacing:
+                      typography?.size.lineHeight || fontSize.size.lineHeight,
                   }}
                 >
                   {successRate}%
@@ -62,6 +68,8 @@ export default function MoneroTraderProfile({
                     fontSize:
                       typography?.size.fontSize - 3 ||
                       fontSize.size.fontSize - 3,
+                    letterSpacing:
+                      typography?.size.lineHeight || fontSize.size.lineHeight,
                   }}
                 >
                   Success Rate
@@ -74,6 +82,8 @@ export default function MoneroTraderProfile({
                     fontSize:
                       typography?.size.fontSize - 3 ||
                       fontSize.size.fontSize - 3,
+                    letterSpacing:
+                      typography?.size.lineHeight || fontSize.size.lineHeight,
                   }}
                 >
                   {totalTrades}+
@@ -84,6 +94,8 @@ export default function MoneroTraderProfile({
                     fontSize:
                       typography?.size.fontSize - 3 ||
                       fontSize.size.fontSize - 3,
+                    letterSpacing:
+                      typography?.size.lineHeight || fontSize.size.lineHeight,
                   }}
                 >
                   Total Trades

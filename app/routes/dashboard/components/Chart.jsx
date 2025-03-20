@@ -62,6 +62,8 @@ export default function Chart({ chartData }) {
             style={{
               fontSize:
                 typography?.size.fontSize + 5 || fontSize.size.fontSize + 5,
+              letterSpacing:
+                typography?.size.lineHeight || fontSize.size.lineHeight,
             }}
           >
             Monero Chart
@@ -71,6 +73,8 @@ export default function Chart({ chartData }) {
             style={{
               fontSize:
                 typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+              letterSpacing:
+                typography?.size.lineHeight || fontSize.size.lineHeight,
             }}
           >
             Showing the price of Monero in the last {timeRange} days

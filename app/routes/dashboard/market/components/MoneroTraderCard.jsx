@@ -18,9 +18,11 @@ export default function MoneroTraderCard({ seller, messages }) {
   const typography = useStoredValue("typography");
   const headerStyle = {
     fontSize: typography?.size.fontSize + 2 || fontSize.size.fontSize + 2,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   const descriptionStyle = {
     fontSize: typography?.size.fontSize - 3 || fontSize.size.fontSize - 3,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   return (
     <div

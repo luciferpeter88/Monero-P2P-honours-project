@@ -5,10 +5,12 @@ export default function Card({ step, header, body }) {
   const typography = useStoredValue("typography");
   const cardHeaderStyle = {
     fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
 
   const cardDescriptionStyle = {
     fontSize: typography?.size.fontSize - 3 || fontSize.size.fontSize - 3,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   return (
     <div className="mt-3 flex  flex-col gap-y-3 rounded-lg items-center w-1/4  p-5 border-muted-foreground bg-primary">

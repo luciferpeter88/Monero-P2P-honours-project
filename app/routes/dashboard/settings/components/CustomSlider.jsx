@@ -36,13 +36,22 @@ export default function CustomSlider({
               "typograhpy",
               JSON.stringify(localStorageState)
             );
+            if (type === "defaultFontSize") {
+              return {
+                ...prev,
+                defaultFontSize: Number(newValue),
+                size: {
+                  ...prev.size,
+                  fontSize: 16 + Number(newValue),
+                  lineHeight: 1.5 + Number(newValue),
+                },
+              };
+            }
             return {
               ...prev,
-              defaultFontSize: Number(newValue),
               defaultLineHeight: Number(newValue),
               size: {
                 ...prev.size,
-                fontSize: 16 + Number(newValue),
                 lineHeight: 1.5 + Number(newValue),
               },
             };

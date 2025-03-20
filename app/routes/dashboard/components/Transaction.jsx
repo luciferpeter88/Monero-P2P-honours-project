@@ -8,9 +8,11 @@ export default function WithdrawalRecords({ header, data }) {
   const typography = useStoredValue("typography");
   const headerStyle = {
     fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   const bodyStyle = {
     fontSize: typography?.size.fontSize - 3 || fontSize.size.fontSize - 3,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   return (
     <div className="bg-third text-white p-6 rounded-xl shadow-lg mt-5">

@@ -133,18 +133,18 @@ const Index = () => {
             type="defaultFontSize"
           />
           <CustomSlider
-            label="Line Height"
+            label="Letter Spacing"
             defaultState={fontSize.defaultLineHeight}
             localStorageState={fontSize}
             updateState={setFontSize}
             type="lineHeight"
           />
 
-          <CustomSlider
+          {/* <CustomSlider
             label="Letter Spacing"
             defaultState={letterSpacing}
             updateState={setLetterSpacing}
-          />
+          /> */}
           <ColourSelection
             label="Primary Color"
             defaultState={primaryColor}

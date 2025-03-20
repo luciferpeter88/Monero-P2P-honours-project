@@ -21,9 +21,11 @@ export default function ReceiveForm({
   const typography = useStoredValue("typography");
   const titleStyle = {
     fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   const descriptionStyle = {
     fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
 
   const [copySuccess, setCopySuccess] = useState({});

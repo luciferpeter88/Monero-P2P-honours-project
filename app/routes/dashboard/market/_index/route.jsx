@@ -97,6 +97,7 @@ export default function Index() {
   const typography = useStoredValue("typography");
   const headerStyle = {
     fontSize: typography?.size?.fontSize + 2 || fontSize.size.fontSize + 2,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
 
   return (

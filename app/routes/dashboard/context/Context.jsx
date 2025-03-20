@@ -13,7 +13,7 @@ export function Provider({ children }) {
       defaultLineHeight,
       size: {
         fontSize: 16 + defaultFontSize,
-        lineHeight: 1.5 + defaultLineHeight,
+        lineHeight: 0 + defaultLineHeight,
         letterSpacing: 0,
       },
       // h3: {

@@ -122,6 +122,8 @@ export default function Index() {
           className="font-medium text"
           style={{
             fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+            letterSpacing:
+              typography?.size.lineHeight || fontSize.size.lineHeight,
           }}
         >
           {data.name}
@@ -185,6 +187,8 @@ export default function Index() {
             style={{
               fontSize:
                 typography?.size.fontSize + 1 || fontSize.size.fontSize + 1,
+              letterSpacing:
+                typography?.size.lineHeight || fontSize.size.lineHeight,
             }}
           >
             Accounts
@@ -220,6 +224,8 @@ export default function Index() {
           style={{
             fontSize:
               typography?.size.fontSize + 5 || fontSize.size.fontSize + 5,
+            letterSpacing:
+              typography?.size.lineHeight || fontSize.size.lineHeight,
           }}
         >
           Market

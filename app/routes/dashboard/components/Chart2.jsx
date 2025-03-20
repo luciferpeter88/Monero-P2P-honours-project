@@ -65,6 +65,8 @@ export default function Component({ data }) {
             style={{
               fontSize:
                 typography?.size.fontSize + 3 || fontSize.size.fontSize + 3,
+              letterSpacing:
+                typography?.size.lineHeight || fontSize.size.lineHeight,
             }}
           >
             Assets Overview
@@ -74,6 +76,8 @@ export default function Component({ data }) {
             style={{
               fontSize:
                 typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+              letterSpacing:
+                typography?.size.lineHeight || fontSize.size.lineHeight,
             }}
           >
             Total {totalAssets.toLocaleString()} XMR

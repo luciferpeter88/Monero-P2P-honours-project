@@ -108,9 +108,11 @@ export default function Index() {
   const typography = useStoredValue("typography");
   const nameStyle = {
     fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   const descRiptionstyle = {
     fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   return (
     <div className="mt-5 ml-5">

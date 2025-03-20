@@ -7,9 +7,11 @@ export default function SideBar({ users, setUserId, userId }) {
   const typography = useStoredValue("typography");
   const nameStyle = {
     fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   const descRiptionstyle = {
     fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   return (
     <aside className="w-80 bg-third rounded-lg">

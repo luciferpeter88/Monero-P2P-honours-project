@@ -15,9 +15,11 @@ export default function SendForm() {
   const [timeRange, setTimeRange] = React.useState("90d");
   const titleStyle = {
     fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   const descriptionStyle = {
     fontSize: typography?.size.fontSize - 2 || fontSize.size.fontSize - 2,
+    letterSpacing: typography?.size.lineHeight || fontSize.size.lineHeight,
   };
   return (
     <div className="flex flex-col md:flex-row gap-5 mt-5  text-white">
@@ -79,7 +81,11 @@ export default function SendForm() {
           <p className="text-xs text-secondary mt-2">
             Available Balance: 1 XMR
           </p>
-          <label className="text-md font-medium block mt-8" style={titleStyle}>
+          <label
+            className="text-md font-medium block mt-8"
+            style={titleStyle}
+            htmlFor="withdrawAmount"
+          >
             Select Address
           </label>
           <input
@@ -96,6 +102,7 @@ export default function SendForm() {
           <label
             className="text-sm text-white mb-2 block mt-8"
             style={titleStyle}
+            htmlFor="withdrawAmount"
           >
             Remarks (optional)
           </label>

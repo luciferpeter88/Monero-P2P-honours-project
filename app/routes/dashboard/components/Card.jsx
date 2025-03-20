@@ -27,6 +27,8 @@ export default function Card({
           style={{
             fontSize:
               typography?.size.fontSize + 0.5 || fontSize.size.fontSize + 0.5,
+            letterSpacing:
+              typography?.size.lineHeight || fontSize.size.lineHeight,
           }}
         >
           Your Balance
@@ -35,6 +37,8 @@ export default function Card({
           className="absolute"
           style={{
             fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+            letterSpacing:
+              typography?.size.lineHeight || fontSize.size.lineHeight,
           }}
         >
           Locked {lockedBalance}{" "}
@@ -45,6 +49,8 @@ export default function Card({
         <p
           style={{
             fontSize: typography?.size.fontSize || fontSize.size.fontSize,
+            letterSpacing:
+              typography?.size.lineHeight || fontSize.size.lineHeight,
           }}
         >
           {usedAccount}
@@ -53,6 +59,8 @@ export default function Card({
           style={{
             fontSize:
               typography?.size.fontSize + 1 || fontSize.size.fontSize + 1,
+            letterSpacing:
+              typography?.size.lineHeight || fontSize.size.lineHeight,
           }}
         >
           {name}
