@@ -60,6 +60,7 @@ export const action = async ({ request }) => {
         id: Number(userId),
       },
     });
+    return redirect("/admin");
   }
   return redirect(`/admin/users/${userId}`);
 };
