@@ -13,18 +13,18 @@ export default function SendForm() {
   const colorType = useStoredValue("colourType");
   const [timeRange, setTimeRange] = React.useState("90d");
   const titleStyle = {
-    fontSize: typography?.size.fontSize,
+    fontSize: typography?.size.fontSize + "px",
     letterSpacing: typography?.size.lineHeight,
     color: colorType?.primary,
   };
   const descriptionStyle = {
-    fontSize: typography?.size.fontSize - 2,
+    fontSize: typography?.size.fontSize - 2 + "px",
     letterSpacing: typography?.size.lineHeight,
     color: colorType?.secondary,
     backgroundColor: colorType?.primary,
   };
   const descriptionStyle2 = {
-    fontSize: typography?.size.fontSize - 2,
+    fontSize: typography?.size.fontSize - 2 + "px",
     letterSpacing: typography?.size.lineHeight,
     color: colorType?.secondary,
   };

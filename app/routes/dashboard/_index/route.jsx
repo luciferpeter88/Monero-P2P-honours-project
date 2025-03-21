@@ -115,7 +115,6 @@ export default function Index() {
 
   const fontType = useStoredValue("fontType");
   const colorType = useStoredValue("colourType");
-  console.log("fonttype", fontType);
 
   return (
     <div
@@ -129,7 +128,7 @@ export default function Index() {
         <h3
           className="font-medium text"
           style={{
-            fontSize: typography?.size.fontSize,
+            fontSize: typography?.size.fontSize + "px",
             letterSpacing: typography?.size.lineHeight,
           }}
         >
@@ -204,7 +203,7 @@ export default function Index() {
           <h2
             className="text-lg font-semibold"
             style={{
-              fontSize: typography?.size.fontSize + 1,
+              fontSize: typography?.size.fontSize + 1 + "px",
               letterSpacing: typography?.size.lineHeight,
             }}
           >
@@ -248,7 +247,7 @@ export default function Index() {
         <h2
           className="text-2xl font-semibold mb-4"
           style={{
-            fontSize: typography?.size.fontSize + 5,
+            fontSize: typography?.size.fontSize + 5 + "px",
             letterSpacing: typography?.size.lineHeight,
           }}
         >

@@ -1,16 +1,15 @@
 import SideChatPerson from "./SideChatPerson";
-import { Use } from "../../context/Context";
 import useStoredValue from "../../components/useStoredValue";
 
 export default function SideBar({ users, setUserId, userId }) {
   const typography = useStoredValue("typography");
   const colourType = useStoredValue("colourType");
   const nameStyle = {
-    fontSize: typography?.size.fontSize,
+    fontSize: typography?.size.fontSize + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   const descRiptionstyle = {
-    fontSize: typography?.size.fontSize - 2,
+    fontSize: typography?.size.fontSize - 2 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   return (

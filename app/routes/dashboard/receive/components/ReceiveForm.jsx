@@ -8,7 +8,6 @@ import {
   SelectValue,
 } from "../../../../../src/components/components/ui/select";
 import { Form } from "@remix-run/react";
-import { Use } from "../../context/Context";
 import useStoredValue from "../../components/useStoredValue";
 
 export default function ReceiveForm({
@@ -20,16 +19,16 @@ export default function ReceiveForm({
   const typography = useStoredValue("typography");
   const colorType = useStoredValue("colourType");
   const titleStyle = {
-    fontSize: typography?.size.fontSize,
+    fontSize: typography?.size.fontSize + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   const descriptionStyle = {
-    fontSize: typography?.size.fontSize - 2,
+    fontSize: typography?.size.fontSize - 2 + "px",
     letterSpacing: typography?.size.lineHeight,
     backgroundColor: colorType?.primary,
   };
   const descriptionStyle2 = {
-    fontSize: typography?.size.fontSize - 2,
+    fontSize: typography?.size.fontSize - 2 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
 

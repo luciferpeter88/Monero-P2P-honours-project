@@ -67,7 +67,7 @@ export default function Accounts({
     >
       <p
         style={{
-          fontSize: typography?.size.fontSize,
+          fontSize: typography?.size.fontSize + "px",
           letterSpacing: typography?.size.lineHeight,
         }}
       >
@@ -76,7 +76,7 @@ export default function Accounts({
       <p
         className="ml-auto"
         style={{
-          fontSize: typography?.size.fontSize - 1.5,
+          fontSize: typography?.size.fontSize - 1.5 + "px",
           letterSpacing: typography?.size.lineHeight,
         }}
       >{`${accountAddress.slice(0, 10)}......${accountAddress.slice(
@@ -84,7 +84,7 @@ export default function Accounts({
       )}....`}</p>
       <p
         style={{
-          fontSize: typography?.size.fontSize - 1.5,
+          fontSize: typography?.size.fontSize - 1.5 + "px",
           letterSpacing: typography?.size.lineHeight,
         }}
       >

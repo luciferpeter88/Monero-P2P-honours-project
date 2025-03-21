@@ -23,7 +23,7 @@ export default function Card({
         />
         <p
           style={{
-            fontSize: typography?.size.fontSize + 0.5,
+            fontSize: typography?.size.fontSize + 0.5 + "px",
             letterSpacing: typography?.size.lineHeight,
           }}
         >
@@ -32,7 +32,7 @@ export default function Card({
         <h2
           className="absolute"
           style={{
-            fontSize: typography?.size.fontSize,
+            fontSize: typography?.size.fontSize + "px",
             letterSpacing: typography?.size.lineHeight,
           }}
         >
@@ -43,7 +43,7 @@ export default function Card({
       <div className="visa_crinfo">
         <p
           style={{
-            fontSize: typography?.size.fontSize,
+            fontSize: typography?.size.fontSize + "px",
             letterSpacing: typography?.size.lineHeight,
           }}
         >
@@ -51,7 +51,7 @@ export default function Card({
         </p>
         <p
           style={{
-            fontSize: typography?.size.fontSize + 1,
+            fontSize: typography?.size.fontSize + 1 + "px",
             letterSpacing: typography?.size.lineHeight,
           }}
         >

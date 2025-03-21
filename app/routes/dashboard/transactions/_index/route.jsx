@@ -41,11 +41,11 @@ export default function Index() {
   const colorType = useStoredValue("colourType");
 
   const headerStyle = {
-    fontSize: typography?.size.fontSize + 3,
+    fontSize: typography?.size.fontSize + 3 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   const bodyStyle = {
-    fontSize: typography?.size.fontSize - 3,
+    fontSize: typography?.size.fontSize - 3 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   return (

@@ -1,16 +1,15 @@
-import { Use } from "../../context/Context";
 import useStoredValue from "../../components/useStoredValue";
 export default function Card({ step, header, body }) {
   const typography = useStoredValue("typography");
   const colorType = useStoredValue("colourType");
   const cardHeaderStyle = {
-    fontSize: typography?.size.fontSize,
+    fontSize: typography?.size.fontSize + "px",
     letterSpacing: typography?.size.lineHeight,
     color: colorType?.secondary,
   };
 
   const cardDescriptionStyle = {
-    fontSize: typography?.size.fontSize - 3,
+    fontSize: typography?.size.fontSize - 3 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   return (

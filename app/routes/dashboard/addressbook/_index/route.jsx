@@ -94,16 +94,16 @@ export default function AddressBook() {
     setTimeout(() => setCopySuccess(false), 2000);
   };
   const headerStyle = {
-    fontSize: typography?.size.fontSize + 3,
+    fontSize: typography?.size.fontSize + 3 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   const bodyStyle = {
-    fontSize: typography?.size.fontSize - 3,
+    fontSize: typography?.size.fontSize - 3 + "px",
     letterSpacing: typography?.size.lineHeight,
     backgroundColor: colorType?.tertiary,
   };
   const bodyStyle2 = {
-    fontSize: typography?.size.fontSize - 3,
+    fontSize: typography?.size.fontSize - 3 + "px",
     letterSpacing: typography?.size.lineHeight,
     backgroundColor: colorType?.primary,
   };

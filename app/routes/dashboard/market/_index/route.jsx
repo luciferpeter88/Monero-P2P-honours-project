@@ -97,7 +97,7 @@ export default function Index() {
   const fontType = useStoredValue("fontType");
   const colorType = useStoredValue("colourType");
   const headerStyle = {
-    fontSize: typography?.size?.fontSize + 2,
+    fontSize: typography?.size?.fontSize + 2 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
 

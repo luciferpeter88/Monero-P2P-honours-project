@@ -107,11 +107,11 @@ export default function Index() {
   const fontType = useStoredValue("fontType");
   const colourType = useStoredValue("colourType");
   const nameStyle = {
-    fontSize: typography?.size.fontSize,
+    fontSize: typography?.size.fontSize + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   const descRiptionstyle = {
-    fontSize: typography?.size.fontSize - 2,
+    fontSize: typography?.size.fontSize - 2 + "px",
     letterSpacing: typography?.size.lineHeight,
     backgroundColor: colourType?.primary,
   };

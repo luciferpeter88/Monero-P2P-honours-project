@@ -15,11 +15,11 @@ export default function MoneroTraderCard({ seller, messages }) {
   const colorType = useStoredValue("colourType");
 
   const headerStyle = {
-    fontSize: typography?.size.fontSize + 2,
+    fontSize: typography?.size.fontSize + 2 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   const descriptionStyle = {
-    fontSize: typography?.size.fontSize - 3,
+    fontSize: typography?.size.fontSize - 3 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   return (

@@ -5,11 +5,11 @@ export default function WithdrawalRecords({ header, data }) {
   const typography = useStoredValue("typography");
   const colorType = useStoredValue("colourType");
   const headerStyle = {
-    fontSize: typography?.size.fontSize - 2,
+    fontSize: typography?.size.fontSize - 2 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   const bodyStyle = {
-    fontSize: typography?.size.fontSize - 3,
+    fontSize: typography?.size.fontSize - 3 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
   return (

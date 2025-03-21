@@ -3,14 +3,25 @@ import SideBar from "./components/SideBar";
 import "./style/style.css";
 import { Outlet } from "@remix-run/react";
 import { getCurrentMoneroPrice } from "../../utils/moneroPrice";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, redirect } from "@remix-run/react";
 import { Provider } from "./context/Context";
 import useStoredValue from "./components/useStoredValue";
+import { getSession } from "../../utils/session.server";
+import prisma from "../../../prisma/prisma";
 
-export async function loader() {
+export async function loader({ request }) {
+  const session = await getSession(request.headers.get("Cookie"));
+  const userIdD = session.get("user_id");
+
+  if (!userIdD) {
+    return redirect("/");
+  }
+  const userPicture = prisma.user.findUnique({
+    where: { id: userIdD },
+    select: { imageSrc: true },
+  });
   const currentPrice = await getCurrentMoneroPrice();
-  console.log(currentPrice);
-  return { currentPrice };
+  return { currentPrice, userPicture };
 }
 export default function Shared() {
   const data = useLoaderData();

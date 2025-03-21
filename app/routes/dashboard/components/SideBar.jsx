@@ -46,7 +46,7 @@ export default function SideBar() {
     pathname === "/dashboard/messages" ? custom : custom2;
   const isSettingsCustom =
     pathname === "/dashboard/settings" ? custom : custom2;
-
+  // console.log("imageSrc", imageSrc);
   return (
     <div className="dashboardSidebar flex flex-col mt-5 rounded-xl">
       <div
@@ -58,7 +58,11 @@ export default function SideBar() {
           style={{ backgroundColor: colorType?.tertiary }}
         >
           <div className="w-[90%] pl-2 border-b border-primary pb-2">
-            <h1>Profile Picture</h1>
+            {/* <img
+              src={imageSrc?.imageSrc}
+              className="w-32 h-32 rounded-full object-cover border-4 border-primary shadow-md"
+              alt="profile"
+            /> */}
           </div>
         </div>
         <NavigateTo

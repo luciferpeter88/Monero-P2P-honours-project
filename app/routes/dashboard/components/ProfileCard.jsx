@@ -31,7 +31,7 @@ export default function MoneroTraderProfile({
           <h3
             className="font-bold text-lg text-white"
             style={{
-              fontSize: typography?.size.fontSize + 1,
+              fontSize: typography?.size.fontSize + 1 + "px",
               letterSpacing: typography?.size.lineHeight,
             }}
           >
@@ -45,7 +45,7 @@ export default function MoneroTraderProfile({
             <p
               className="text-white text-xs font-semibold"
               style={{
-                fontSize: typography?.size.fontSize - 1,
+                fontSize: typography?.size.fontSize - 1 + "px",
                 letterSpacing: typography?.size.lineHeight,
               }}
             >
@@ -56,7 +56,7 @@ export default function MoneroTraderProfile({
                 <p
                   className="text-sm font-bold text-green-500"
                   style={{
-                    fontSize: typography?.size.fontSize - 3,
+                    fontSize: typography?.size.fontSize - 3 + "px",
                     letterSpacing: typography?.size.lineHeight,
                   }}
                 >
@@ -65,7 +65,7 @@ export default function MoneroTraderProfile({
                 <p
                   className="text-xs text-muted-foreground"
                   style={{
-                    fontSize: typography?.size.fontSize - 3,
+                    fontSize: typography?.size.fontSize - 3 + "px",
                     letterSpacing: typography?.size.lineHeight,
                   }}
                 >
@@ -76,7 +76,7 @@ export default function MoneroTraderProfile({
                 <p
                   className="text-sm font-bold text-secondary"
                   style={{
-                    fontSize: typography?.size.fontSize - 3,
+                    fontSize: typography?.size.fontSize - 3 + "px",
                     letterSpacing: typography?.size.lineHeight,
                   }}
                 >
@@ -85,7 +85,7 @@ export default function MoneroTraderProfile({
                 <p
                   className="text-xs text-muted-foreground"
                   style={{
-                    fontSize: typography?.size.fontSize - 3,
+                    fontSize: typography?.size.fontSize - 3 + "px",
                     letterSpacing: typography?.size.lineHeight,
                   }}
                 >
