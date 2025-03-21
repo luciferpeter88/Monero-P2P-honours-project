@@ -6,7 +6,6 @@ import { getSession } from "../../../../utils/session.server";
 import { redirect } from "@remix-run/node";
 import tradeCounting from "../../../../utils/tradesCounting.server";
 // import prisma from "../../../../../prisma/prisma";
-import { Use } from "../../context/Context";
 import useStoredValue from "../../components/useStoredValue";
 
 // const messages = [{ message: "Testing" }];
@@ -17,6 +16,7 @@ export const loader = async ({ request }) => {
   if (!userIdD) {
     return redirect("/");
   }
+
   const trades = await tradeCounting(userIdD, "all");
 
   // if (recipientId) {
@@ -100,7 +100,6 @@ export default function Index() {
     fontSize: typography?.size?.fontSize + 2 + "px",
     letterSpacing: typography?.size.lineHeight,
   };
-
   return (
     <div
       className="mt-5 ml-5"

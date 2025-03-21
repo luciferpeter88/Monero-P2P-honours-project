@@ -37,7 +37,7 @@ export default function MoneroTraderCard({ seller, messages }) {
             "https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
           }
           alt="Trader"
-          className="rounded-lg w-32 h-32 object-cover"
+          className="w-32 h-32 rounded-full object-cover border-4 border-primary shadow-md"
         />
       </div>
 

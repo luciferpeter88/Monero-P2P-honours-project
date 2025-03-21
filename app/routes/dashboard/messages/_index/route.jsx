@@ -16,6 +16,7 @@ export const loader = async ({ request }) => {
   }
   // get the recipient id from the db based on the sender id
   const exchangeMessageWithUsers = await prisma.message.findMany({
+    // get either the sender id or the recipient id based on the logged in user's id to show every message in the chat list
     where: {
       OR: [{ senderId: userIdD }, { recipientId: userIdD }],
     },
@@ -39,7 +40,7 @@ export const loader = async ({ request }) => {
     uniqueRecipientIds.map(async (id) => {
       return prisma.user.findUnique({
         where: { id },
-        select: { id: true, username: true },
+        select: { id: true, username: true, imageSrc: true },
       });
     })
   );

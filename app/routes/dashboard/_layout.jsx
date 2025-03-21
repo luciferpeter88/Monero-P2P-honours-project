@@ -16,7 +16,6 @@ export async function loader({ request }) {
   if (!userIdD) {
     return redirect("/");
   }
-  console.log(userIdD);
 
   const user = await prisma.user.findUnique({
     where: { id: userIdD },
@@ -28,7 +27,6 @@ export async function loader({ request }) {
 export default function Shared() {
   const data = useLoaderData();
   const colorType = useStoredValue("colourType");
-  console.log(data);
   return (
     <Provider>
       <div

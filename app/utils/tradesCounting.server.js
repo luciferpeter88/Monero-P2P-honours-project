@@ -6,6 +6,7 @@ export default async function countTrades(userIdD, user = "all") {
     select: {
       id: true,
       username: true,
+      imageSrc: true,
       moneroAccounts: {
         select: {
           id: true,
@@ -34,7 +35,7 @@ export default async function countTrades(userIdD, user = "all") {
     return {
       id: user.id,
       username: user.username,
-      imgsrc: "",
+      imgsrc: user.imageSrc,
       totalTrades,
       confirmedTrades,
       successRate,
