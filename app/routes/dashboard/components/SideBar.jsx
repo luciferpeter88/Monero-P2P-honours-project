@@ -9,7 +9,7 @@ import { TiMessages } from "react-icons/ti";
 import { IoMdSettings } from "react-icons/io";
 import useStoredValue from "../components/useStoredValue";
 
-export default function SideBar() {
+export default function SideBar({ imageSrc }) {
   const { pathname } = useLocation();
   const primary = "bg-primary border-l-4 border-l-secondary text-secondary";
   const secondary = "bg-third";
@@ -58,11 +58,14 @@ export default function SideBar() {
           style={{ backgroundColor: colorType?.tertiary }}
         >
           <div className="w-[90%] pl-2 border-b border-primary pb-2">
-            {/* <img
-              src={imageSrc?.imageSrc}
+            <img
+              src={
+                imageSrc ||
+                "https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
+              }
               className="w-32 h-32 rounded-full object-cover border-4 border-primary shadow-md"
               alt="profile"
-            /> */}
+            />
           </div>
         </div>
         <NavigateTo

@@ -16,16 +16,19 @@ export async function loader({ request }) {
   if (!userIdD) {
     return redirect("/");
   }
-  const userPicture = prisma.user.findUnique({
+  console.log(userIdD);
+
+  const user = await prisma.user.findUnique({
     where: { id: userIdD },
     select: { imageSrc: true },
   });
   const currentPrice = await getCurrentMoneroPrice();
-  return { currentPrice, userPicture };
+  return { currentPrice, user };
 }
 export default function Shared() {
   const data = useLoaderData();
   const colorType = useStoredValue("colourType");
+  console.log(data);
   return (
     <Provider>
       <div
@@ -33,7 +36,7 @@ export default function Shared() {
         style={{ backgroundColor: colorType?.primary }}
       >
         <DashNavbar price={data.currentPrice} />
-        <SideBar />
+        <SideBar imageSrc={data?.user.imageSrc} />
         <div
           className="dashboardMainLeft rounded-lg"
           style={{ backgroundColor: colorType?.primary }}
