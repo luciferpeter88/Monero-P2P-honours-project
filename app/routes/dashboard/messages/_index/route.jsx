@@ -48,7 +48,6 @@ export const loader = async ({ request }) => {
     where: { id: userIdD },
     select: { imageSrc: true },
   });
-  console.log(loggedInUserImg);
 
   return { users, loggedInUserID: userIdD, loggedInUserImg };
 };
