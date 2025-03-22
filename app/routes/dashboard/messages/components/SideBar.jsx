@@ -52,6 +52,7 @@ export default function SideBar({ users, setUserId, userId }) {
               nameStyle={nameStyle}
               descRiptionstyle={descRiptionstyle}
               colourType={colourType}
+              image={user.imageSrc}
             />
           ))
         ) : (

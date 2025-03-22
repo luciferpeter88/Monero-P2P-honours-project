@@ -6,18 +6,25 @@ export default function SideChatPerson({
   nameStyle,
   descRiptionstyle,
   colourType,
+  image,
 }) {
   return (
     <button
       className={`p-3 rounded-xl hover:bg-primary cursor-pointer  flex items-center gap-3 w-full ${
         userId === id ? "bg-primary" : ""
       }`}
-      onClick={() => setUserId(id)}
+      onClick={() => {
+        setUserId(id);
+        console.log("User ID", id);
+      }}
       style={{ backgroundColor: colourType?.primary }}
     >
       <div className="w-12 h-12 rounded-xl overflow-hidden">
         <img
-          src="https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
+          src={
+            image ||
+            "https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
+          }
           alt="User"
           className="w-full h-full object-cover"
         />

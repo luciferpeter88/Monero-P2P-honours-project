@@ -44,8 +44,13 @@ export const loader = async ({ request }) => {
       });
     })
   );
+  const loggedInUserImg = await prisma.user.findUnique({
+    where: { id: userIdD },
+    select: { imageSrc: true },
+  });
+  console.log(loggedInUserImg);
 
-  return { users, loggedInUserID: userIdD };
+  return { users, loggedInUserID: userIdD, loggedInUserImg };
 };
 
 export default function Index() {
@@ -54,7 +59,6 @@ export default function Index() {
   const [messages, setMessages] = useState([]);
   const [userName, setUserName] = useState(data?.users?.[0]?.username || null);
   const [loading, setLoading] = useState(false);
-  // console.log(data);
 
   useEffect(() => {
     if (!userId) return;
@@ -142,6 +146,10 @@ export default function Index() {
               </div>
             ) : messages.length !== 0 ? (
               messages.map((message) => {
+                const receiverUserImg = data?.users.filter(
+                  (user) => user.id === userId
+                );
+
                 if (message.senderId !== userId) {
                   return (
                     <div
@@ -162,7 +170,10 @@ export default function Index() {
                         </div>
                       </div>
                       <img
-                        src="https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
+                        src={
+                          data?.loggedInUserImg?.imageSrc ||
+                          "https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
+                        }
                         alt="You"
                         className="w-10 h-10 rounded-full"
                       />
@@ -172,7 +183,10 @@ export default function Index() {
                   return (
                     <div className="flex gap-4 max-w-2xl" key={message.id}>
                       <img
-                        src="https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
+                        src={
+                          receiverUserImg[0].imageSrc ||
+                          "https://divnil.com/wallpaper/iphone5/img/app/6/4/649a066d415bdda4ce2a7088292645e0_b4f0a5157bdc60fc752dee0c0e8deaad_raw.jpg"
+                        }
                         alt="User"
                         className="w-10 h-10 rounded-full"
                       />
